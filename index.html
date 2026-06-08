@@ -4,19 +4,159 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VAURA — Digital Craftsmanship</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body { font-family: 'Inter', system-ui, sans-serif; }
-  
-    .hero-bg {
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #000000;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* Glass Morphism Utilities */
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .glass-button {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(32px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      text-align: center;
+    }
+
+    .glass-button:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 48px rgba(0, 255, 150, 0.2);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      backdrop-filter: blur(28px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+    }
+
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #00ff96;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #mobile-menu {
+      display: none !important;
+      position: absolute;
+      top: 100%;
+      left: 1.5rem;
+      right: 1.5rem;
+      margin-top: 0.5rem;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      text-align: center;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    #mobile-menu.visible {
+      display: flex !important;
+    }
+
+    #mobile-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
       background: linear-gradient(135deg, #0a051f 0%, #1a0033 50%, #002b1f 100%);
       position: relative;
       overflow: hidden;
       min-height: 55vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      margin-top: 0;
     }
-    .hero-bg::before {
+
+    .hero::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -24,189 +164,684 @@
                   radial-gradient(circle at 80% 70%, rgba(200, 50, 255, 0.3), transparent 50%);
       animation: auroraMove 30s ease infinite;
     }
+
     @keyframes auroraMove {
       0% { transform: translate(0, 0); }
       50% { transform: translate(40px, -30px); }
       100% { transform: translate(0, 0); }
     }
-    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(28px); border: 1px solid rgba(255,255,255,0.18); }
-    .glass-button {
-      background: rgba(255,255,255,0.12); backdrop-filter: blur(32px);
-      border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
-    .glass-button:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Section Spacing */
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1rem;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Service Grid */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .service-card {
+      padding: 2rem;
+      border-radius: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 64px rgba(0, 255, 150, 0.15);
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .service-card p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Partners Section */
+    .partners-section {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 4rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .partners-grid img {
+      max-height: 80px;
+      width: auto;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      filter: brightness(0.9);
+    }
+
+    .partners-grid img:hover {
+      opacity: 1;
+      filter: brightness(1);
+    }
+
+    /* Packages Grid */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .package-card {
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .package-card.featured {
+      border: 2px solid rgba(0, 255, 150, 0.5);
+    }
+
+    .package-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 64px rgba(0, 255, 150, 0.15);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 255, 150, 0.15);
+      border: 1px solid rgba(0, 255, 150, 0.4);
+      padding: 0.5rem 1.2rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #00ff96;
+    }
+
+    .package-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .package-price {
+      font-size: 2.75rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .package-period {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .package-features {
+      list-style: none;
+      margin: 1.5rem 0;
+      flex-grow: 1;
+    }
+
+    .package-features li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .package-features li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #00ff96;
+      font-weight: 700;
+    }
+
+    .package-cta {
+      margin-top: 1.5rem;
+      display: inline-block;
+    }
+
+    .package-cta a {
+      display: block;
+      padding: 1rem;
+      border-radius: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      color: #000000;
+    }
+
+    .package-cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 255, 150, 0.3);
+    }
+
+    /* Photo/Video Grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .photo-card {
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .photo-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .photo-list {
+      list-style: none;
+      flex-grow: 1;
+      margin-bottom: 2rem;
+    }
+
+    .photo-list li {
+      padding: 0.75rem 0;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .photo-list strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .photo-description {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .photo-card-cta a {
+      display: block;
+      padding: 1rem;
+      border-radius: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .photo-card-cta a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* EDIT 3: CSS for updated photo/video section buttons with gradient and hover effects */
+    .photo-card a[style*="background: linear-gradient"] {
+      display: block !important;
+    }
+
+    .photo-card a[style*="background: linear-gradient"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 255, 150, 0.3);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 2rem;
+    }
+
+    .cta-text {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #00ff96;
+    }
+
+    .footer-bottom {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.85rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Floating CTA */
     .floating-logo {
-      position: fixed; bottom: 25px; right: 25px; z-index: 50;
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 50;
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .floating-logo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 50px rgba(0, 255, 150, 0.3);
+    }
+
+    .floating-logo img {
+      height: 30px;
+      width: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 45vh;
+        padding-top: 70px;
+      }
+
+      section {
+        padding: 2.5rem 0;
+      }
+
+      h2 {
+        margin-bottom: 2rem;
+        font-size: 1.75rem;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .floating-logo {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+
+      .package-price {
+        font-size: 2.25rem;
+      }
     }
   </style>
 </head>
-<body class="bg-black text-white">
-
-  <!-- Navigation - Glass Style (as you preferred) -->
-  <nav class="fixed top-0 w-full z-50 glass py-4">
-    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-      <a href="index.html"><img src="V White.png" alt="VAURA Logo" class="h-9 md:h-10"></a>
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <a href="services.html" class="hover:text-white">Services</a>
-        <a href="packages.html" class="hover:text-white">Website Packages</a>
-        <a href="photovideo.html" class="hover:text-white">Photo / Video</a>
-        <a href="https://calendly.com/vaura/30min" target="_blank" class="glass-button px-6 py-2.5 rounded-3xl text-sm">Schedule Consultation</a>
-      </div>
-      <button id="menu-toggle" class="md:hidden text-3xl">
+<body>
+  <!-- Navigation -->
+  <nav class="glass">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="V White.png" alt="VAURA Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="packages.html">Website Packages</a></li>
+        <li><a href="photovideo.html">Photo / Video</a></li>
+        <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="menu-toggle">
         <i class="fas fa-bars"></i>
       </button>
     </div>
 
-    <div id="mobile-menu" class="md:hidden glass mt-3 mx-6 rounded-3xl py-6 px-6 text-center space-y-6 text-lg font-medium hidden">
-      <a href="index.html" onclick="toggleMenu()" class="block">Home</a>
-      <a href="services.html" onclick="toggleMenu()" class="block">Services</a>
-      <a href="packages.html" onclick="toggleMenu()" class="block">Website Packages</a>
-      <a href="photovideo.html" onclick="toggleMenu()" class="block">Photo / Video</a>
-      <a href="https://calendly.com/vaura/30min" target="_blank" onclick="toggleMenu()" class="glass-button inline-block w-full py-4 rounded-3xl">Schedule Consultation</a>
+    <div id="mobile-menu" class="glass">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="packages.html">Website Packages</a>
+      <a href="photovideo.html">Photo / Video</a>
+      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero-bg flex items-center pt-20 pb-10">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-        Digital experiences<br>that feel <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300">alive</span>.
-      </h1>
-      <p class="text-lg md:text-xl text-gray-300 max-w-xl mx-auto mb-8">
-        Premium websites • Branding • Photography • Marketing
-      </p>
-      <a href="https://calendly.com/vaura/30min" target="_blank" class="glass-button inline-block px-12 py-5 rounded-3xl text-lg font-semibold">
-        Start Your Project
-      </a>
+  <!-- Hero Section -->
+  <section class="hero" style="margin-bottom: 3rem;">
+    <div class="hero-content">
+      <h1>Digital experiences<br>that feel <span class="gradient-text">alive</span>.</h1>
+      <p class="hero-subtitle">Premium websites • Branding • Photography • Marketing</p>
+      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Start Your Project</a>
     </div>
   </section>
 
   <!-- What We Do -->
-  <section id="services" class="max-w-6xl mx-auto px-6 py-12">
-    <h2 class="text-4xl font-bold text-center mb-10">What We Do</h2>
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="glass rounded-3xl p-6 hover:scale-[1.02] transition-all">
-        <h3 class="text-lg font-semibold mb-3">Web Dev</h3>
-        <p class="text-gray-400 text-sm">Bespoke, high-performance websites that convert.</p>
+  <section class="container">
+    <h2>What We Do</h2>
+    <div class="service-grid">
+      <div class="service-card glass">
+        <h3>Web Dev</h3>
+        <p>Bespoke, high-performance websites that convert.</p>
       </div>
-      <div class="glass rounded-3xl p-6 hover:scale-[1.02] transition-all">
-        <h3 class="text-lg font-semibold mb-3">Branding</h3>
-        <p class="text-gray-400 text-sm">Logos, visual systems, and full brand stories.</p>
+      <div class="service-card glass">
+        <h3>Branding</h3>
+        <p>Logos, visual systems, and full brand stories.</p>
       </div>
-      <div class="glass rounded-3xl p-6 hover:scale-[1.02] transition-all">
-        <h3 class="text-lg font-semibold mb-3">Photo & Video</h3>
-        <p class="text-gray-400 text-sm">Professional shoots, editing, and cinematic content.</p>
+      <div class="service-card glass">
+        <h3>Photo & Video</h3>
+        <p>Professional shoots, editing, and cinematic content.</p>
       </div>
-      <div class="glass rounded-3xl p-6 hover:scale-[1.02] transition-all">
-        <h3 class="text-lg font-semibold mb-3">Marketing</h3>
-        <p class="text-gray-400 text-sm">Strategic paid campaigns across platforms.</p>
+      <div class="service-card glass">
+        <h3>Marketing</h3>
+        <p>Strategic paid campaigns across platforms.</p>
       </div>
-      <div class="glass rounded-3xl p-6 hover:scale-[1.02] transition-all">
-        <h3 class="text-lg font-semibold mb-3">Graphic Design</h3>
-        <p class="text-gray-400 text-sm">Clothing graphics, ad creatives & more.</p>
+      <div class="service-card glass">
+        <h3>Graphic Design</h3>
+        <p>Clothing graphics, ad creatives & more.</p>
       </div>
-      <div class="glass rounded-3xl p-6 hover:scale-[1.02] transition-all">
-        <h3 class="text-lg font-semibold mb-3">SEO & Mgmt</h3>
-        <p class="text-gray-400 text-sm">Long-term growth and consulting.</p>
+      <div class="service-card glass">
+        <h3>SEO & Mgmt</h3>
+        <p>Long-term growth and consulting.</p>
       </div>
+    </div>
+
+    <!-- EDIT 1: Add "Learn More" button under What We Do section -->
+    <div style="text-align: center; margin-top: 3rem; margin-bottom: 3rem;">
+      <a href="services.html" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Learn More</a>
     </div>
   </section>
 
   <!-- Our Partners -->
-  <section class="max-w-6xl mx-auto px-6 py-10 bg-zinc-950">
-    <h2 class="text-4xl font-bold text-center mb-10">Our Partners</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-90 hover:opacity-100 transition-all">
-      <img src="OceanWholesale Logo Img.png" alt="Ocean Wholesale" class="500 mx-auto">
-      <img src="Untitled design.png" alt="Rich Nerdz" class="300 mx-auto">
-      <img src="Untitled_design_1.png" alt="Matrix Medical" class="200 mx-auto">
-      <img src="Pure mechanical logo .webp" alt="Pure Mechanical" class="h-150 mx-auto">
-    </div>
-  </section>
-
-  <!-- Website Packages -->
-  <section id="packages" class="py-12 bg-black">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-6">Website Packages</h2>
-      <p class="text-center text-gray-400 mb-10">Choose your level of digital excellence</p>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass rounded-3xl p-8">
-          <h3 class="text-2xl font-bold">Starter</h3>
-          <p class="text-5xl font-bold mt-4 mb-1">$3,500</p>
-          <ul class="mt-6 space-y-3 text-sm text-gray-300">
-            <li>✓ Up to 5 pages</li>
-            <li>✓ Modern responsive design</li>
-            <li>✓ Basic SEO</li>
-            <li>✓ Contact forms</li>
-          </ul>
-        </div>
-        <div class="glass rounded-3xl p-8 ring-2 ring-white/30 relative">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md text-xs font-bold px-5 py-1 rounded-full border border-white/30">MOST POPULAR</div>
-          <h3 class="text-2xl font-bold">Professional</h3>
-          <p class="text-5xl font-bold mt-4 mb-1">$5,000</p>
-          <ul class="mt-6 space-y-3 text-sm text-gray-300">
-            <li>✓ Up to 10 pages</li>
-            <li>✓ Fully custom design</li>
-            <li>✓ Advanced SEO + copywriting</li>
-            <li>✓ 60 days support</li>
-          </ul>
-        </div>
-        <div class="glass rounded-3xl p-8">
-          <h3 class="text-2xl font-bold">Premium</h3>
-          <p class="text-5xl font-bold mt-4 mb-1">$10k+</p>
-          <ul class="mt-6 space-y-3 text-sm text-gray-300">
-            <li>✓ 20+ pages + animations</li>
-            <li>✓ Bespoke experience</li>
-            <li>✓ Full integrations</li>
-            <li>✓ Priority support</li>
-          </ul>
-        </div>
+  <section class="partners-section">
+    <div class="container">
+      <h2>Our Partners</h2>
+      <div class="partners-grid">
+        <img src="OceanWholesale Logo Img.png" alt="Ocean Wholesale">
+        <img src="Untitled design.png" alt="Rich Nerdz">
+        <img src="Untitled_design_1.png" alt="Matrix Medical">
+        <img src="Pure mechanical logo .webp" alt="Pure Mechanical">
       </div>
     </div>
   </section>
 
+  <!-- Website Packages -->
+  <section class="container">
+          <div style="margin-top: 3rem;"></div>
+    <h2>Website Packages</h2>
+    <p class="section-subtitle">Choose your level of digital excellence</p>
+    
+    <div class="packages-grid">
+      <div class="package-card glass">
+        <h3 class="package-name">Starter</h3>
+        <div class="package-price">$3,500</div>
+        <p class="package-period">one-time investment</p>
+        
+        <ul class="package-features">
+          <li>Up to 5 pages</li>
+          <li>Modern responsive design</li>
+          <li>Basic SEO</li>
+          <li>Contact forms</li>
+        </ul>
+        
+        <div class="package-cta">
+          <a href="https://calendly.com/vaura/30min" target="_blank">Get Started</a>
+        </div>
+      </div>
+
+      <div class="package-card glass featured">
+        <div class="popular-badge">MOST POPULAR</div>
+        <h3 class="package-name">Professional</h3>
+        <div class="package-price">$5,000</div>
+        <p class="package-period">one-time investment</p>
+        
+        <ul class="package-features">
+          <li>Up to 10 pages</li>
+          <li>Fully custom design</li>
+          <li>Advanced SEO + copywriting</li>
+          <li>60 days support</li>
+        </ul>
+        
+        <div class="package-cta">
+          <a href="https://calendly.com/vaura/general-discovery" target="_blank">Schedule Call</a>
+        </div>
+      </div>
+
+      <div class="package-card glass">
+        <h3 class="package-name">Premium</h3>
+        <div class="package-price">$10k+</div>
+        <p class="package-period">custom scope</p>
+        
+        <ul class="package-features">
+          <li>20+ pages + animations</li>
+          <li>Bespoke experience</li>
+          <li>Full integrations</li>
+          <li>Priority support</li>
+        </ul>
+        
+        <div class="package-cta">
+          <a href="https://calendly.com/vaura/general-discovery" target="_blank">Let's Talk</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem; margin-bottom: 6rem;">
+      <a href="photovideo.html" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">View All Packages →</a>
+    </div>
+  </section>
+
+  <!-- EDIT 2: Increased spacing before Photo & Video section with margin-bottom on packages section -->
+
   <!-- Photo / Video -->
-  <section id="photography" class="max-w-6xl mx-auto px-6 py-12">
-    <h2 class="text-4xl font-bold text-center mb-10">Photo / Video</h2>
-    <div class="grid md:grid-cols-2 gap-8">
-      <div class="glass rounded-3xl p-8">
-        <h3 class="text-2xl font-bold mb-4">Session Packages</h3>
-        <ul class="space-y-4 text-gray-300">
+  <section class="container">
+                <div style="margin-top: 3rem;"></div>
+    <h2>Photo / Video</h2>
+    <div class="photo-grid">
+      <div class="photo-card glass">
+        <h3>Session Packages</h3>
+        <ul class="photo-list">
           <li><strong>Half Day Shoot</strong> — Starting at $1,200</li>
           <li><strong>Full Day Shoot</strong> — Starting at $2,500</li>
           <li><strong>Product / E-commerce</strong> — $800+</li>
           <li><strong>Video Production</strong> — Starting at $1,800</li>
         </ul>
+        <!-- EDIT 3: Updated button styling to match Website Packages cards -->
+        <div style="display: block;">
+          <a href="photovideo.html" style="display: block; padding: 1rem; border-radius: 1rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease; background: linear-gradient(135deg, #00ff96, #00ccff); color: #000000; text-align: center;">View All Packages →</a>
+        </div>
       </div>
-      <div class="glass rounded-3xl p-8">
-        <h3 class="text-2xl font-bold mb-4">What's Included</h3>
-        <p class="text-gray-400 mb-6">Professional editing, multiple formats, commercial usage rights, and fast turnaround.</p>
-        <a href="photovideo.html" class="glass-button inline-block px-8 py-4 rounded-3xl text-center w-full">
-          View All Packages →
-        </a>
+
+      <div class="photo-card glass">
+        <h3>What's Included</h3>
+        <p class="photo-description">Professional editing, multiple formats, commercial usage rights, and fast turnaround.</p>
+        <p class="photo-description">From product launches to corporate headshots to cinematic event coverage, we create visual assets that tell your story.</p>
+        <!-- EDIT 3: Updated button styling to match Website Packages cards -->
+        <div style="display: block;">
+          <a href="photovideo.html" style="display: block; padding: 1rem; border-radius: 1rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease; background: linear-gradient(135deg, #00ff96, #00ccff); color: #000000; text-align: center;">Explore Our Work →</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Final CTA -->
-  <section class="py-12 text-center bg-black">
-    <div class="max-w-md mx-auto px-6">
-      <h2 class="text-4xl font-bold mb-8">Ready to create something exceptional?</h2>
-      <a href="https://calendly.com/vaura/30min" target="_blank" class="glass-button inline-block px-14 py-6 rounded-3xl text-xl font-semibold">
-        Schedule Consultation
-      </a>
-    </div>
+  <section class="cta-section">
+    <h2>Ready to create something exceptional?</h2>
+    <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2.5rem; font-size: 1rem;">Schedule Consultation</a>
   </section>
 
-  <!-- Floating Logo -->
-  <a href="tel:7634478781" class="floating-logo glass-button w-16 h-16 flex items-center justify-center rounded-2xl shadow-2xl hover:scale-110 transition overflow-hidden">
-    <img src="V White.png" alt="VAURA" class="h-10 w-10 object-contain">
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="packages.html">Website Packages</a>
+        <a href="photovideo.html">Photo / Video</a>
+        <a href="tel:7634478781">Call Us</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 VAURA Digital Craftsmanship. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA Button -->
+  <a href="tel:7634478781" class="floating-logo glass-button">
+    <img src="V White.png" alt="VAURA">
   </a>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    }
-    document.getElementById('menu-toggle').addEventListener('click', toggleMenu);
+    const mobileMenuBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('visible');
+    });
+
+    // Close menu when a link is clicked
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('visible');
+      });
+    });
   </script>
 </body>
 </html>
