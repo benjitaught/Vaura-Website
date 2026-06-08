@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — VAURA Digital Craftsmanship</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #000000;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* Glass Morphism Utilities */
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .glass-button {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(32px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .glass-button:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 48px rgba(0, 255, 150, 0.2);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      backdrop-filter: blur(28px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+    }
+
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #00ff96;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0a051f 0%, #1a0033 50%, #002b1f 100%);
+      position: relative;
+      overflow: hidden;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      margin-top: 0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(0, 255, 150, 0.35), transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(200, 50, 255, 0.3), transparent 50%);
+      animation: auroraMove 30s ease infinite;
+    }
+
+    @keyframes auroraMove {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(40px, -30px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Section Spacing */
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    /* Service Grid */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .service-card {
+      padding: 2rem;
+      border-radius: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 64px rgba(0, 255, 150, 0.15);
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .service-card p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .service-features li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .service-features li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #00ff96;
+      font-weight: 700;
+    }
+
+    /* Two-Column Detailed Services */
+    .service-pair {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .service-detail {
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+    }
+
+    .service-detail h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+    }
+
+    .service-detail p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .service-detail ul {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .service-detail ul li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .service-detail ul li:before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #c850ff;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 2rem;
+    }
+
+    .cta-text {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #00ff96;
+    }
+
+    .footer-bottom {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.85rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Floating CTA */
+    .floating-logo {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 50;
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .floating-logo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 50px rgba(0, 255, 150, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 40vh;
+        padding-top: 70px;
+      }
+
+      section {
+        padding: 2.5rem 0;
+      }
+
+      h2 {
+        margin-bottom: 2rem;
+        font-size: 1.75rem;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .service-pair {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .floating-logo {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Gradient Text Utility */
+    .gradient-text {
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="glass">
+    <div class="container">
+      <div class="logo">VAURA</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="packages.html">Website Packages</a></li>
+        <li><a href="photovideo.html">Photo / Video</a></li>
+        <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
+      </ul>
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Our Services</h1>
+      <p class="hero-subtitle">Complete digital solutions from branding and web development to photography and strategic marketing.</p>
+    </div>
+  </section>
+
+  <!-- Main Services Grid -->
+  <section class="container">
+    <h2>Core Services</h2>
+    <div class="service-grid">
+      <div class="service-card glass">
+        <h3>Web Development</h3>
+        <p>High-performance websites that convert visitors into customers. Custom, bespoke designs built on modern frameworks with SEO-optimized architecture.</p>
+        <ul class="service-features">
+          <li>Fully custom responsive design</li>
+          <li>Modern tech stack (React, Next.js, Node.js)</li>
+          <li>SEO optimization & analytics setup</li>
+          <li>Fast performance & accessibility</li>
+          <li>Ongoing maintenance & updates</li>
+        </ul>
+      </div>
+
+      <div class="service-card glass">
+        <h3>Branding</h3>
+        <p>Complete brand identity systems that tell your story. From logo design to comprehensive visual guidelines, we create memorable brands.</p>
+        <ul class="service-features">
+          <li>Logo design & variations</li>
+          <li>Brand guidelines & voice</li>
+          <li>Visual identity system</li>
+          <li>Packaging design support</li>
+          <li>Brand strategy consultation</li>
+        </ul>
+      </div>
+
+      <div class="service-card glass">
+        <h3>Photography</h3>
+        <p>Professional photography for your business. Product shots, corporate portraits, events, and lifestyle imagery that elevates your brand.</p>
+        <ul class="service-features">
+          <li>Commercial product photography</li>
+          <li>Corporate headshots & portraits</li>
+          <li>Event coverage & documentation</li>
+          <li>Professional retouching included</li>
+          <li>Commercial usage rights</li>
+        </ul>
+      </div>
+
+      <div class="service-card glass">
+        <h3>Video Production</h3>
+        <p>Cinematic video content that tells your brand story. From concept to final delivery, we handle all aspects of video production.</p>
+        <ul class="service-features">
+          <li>Concept development & scripting</li>
+          <li>Professional cinematography</li>
+          <li>Color grading & sound design</li>
+          <li>Motion graphics & animations</li>
+          <li>Multiple format delivery</li>
+        </ul>
+      </div>
+
+      <div class="service-card glass">
+        <h3>Graphic Design</h3>
+        <p>Custom graphic design for digital and print. Logos, social content, ad creatives, packaging, and everything in between.</p>
+        <ul class="service-features">
+          <li>Social media graphics</li>
+          <li>Marketing collateral</li>
+          <li>Clothing & apparel graphics</li>
+          <li>Print-ready design files</li>
+          <li>Brand-consistent execution</li>
+        </ul>
+      </div>
+
+      <div class="service-card glass">
+        <h3>Marketing Strategy</h3>
+        <p>Data-driven marketing strategy and paid campaign management. We help you reach the right audience with the right message.</p>
+        <ul class="service-features">
+          <li>Marketing strategy & planning</li>
+          <li>Paid ad campaign setup & management</li>
+          <li>Social media strategy</li>
+          <li>Performance tracking & optimization</li>
+          <li>Conversion rate optimization</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Services Section -->
+  <section class="container">
+    <h2>Specialized Solutions</h2>
+    <div class="service-pair">
+      <div class="service-detail glass">
+        <h3>E-Commerce Solutions</h3>
+        <p>Complete e-commerce implementation and optimization. We build Shopify stores, product photography systems, and marketing funnels designed to sell.</p>
+        <ul>
+          <li>Shopify store setup & design</li>
+          <li>Product photography & optimization</li>
+          <li>Conversion funnel development</li>
+          <li>Payment & shipping integration</li>
+          <li>Ongoing SEO & performance marketing</li>
+          <li>Inventory & order management systems</li>
+        </ul>
+      </div>
+
+      <div class="service-detail glass">
+        <h3>Content Creation</h3>
+        <p>Strategic content that builds authority and audience. Blogs, social content, email campaigns, and video production designed for growth.</p>
+        <ul>
+          <li>Blog content strategy & writing</li>
+          <li>Social media content calendar</li>
+          <li>Email marketing campaigns</li>
+          <li>Video scripting & production</li>
+          <li>SEO-optimized copywriting</li>
+          <li>Visual content creation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Services -->
+  <section class="container">
+    <h2>Add-On Services</h2>
+    <div class="service-pair">
+      <div class="service-detail glass">
+        <h3>SEO Optimization</h3>
+        <p>Technical SEO, on-page optimization, and link building strategy. We improve your search visibility and organic traffic month over month.</p>
+        <ul>
+          <li>Technical SEO audit & fixes</li>
+          <li>Keyword research & strategy</li>
+          <li>On-page optimization</li>
+          <li>Content strategy for SEO</li>
+          <li>Backlink development</li>
+          <li>Monthly reporting & insights</li>
+        </ul>
+      </div>
+
+      <div class="service-detail glass">
+        <h3>Website Management</h3>
+        <p>Ongoing website maintenance, updates, security, and optimization. Keep your site running smoothly with our management packages.</p>
+        <ul>
+          <li>Monthly updates & maintenance</li>
+          <li>Security monitoring & updates</li>
+          <li>Performance optimization</li>
+          <li>Backup & disaster recovery</li>
+          <li>Speed & uptime monitoring</li>
+          <li>Priority technical support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Ready to Get Started?</h2>
+    <p class="cta-text">Let's discuss your project, timeline, and vision. Schedule a consultation call with our team to explore what's possible.</p>
+    <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Schedule Your Free Consultation</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="packages.html">Website Packages</a>
+        <a href="photovideo.html">Photo / Video</a>
+        <a href="tel:7634478781">Call Us</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 VAURA Digital Craftsmanship. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA Button -->
+  <a href="tel:7634478781" class="floating-logo glass-button">
+    <i class="fas fa-phone"></i>
+  </a>
+
+  <script>
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+  </script>
+</body>
+</html>
