@@ -66,8 +66,9 @@
       margin: 0 auto;
       padding: 0 1.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
+      gap: 2rem;
     }
 
     .logo {
@@ -86,6 +87,7 @@
       gap: 2rem;
       align-items: center;
       list-style: none;
+      justify-content: center;
     }
 
     .nav-links a {
@@ -93,11 +95,12 @@
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .nav-links a:hover {
       color: #00ff96;
+      transform: translateY(-3px);
     }
 
     .mobile-menu-btn {
@@ -107,6 +110,7 @@
       color: #ffffff;
       font-size: 1.5rem;
       cursor: pointer;
+      padding: 0;
     }
 
     #mobile-menu {
@@ -121,6 +125,16 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
+      /* EDIT: Increased blur for better readability while keeping light transparent glass look */
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(50px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .mobile-menu-glass {
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(50px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
     }
 
     #mobile-menu.visible {
@@ -133,6 +147,12 @@
       font-size: 1rem;
       font-weight: 500;
       display: block;
+      transition: all 0.3s ease;
+    }
+
+    #mobile-menu a:hover {
+      color: #00ff96;
+      transform: translateY(-3px);
     }
 
     @media (max-width: 768px) {
@@ -620,9 +640,9 @@
   <!-- Navigation -->
   <nav class="glass">
     <div class="container">
-      <a href="index.html" class="logo">
-        <img src="White Logo w Words Center.png" alt="VAURA Logo">
-      </a>
+      <!-- Desktop: Logo hidden, centered menu -->
+      <div style="flex: 1;"></div>
+      
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -630,12 +650,16 @@
         <li><a href="photovideo.html">Photo / Video</a></li>
         <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
+      
+      <div style="flex: 1;"></div>
+      
+      <!-- Mobile: Logo as menu button (right side) -->
       <button class="mobile-menu-btn" id="menu-toggle">
-        <i class="fas fa-bars"></i>
+        <img src="V White.png" alt="VAURA Menu" style="height: 40px; width: auto;">
       </button>
     </div>
 
-    <div id="mobile-menu" class="glass">
+    <div id="mobile-menu" class="glass mobile-menu-glass">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="packages.html">Website Packages</a>
