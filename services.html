@@ -98,6 +98,11 @@
       transform: translateY(-3px);
     }
 
+    .nav-links a.active {
+      color: #00ccff;
+      text-shadow: 0 0 12px rgba(0, 204, 255, 0.7);
+    }
+
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -470,7 +475,7 @@
       <div style="flex: 1;"></div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
         <li><a href="packages.html">Website Packages</a></li>
         <li><a href="photovideo.html">Photo / Video</a></li>
         <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
@@ -643,7 +648,7 @@
 
   <!-- CTA Section -->
   <section class="cta-section">
-    <h2>Ready to Get Started?</h2>
+    <h2><span class="gradient-text">Ready to Get Started?</span></h2>
     <p class="cta-text">Let's discuss your project, timeline, and vision. Schedule a consultation call with our team to explore what's possible.</p>
     <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2.5rem; font-size: 1rem;">Schedule Your Free Consultation</a>
   </section>
