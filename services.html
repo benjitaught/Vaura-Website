@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    @font-face {
+      font-family: 'HeliosExt';
+      src: url('HeliosExt.woff') format('woff'), url('HeliosExt.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'HeliosExt';
+      src: url('HeliosExt-Bold.woff') format('woff'), url('HeliosExt-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
     
     * {
       margin: 0;
@@ -196,6 +209,7 @@
       margin-bottom: 1.5rem;
       line-height: 1.2;
       letter-spacing: -0.02em;
+      font-family: \'HeliosExt\', \'Inter\', sans-serif;
     }
 
     .hero-subtitle {
@@ -228,6 +242,11 @@
       margin-bottom: 3rem;
       text-align: center;
       letter-spacing: -0.01em;
+      font-family: \'HeliosExt\', \'Inter\', sans-serif;
+    }
+
+    h3 {
+      font-family: \'HeliosExt\', \'Inter\', sans-serif;
     }
 
     /* Service Grid */
