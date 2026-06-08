@@ -66,8 +66,9 @@
       margin: 0 auto;
       padding: 0 1.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
+      gap: 2rem;
     }
 
     .logo {
@@ -86,6 +87,7 @@
       gap: 2rem;
       align-items: center;
       list-style: none;
+      justify-content: center;
     }
 
     .nav-links a {
@@ -93,11 +95,12 @@
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .nav-links a:hover {
       color: #00ff96;
+      transform: translateY(-3px);
     }
 
     .mobile-menu-btn {
@@ -107,6 +110,7 @@
       color: #ffffff;
       font-size: 1.5rem;
       cursor: pointer;
+      padding: 0;
     }
 
     #mobile-menu {
@@ -121,6 +125,16 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
+      /* EDIT: Increased opacity to obscure background while maintaining glass look */
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(50px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .mobile-menu-glass {
+      background: rgba(0, 0, 0, 0.6) !important;
+      backdrop-filter: blur(50px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
     }
 
     #mobile-menu.visible {
@@ -133,6 +147,12 @@
       font-size: 1rem;
       font-weight: 500;
       display: block;
+      transition: all 0.3s ease;
+    }
+
+    #mobile-menu a:hover {
+      color: #00ff96;
+      transform: translateY(-3px);
     }
 
     @media (max-width: 768px) {
@@ -620,9 +640,9 @@
   <!-- Navigation -->
   <nav class="glass">
     <div class="container">
-      <a href="index.html" class="logo">
-        <img src="V White.png" alt="VAURA Logo">
-      </a>
+      <!-- Desktop: Logo hidden, centered menu -->
+      <div style="flex: 1;"></div>
+      
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -630,12 +650,16 @@
         <li><a href="photovideo.html">Photo / Video</a></li>
         <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
+      
+      <div style="flex: 1;"></div>
+      
+      <!-- Mobile: Logo as menu button (right side) -->
       <button class="mobile-menu-btn" id="menu-toggle">
-        <i class="fas fa-bars"></i>
+        <img src="V White.png" alt="VAURA Menu" style="height: 40px; width: auto;">
       </button>
     </div>
 
-    <div id="mobile-menu" class="glass">
+    <div id="mobile-menu" class="glass mobile-menu-glass">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="packages.html">Website Packages</a>
@@ -645,7 +669,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero" style="margin-bottom: 3rem;">
+  <section class="hero" style="margin-bottom: 6rem;">
     <div class="hero-content">
       <h1>Digital experiences<br>that feel <span class="gradient-text">alive</span>.</h1>
       <p class="hero-subtitle">Premium websites • Branding • Photography • Marketing</p>
@@ -684,7 +708,7 @@
     </div>
 
     <!-- EDIT 1: Add "Learn More" button under What We Do section -->
-    <div style="text-align: center; margin-top: 3rem; margin-bottom: 3rem;">
+    <div style="text-align: center; margin-top: 3rem; margin-bottom: 6rem;">
       <a href="services.html" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Learn More</a>
     </div>
   </section>
@@ -704,7 +728,6 @@
 
   <!-- Website Packages -->
   <section class="container">
-          <div style="margin-top: 3rem;"></div>
     <h2>Website Packages</h2>
     <p class="section-subtitle">Choose your level of digital excellence</p>
     
@@ -771,16 +794,15 @@
 
   <!-- Photo / Video -->
   <section class="container">
-                <div style="margin-top: 3rem;"></div>
     <h2>Photo / Video</h2>
     <div class="photo-grid">
       <div class="photo-card glass">
         <h3>Session Packages</h3>
         <ul class="photo-list">
-          <li><strong>Half Day Shoot</strong> — Starting at $1,200</li>
-          <li><strong>Full Day Shoot</strong> — Starting at $2,500</li>
-          <li><strong>Product / E-commerce</strong> — $800+</li>
-          <li><strong>Video Production</strong> — Starting at $1,800</li>
+          <li><strong>Senior Portrait Sessions</strong> — Starting at $175</li>
+          <li><strong>Half-Day Shoot</strong> — Starting at $1,500</li>
+          <li><strong>Product / E-commerce</strong> — Starting at $999</li>
+          <li><strong>Video Production</strong> — Starting at $1,200</li>
         </ul>
         <!-- EDIT 3: Updated button styling to match Website Packages cards -->
         <div style="display: block;">
