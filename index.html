@@ -177,7 +177,7 @@
       transform: translateY(-50%);
       width: 55%;
       max-width: 700px;
-      opacity: 0.12;
+      opacity: 0.2;
       pointer-events: none;
       user-select: none;
       filter: blur(1px);
@@ -287,26 +287,55 @@
       padding: 4rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
     }
 
-    .partners-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 3rem;
+    .partners-carousel-wrap {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    .partners-carousel-wrap::before,
+    .partners-carousel-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .partners-carousel-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.4), transparent);
+    }
+
+    .partners-carousel-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(0,0,0,0.4), transparent);
+    }
+
+    .partners-carousel {
+      display: flex;
+      gap: 5rem;
       align-items: center;
+      width: max-content;
+      animation: scrollPartners 22s linear infinite;
     }
 
-    .partners-grid img {
-      max-height: 80px;
+    .partners-carousel img {
+      height: 70px;
       width: auto;
       opacity: 0.8;
-      transition: opacity 0.3s ease;
-      filter: brightness(0.9);
+      filter: brightness(0.95);
+      flex-shrink: 0;
     }
 
-    .partners-grid img:hover {
-      opacity: 1;
-      filter: brightness(1);
+    @keyframes scrollPartners {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* Packages Grid */
@@ -540,6 +569,19 @@
     }
 
     /* Responsive */
+    /* Tablet: center the lone card when 2-col grid leaves it orphaned */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .packages-grid .package-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 360px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero {
         min-height: 45vh;
@@ -566,11 +608,6 @@
       .photo-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-      }
-
-      .partners-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
       }
 
       .nav-links {
@@ -664,9 +701,14 @@
 
   <!-- Our Partners -->
   <section class="partners-section">
-    <div class="container">
-      <h2>Our Partners</h2>
-      <div class="partners-grid">
+    <h2>Our Partners</h2>
+    <div class="partners-carousel-wrap">
+      <div class="partners-carousel">
+        <img src="OceanWholesale Logo Img.png" alt="Ocean Wholesale">
+        <img src="Untitled design.png" alt="Rich Nerdz">
+        <img src="Untitled_design_1.png" alt="Matrix Medical">
+        <img src="Pure mechanical logo .webp" alt="Pure Mechanical">
+        <!-- duplicate set for seamless loop -->
         <img src="OceanWholesale Logo Img.png" alt="Ocean Wholesale">
         <img src="Untitled design.png" alt="Rich Nerdz">
         <img src="Untitled_design_1.png" alt="Matrix Medical">
@@ -772,7 +814,8 @@
         <a href="tel:7634478781">Contact Us Today</a>
       </div>
       <div class="footer-bottom">
-        Elevate your online presence.
+        <img src="White Logo w Words Center.png" alt="VAURA" style="height: 60px; width: auto; opacity: 0.6; margin-bottom: 1rem;">
+        <p>Elevate your online presence.</p>
         <p>&copy; 2026 VAURA Digital Branding & Marketing.</p>
       </div>
     </div>
@@ -780,7 +823,7 @@
 
   <!-- Floating CTA Button -->
   <a href="tel:7634478781" class="floating-logo glass-button">
-    <img src="VBlack.png" alt="VAURA" style="filter: invert(1);">
+    <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
   <script>
