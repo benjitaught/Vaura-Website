@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    
+
     * {
       margin: 0;
       padding: 0;
@@ -19,6 +19,13 @@
       background: #000000;
       color: #ffffff;
       line-height: 1.6;
+      /* Subtle full-page gradient glow at top and bottom */
+      background-image:
+        radial-gradient(ellipse 80% 40% at 20% 0%, rgba(0, 255, 150, 0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 80% 0%, rgba(200, 50, 255, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 40% at 80% 100%, rgba(0, 255, 150, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 20% 100%, rgba(0, 200, 255, 0.05) 0%, transparent 60%);
+      background-attachment: fixed;
     }
 
     /* Glass Morphism Utilities */
@@ -71,12 +78,6 @@
       gap: 2rem;
     }
 
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: 0.1em;
-    }
-
     .logo img {
       height: 40px;
       width: auto;
@@ -125,16 +126,9 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
-      /* EDIT: Increased opacity to obscure background while maintaining glass look */
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .mobile-menu-glass {
-      background: rgba(0, 0, 0, 0.6) !important;
-      backdrop-filter: blur(50px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.18) !important;
     }
 
     #mobile-menu.visible {
@@ -166,29 +160,27 @@
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #0a051f 0%, #1a0033 50%, #002b1f 100%);
       position: relative;
       overflow: hidden;
       min-height: 55vh;
       display: flex;
       align-items: center;
       padding-top: 80px;
-      margin-top: 0;
+      margin-bottom: 2rem;
     }
 
-    .hero::before {
-      content: '';
+    /* Stamped logo — hangs off the left ~30% */
+    .hero-logo-stamp {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 30%, rgba(0, 255, 150, 0.35), transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(200, 50, 255, 0.3), transparent 50%);
-      animation: auroraMove 30s ease infinite;
-    }
-
-    @keyframes auroraMove {
-      0% { transform: translate(0, 0); }
-      50% { transform: translate(40px, -30px); }
-      100% { transform: translate(0, 0); }
+      left: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 55%;
+      max-width: 700px;
+      opacity: 0.2;
+      pointer-events: none;
+      user-select: none;
+      filter: blur(1px);
     }
 
     .hero-content {
@@ -295,26 +287,55 @@
       padding: 4rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
     }
 
-    .partners-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 3rem;
+    .partners-carousel-wrap {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    .partners-carousel-wrap::before,
+    .partners-carousel-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .partners-carousel-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.4), transparent);
+    }
+
+    .partners-carousel-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(0,0,0,0.4), transparent);
+    }
+
+    .partners-carousel {
+      display: flex;
+      gap: 5rem;
       align-items: center;
+      width: max-content;
+      animation: scrollPartners 22s linear infinite;
     }
 
-    .partners-grid img {
-      max-height: 80px;
+    .partners-carousel img {
+      height: 70px;
       width: auto;
       opacity: 0.8;
-      transition: opacity 0.3s ease;
-      filter: brightness(0.9);
+      filter: brightness(0.95);
+      flex-shrink: 0;
     }
 
-    .partners-grid img:hover {
-      opacity: 1;
-      filter: brightness(1);
+    @keyframes scrollPartners {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* Packages Grid */
@@ -472,33 +493,6 @@
       line-height: 1.6;
     }
 
-    .photo-card-cta a {
-      display: block;
-      padding: 1rem;
-      border-radius: 1rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      text-align: center;
-    }
-
-    .photo-card-cta a:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    /* EDIT 3: CSS for updated photo/video section buttons with gradient and hover effects */
-    .photo-card a[style*="background: linear-gradient"] {
-      display: block !important;
-    }
-
-    .photo-card a[style*="background: linear-gradient"]:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 255, 150, 0.3);
-    }
-
     /* CTA Section */
     .cta-section {
       text-align: center;
@@ -507,15 +501,6 @@
 
     .cta-section h2 {
       margin-bottom: 2rem;
-    }
-
-    .cta-text {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     /* Footer */
@@ -579,15 +564,34 @@
     }
 
     .floating-logo img {
-      height: 30px;
+      height: 22px;
       width: auto;
     }
 
     /* Responsive */
+    /* Tablet: center the lone card when 2-col grid leaves it orphaned */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .packages-grid .package-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 360px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero {
         min-height: 45vh;
         padding-top: 70px;
+      }
+
+      .hero-logo-stamp {
+        width: 85%;
+        left: -20%;
+        opacity: 0.08;
       }
 
       section {
@@ -599,24 +603,11 @@
         font-size: 1.75rem;
       }
 
-      .service-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .packages-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
+      .service-grid,
+      .packages-grid,
       .photo-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-      }
-
-      .partners-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
       }
 
       .nav-links {
@@ -637,12 +628,11 @@
   </style>
 </head>
 <body>
+
   <!-- Navigation -->
   <nav class="glass">
     <div class="container">
-      <!-- Desktop: Logo hidden, centered menu -->
       <div style="flex: 1;"></div>
-      
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -650,16 +640,12 @@
         <li><a href="photovideo.html">Photo / Video</a></li>
         <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
-      
       <div style="flex: 1;"></div>
-      
-      <!-- Mobile: Logo as menu button (right side) -->
       <button class="mobile-menu-btn" id="menu-toggle">
-        <img src="V White.png" alt="VAURA Menu" style="height: 40px; width: auto;">
+        <img src="Logo no writing wht.png" alt="VAURA Menu" style="height: 40px; width: auto;">
       </button>
     </div>
-
-    <div id="mobile-menu" class="glass mobile-menu-glass">
+    <div id="mobile-menu">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="packages.html">Website Packages</a>
@@ -669,16 +655,18 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero" style="margin-bottom: 6rem;">
+  <section class="hero">
+    <!-- Large stamped logo, 30% hanging off left -->
+    <img src="White Logo w Words Center.png" alt="" class="hero-logo-stamp">
     <div class="hero-content">
-      <h1>Digital experiences<br>that feel <span class="gradient-text">alive</span>.</h1>
+      <h1>Elevate your<br>digital <span class="gradient-text">presence</span>.</h1>
       <p class="hero-subtitle">Premium websites • Branding • Photography • Marketing</p>
       <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Start Your Project</a>
     </div>
   </section>
 
   <!-- What We Do -->
-  <section class="container">
+  <section class="container" style="padding-top: 2rem;">
     <h2>What We Do</h2>
     <div class="service-grid">
       <div class="service-card glass">
@@ -706,44 +694,62 @@
         <p>Long-term growth and consulting.</p>
       </div>
     </div>
-
-    <!-- EDIT 1: Add "Learn More" button under What We Do section -->
-    <div style="text-align: center; margin-top: 3rem; margin-bottom: 6rem;">
+    <div style="text-align: center; margin-top: 2rem; margin-bottom: 3rem;">
       <a href="services.html" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Learn More</a>
     </div>
   </section>
 
   <!-- Our Partners -->
   <section class="partners-section">
-    <div class="container">
-      <h2>Our Partners</h2>
-      <div class="partners-grid">
+    <h2>Our Partners</h2>
+    <div class="partners-carousel-wrap">
+      <div class="partners-carousel">
+        <img src="ccr.png" alt="CCR">
+        <img src="OWLogo.png" alt="OW">
+        <img src="mbe.png" alt="MBE">
+        <img src="jtlogo.png" alt="JT">
         <img src="OceanWholesale Logo Img.png" alt="Ocean Wholesale">
+        <img src="lumaskin.png" alt="Lumaskin">
+        <img src="stjlogo.png" alt="STJ">
         <img src="Untitled design.png" alt="Rich Nerdz">
-        <img src="Untitled_design_1.png" alt="Matrix Medical">
+        <img src="OTLogo.png" alt="OT">
         <img src="Pure mechanical logo .webp" alt="Pure Mechanical">
+        <img src="vox.png" alt="Vox">
+        <img src="Untitled_design_1.png" alt="Matrix Medical">
+        <img src="Mow Bros Logo White and Green Left to Right.png" alt="Mow Bros">
+        <!-- duplicate set for seamless loop -->
+        <img src="ccr.png" alt="CCR">
+        <img src="OWLogo.png" alt="OW">
+        <img src="mbe.png" alt="MBE">
+        <img src="jtlogo.png" alt="JT">
+        <img src="OceanWholesale Logo Img.png" alt="Ocean Wholesale">
+        <img src="lumaskin.png" alt="Lumaskin">
+        <img src="stjlogo.png" alt="STJ">
+        <img src="Untitled design.png" alt="Rich Nerdz">
+        <img src="OTLogo.png" alt="OT">
+        <img src="Pure mechanical logo .webp" alt="Pure Mechanical">
+        <img src="vox.png" alt="Vox">
+        <img src="Untitled_design_1.png" alt="Matrix Medical">
+        <img src="Mow Bros Logo White and Green Left to Right.png" alt="Mow Bros">
       </div>
     </div>
   </section>
 
   <!-- Website Packages -->
-  <section class="container">
+  <section class="container" style="padding-top: 6rem;">
     <h2>Website Packages</h2>
     <p class="section-subtitle">Choose your level of digital excellence</p>
-    
     <div class="packages-grid">
       <div class="package-card glass">
         <h3 class="package-name">Starter</h3>
         <div class="package-price">$3,500</div>
         <p class="package-period">one-time investment</p>
-        
         <ul class="package-features">
           <li>Up to 5 pages</li>
           <li>Modern responsive design</li>
           <li>Basic SEO</li>
           <li>Contact forms</li>
         </ul>
-        
         <div class="package-cta">
           <a href="https://calendly.com/vaura/30min" target="_blank">Get Started</a>
         </div>
@@ -754,14 +760,12 @@
         <h3 class="package-name">Professional</h3>
         <div class="package-price">$5,000</div>
         <p class="package-period">one-time investment</p>
-        
         <ul class="package-features">
           <li>Up to 10 pages</li>
           <li>Fully custom design</li>
           <li>Advanced SEO + copywriting</li>
           <li>60 days support</li>
         </ul>
-        
         <div class="package-cta">
           <a href="https://calendly.com/vaura/general-discovery" target="_blank">Schedule Call</a>
         </div>
@@ -771,26 +775,22 @@
         <h3 class="package-name">Premium</h3>
         <div class="package-price">$10k+</div>
         <p class="package-period">custom scope</p>
-        
         <ul class="package-features">
           <li>20+ pages + animations</li>
           <li>Bespoke experience</li>
           <li>Full integrations</li>
           <li>Priority support</li>
         </ul>
-        
         <div class="package-cta">
           <a href="https://calendly.com/vaura/general-discovery" target="_blank">Let's Talk</a>
         </div>
       </div>
     </div>
-
     <div style="text-align: center; margin-top: 2rem; margin-bottom: 6rem;">
-      <a href="photovideo.html" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">View All Packages →</a>
+      <a href="packages.html" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">View All Packages →</a>
     </div>
-  </section>
 
-  <!-- EDIT 2: Increased spacing before Photo & Video section with margin-bottom on packages section -->
+  </section>
 
   <!-- Photo / Video -->
   <section class="container">
@@ -804,20 +804,14 @@
           <li><strong>Product / E-commerce</strong> — Starting at $999</li>
           <li><strong>Video Production</strong> — Starting at $1,200</li>
         </ul>
-        <!-- EDIT 3: Updated button styling to match Website Packages cards -->
-        <div style="display: block;">
-          <a href="photovideo.html" style="display: block; padding: 1rem; border-radius: 1rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease; background: linear-gradient(135deg, #00ff96, #00ccff); color: #000000; text-align: center;">View All Packages →</a>
-        </div>
+        <a href="photovideo.html" style="display: block; padding: 1rem; border-radius: 1rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease; background: linear-gradient(135deg, #00ff96, #00ccff); color: #000000; text-align: center;">View All Packages →</a>
       </div>
 
       <div class="photo-card glass">
         <h3>What's Included</h3>
         <p class="photo-description">Professional editing, multiple formats, commercial usage rights, and fast turnaround.</p>
         <p class="photo-description">From product launches to corporate headshots to cinematic event coverage, we create visual assets that tell your story.</p>
-        <!-- EDIT 3: Updated button styling to match Website Packages cards -->
-        <div style="display: block;">
-          <a href="photovideo.html" style="display: block; padding: 1rem; border-radius: 1rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease; background: linear-gradient(135deg, #00ff96, #00ccff); color: #000000; text-align: center;">Explore Our Work →</a>
-        </div>
+        <a href="photovideo.html" style="display: block; padding: 1rem; border-radius: 1rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease; background: linear-gradient(135deg, #00ff96, #00ccff); color: #000000; text-align: center;">Explore Our Work →</a>
       </div>
     </div>
   </section>
@@ -839,15 +833,16 @@
         <a href="tel:7634478781">Contact Us Today</a>
       </div>
       <div class="footer-bottom">
-        Elevate your online presence.
-        <p>&copy; 2026 VAURA Digital Branding & Marketing. </p>
+        <img src="White Logo w Words Center.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
+        <p>Elevate your online presence.</p>
+        <p>&copy; 2026 VAURA Digital Branding & Marketing.</p>
       </div>
     </div>
   </footer>
 
   <!-- Floating CTA Button -->
   <a href="tel:7634478781" class="floating-logo glass-button">
-    <img src="V White.png" alt="VAURA">
+    <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
   <script>
@@ -858,9 +853,7 @@
       mobileMenu.classList.toggle('visible');
     });
 
-    // Close menu when a link is clicked
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach(link => {
+    mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('visible');
       });
