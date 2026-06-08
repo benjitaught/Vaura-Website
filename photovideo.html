@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    @font-face {
+      font-family: 'HeliosExt';
+      src: url('HeliosExt.woff') format('woff'), url('HeliosExt.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'HeliosExt';
+      src: url('HeliosExt-Bold.woff') format('woff'), url('HeliosExt-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
     
     * {
       margin: 0;
@@ -19,6 +32,12 @@
       background: #000000;
       color: #ffffff;
       line-height: 1.6;
+      background-image:
+        radial-gradient(ellipse 80% 40% at 20% 0%, rgba(0, 255, 150, 0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 80% 0%, rgba(200, 50, 255, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 40% at 80% 100%, rgba(0, 255, 150, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 20% 100%, rgba(0, 200, 255, 0.05) 0%, transparent 60%);
+      background-attachment: fixed;
     }
 
     /* Glass Morphism Utilities */
@@ -66,14 +85,9 @@
       margin: 0 auto;
       padding: 0 1.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: 0.1em;
+      gap: 2rem;
     }
 
     .nav-links {
@@ -81,6 +95,7 @@
       gap: 2rem;
       align-items: center;
       list-style: none;
+      justify-content: center;
     }
 
     .nav-links a {
@@ -88,11 +103,17 @@
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .nav-links a:hover {
       color: #00ff96;
+      transform: translateY(-3px);
+    }
+
+    .nav-links a.active {
+      color: #00ccff;
+      text-shadow: 0 0 12px rgba(0, 204, 255, 0.7);
     }
 
     .mobile-menu-btn {
@@ -102,6 +123,42 @@
       color: #ffffff;
       font-size: 1.5rem;
       cursor: pointer;
+      padding: 0;
+    }
+
+    #mobile-menu {
+      display: none !important;
+      position: absolute;
+      top: 100%;
+      left: 1.5rem;
+      right: 1.5rem;
+      margin-top: 0.5rem;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      text-align: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(50px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    #mobile-menu.visible {
+      display: flex !important;
+    }
+
+    #mobile-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    #mobile-menu a:hover {
+      color: #00ff96;
+      transform: translateY(-3px);
     }
 
     @media (max-width: 768px) {
@@ -115,29 +172,33 @@
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #0a051f 0%, #1a0033 50%, #002b1f 100%);
       position: relative;
       overflow: hidden;
       min-height: 50vh;
       display: flex;
       align-items: center;
       padding-top: 80px;
-      margin-top: 0;
+      margin-bottom: 2rem;
     }
 
-    .hero::before {
-      content: '';
+    .hero-logo-stamp {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 30%, rgba(0, 255, 150, 0.35), transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(200, 50, 255, 0.3), transparent 50%);
-      animation: auroraMove 30s ease infinite;
+      left: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 55%;
+      max-width: 700px;
+      opacity: 0.2;
+      pointer-events: none;
+      user-select: none;
+      filter: blur(1px);
     }
 
-    @keyframes auroraMove {
-      0% { transform: translate(0, 0); }
-      50% { transform: translate(40px, -30px); }
-      100% { transform: translate(0, 0); }
+    .gradient-text {
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero-content {
@@ -155,6 +216,7 @@
       margin-bottom: 1rem;
       line-height: 1.2;
       letter-spacing: -0.02em;
+      font-family: \'HeliosExt\', \'Inter\', sans-serif;
     }
 
     .hero-subtitle {
@@ -187,6 +249,11 @@
       margin-bottom: 1rem;
       text-align: center;
       letter-spacing: -0.01em;
+      font-family: \'HeliosExt\', \'Inter\', sans-serif;
+    }
+
+    h3 {
+      font-family: \'HeliosExt\', \'Inter\', sans-serif;
     }
 
     .section-subtitle {
@@ -254,7 +321,7 @@
       content: '→';
       position: absolute;
       left: 0;
-      color: #c850ff;
+      color: #00ccff;
     }
 
     /* Core Packages */
@@ -436,7 +503,7 @@
       content: '•';
       position: absolute;
       left: 0;
-      color: #c850ff;
+      color: #00ccff;
     }
 
     /* Highlights Section */
@@ -548,6 +615,11 @@
       box-shadow: 0 15px 50px rgba(0, 255, 150, 0.3);
     }
 
+    .floating-logo img {
+      height: 22px;
+      width: auto;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero {
@@ -606,25 +678,34 @@
   <!-- Navigation -->
   <nav class="glass">
     <div class="container">
-      <div class="logo">VAURA</div>
+      <div style="flex: 1;"></div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="packages.html">Website Packages</a></li>
-        <li><a href="photovideo.html">Photo / Video</a></li>
+        <li><a href="photovideo.html" class="active">Photo / Video</a></li>
         <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
-      <button class="mobile-menu-btn">
-        <i class="fas fa-bars"></i>
+      <div style="flex: 1;"></div>
+      <button class="mobile-menu-btn" id="menu-toggle">
+        <img src="Logo no writing wht.png" alt="VAURA Menu" style="height: 40px; width: auto;">
       </button>
+    </div>
+    <div id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="packages.html">Website Packages</a>
+      <a href="photovideo.html">Photo / Video</a>
+      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
+    <img src="White Logo w Words Center.png" alt="" class="hero-logo-stamp">
     <div class="hero-content">
-      <h1>High-Impact Commercial Media</h1>
-      <p class="hero-subtitle">Professional photography and video designed to build instant online trust, elevate digital storefronts, and capture your most meaningful moments.</p>
+      <h1><span class="gradient-text">Premier</span> Commercial Media</h1>
+      <p class="hero-subtitle">Strategic photography and video designed to help businesses stand out, build credibility, and create lasting impressions online.</p>
     </div>
   </section>
 
@@ -856,7 +937,7 @@
       </div>
 
       <div class="addon-card glass">
-        <h3>Social Content Creator Day</h3>
+        <h3>Social Content Creator</h3>
         <div class="addon-price">$2,500</div>
         <p>Full day of content creation specifically optimized for Instagram, TikTok, YouTube Shorts, and LinkedIn stories.</p>
         <ul>
@@ -929,9 +1010,9 @@
 
   <!-- CTA Section -->
   <section class="cta-section">
-    <h2>Ready to Capture Your Vision?</h2>
+    <h2><span class="gradient-text">Ready to Capture Your Vision?</span></h2>
     <p class="cta-text">Let's discuss your project, timeline, and creative goals. Schedule a consultation to explore which package is right for you.</p>
-    <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Free Consultation</a>
+    <a href="https://calendly.com/vaura/general-discovery-clone" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Free Consultation</a>
   </section>
 
   <!-- Footer -->
@@ -942,25 +1023,33 @@
         <a href="services.html">Services</a>
         <a href="packages.html">Website Packages</a>
         <a href="photovideo.html">Photo / Video</a>
-        <a href="tel:7634478781">Call Us</a>
+        <a href="tel:7634478781">Contact Us Today</a>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 VAURA Digital Craftsmanship. All rights reserved.</p>
+        <img src="White Logo w Words Center.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
+        <p>Elevate your online presence.</p>
+        <p>&copy; 2026 VAURA Digital Branding & Marketing.</p>
       </div>
     </div>
   </footer>
 
   <!-- Floating CTA Button -->
   <a href="tel:7634478781" class="floating-logo glass-button">
-    <i class="fas fa-phone"></i>
+    <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
   <script>
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    const mobileMenuBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
 
     mobileMenuBtn.addEventListener('click', () => {
-      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      mobileMenu.classList.toggle('visible');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('visible');
+      });
     });
   </script>
 </body>
