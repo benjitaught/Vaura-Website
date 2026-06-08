@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work — VAURA Digital Craftsmanship</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    @font-face {
+      font-family: 'HeliosExt';
+      src: url('HeliosExt.woff') format('woff'), url('HeliosExt.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'HeliosExt';
+      src: url('HeliosExt-Bold.woff') format('woff'), url('HeliosExt-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #000000;
+      color: #ffffff;
+      line-height: 1.6;
+      background-image:
+        radial-gradient(ellipse 80% 40% at 20% 0%, rgba(0, 255, 150, 0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 80% 0%, rgba(200, 50, 255, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 40% at 80% 100%, rgba(0, 255, 150, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 20% 100%, rgba(0, 200, 255, 0.05) 0%, transparent 60%);
+      background-attachment: fixed;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .glass-button {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(32px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      text-align: center;
+    }
+
+    .glass-button:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 48px rgba(0, 255, 150, 0.2);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      backdrop-filter: blur(28px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+    }
+
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover { color: #00ff96; transform: translateY(-3px); }
+
+    .nav-links a.active {
+      color: #00ccff;
+      text-shadow: 0 0 12px rgba(0, 204, 255, 0.7);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    #mobile-menu {
+      display: none !important;
+      position: absolute;
+      top: 100%;
+      left: 1.5rem;
+      right: 1.5rem;
+      margin-top: 0.5rem;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      text-align: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(50px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    #mobile-menu.visible { display: flex !important; }
+
+    #mobile-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    #mobile-menu a:hover { color: #00ff96; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 45vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-logo-stamp {
+      position: absolute;
+      left: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 55%;
+      max-width: 700px;
+      opacity: 0.2;
+      pointer-events: none;
+      filter: blur(1px);
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-family: 'HeliosExt', 'Inter', sans-serif;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Work Grid */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      padding: 4rem 0;
+    }
+
+    .work-card {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 72px rgba(0, 255, 150, 0.12);
+    }
+
+    .work-card-header {
+      padding: 1.75rem 1.75rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .work-card-meta h3 {
+      font-family: 'HeliosExt', 'Inter', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+    }
+
+    .work-card-meta .year {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .work-card-desc {
+      padding: 0 1.75rem 1.25rem;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* Video Embed */
+    .video-wrap {
+      position: relative;
+      padding: 56.25% 0 0 0;
+      margin: 0 1.75rem 1.75rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-family: 'HeliosExt', 'Inter', sans-serif;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover { color: #00ff96; }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      background: rgba(0, 255, 150, 0.15);
+      border-color: rgba(0, 255, 150, 0.4);
+      color: #00ff96;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 255, 150, 0.2);
+    }
+
+    .footer-socials a.popl:hover {
+      background: rgba(0, 204, 255, 0.15);
+      border-color: rgba(0, 204, 255, 0.4);
+      color: #00ccff;
+      box-shadow: 0 8px 24px rgba(0, 204, 255, 0.2);
+    }
+
+    .footer-bottom {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.85rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Floating CTA */
+    .floating-logo {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 50;
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .floating-logo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 50px rgba(0, 255, 150, 0.3);
+    }
+
+    .floating-logo img { height: 22px; width: auto; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .work-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero { min-height: 38vh; padding-top: 70px; }
+      .work-grid { gap: 1.5rem; padding: 2rem 0; }
+      .floating-logo { width: 50px; height: 50px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="glass">
+    <div class="container">
+      <div style="flex: 1;"></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="packages.html">Website Packages</a></li>
+        <li><a href="photovideo.html">Photo / Video</a></li>
+        <li><a href="work.html" class="active">Our Work</a></li>
+        <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
+      </ul>
+      <div style="flex: 1;"></div>
+      <button class="mobile-menu-btn" id="menu-toggle">
+        <img src="Logo no writing wht.png" alt="VAURA Menu" style="height: 40px; width: auto;">
+      </button>
+    </div>
+    <div id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="packages.html">Website Packages</a>
+      <a href="photovideo.html">Photo / Video</a>
+      <a href="work.html">Our Work</a>
+      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="White Logo w Words Center.png" alt="" class="hero-logo-stamp">
+    <div class="hero-content">
+      <h1>Our <span class="gradient-text">Work</span></h1>
+      <p class="hero-subtitle">Real businesses. Real results. Watch the demos and see what we build.</p>
+    </div>
+  </section>
+
+  <!-- Work Grid -->
+  <div class="container">
+    <div class="work-grid">
+
+      <!-- Matrix Medical -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Matrix Medical</h3>
+            <span class="year">2022</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Full e-commerce buildout for a Minneapolis medical equipment supplier. Custom menus, advanced product filters, wishlist, low-stock alerts, and a seamless buying experience for healthcare facilities nationwide.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1113737425?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Matrix Medical Website Overview"></iframe>
+        </div>
+      </div>
+
+      <!-- Pure Mechanical -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Pure Mechanical LLC</h3>
+            <span class="year">2023</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Professional website for a mechanical services company. Clean, responsive design built to generate leads and communicate reliability to residential and commercial clients.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1114407869?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pure Mechanical LLC Website"></iframe>
+        </div>
+      </div>
+
+      <!-- Rich Nerdz -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Rich Nerdz</h3>
+            <span class="year">2025</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Streetwear brand identity and e-commerce experience. Bold visuals, custom graphics, and a shopping experience that matches the energy of the brand.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115361252?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="RichNerdz Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- Car Club Rental -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Car Club Rental</h3>
+            <span class="year">2023</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Premium vehicle rental platform designed to showcase an exotic and luxury fleet. Built for seamless online bookings with a high-end look and feel that converts browsers into renters.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115624298?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Car Club Rental Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- Ocean Wholesale -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Ocean Wholesale</h3>
+            <span class="year">2022</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Full-scale wholesale marketplace for a brand that creates waves. Complete branding, product catalog architecture, and a buyer-first shopping experience built to scale.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115631198?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Wholesale Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- Mow Bros -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Mow Bros</h3>
+            <span class="year">2023</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Lead-generating website for a Minnesota landscaping company. Responsive design with service pages, galleries, and a booking flow that turns local search traffic into booked jobs year-round.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115635752?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Mow Bros Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- Jappy -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Jappy</h3>
+            <span class="year">2024</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Sleek brand website with a distinct identity and a modern digital presence. Crafted to capture the brand's personality and connect with its audience online.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115639888?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Jappy Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- MBE -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Moneybag Exotics</h3>
+            <span class="year">2025</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Full brand experience for a streetwear label built on ambition. Custom logos, moving images, animations, and fonts — from their sold-out first drop to an ongoing collection that lives at the intersection of risk and style.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115645900?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Money Bag Exotics Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- Pet Beds For You -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Pet Beds For You</h3>
+            <span class="year">2019</span>
+          </div>
+        </div>
+        <p class="work-card-desc">E-commerce website for a pet products brand. Clean product presentation, intuitive navigation, and a design that communicates trust and warmth to pet owners shopping online.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115648562?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pet Beds For You Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- Ocean Tobacco -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>Ocean Tobacco</h3>
+            <span class="year">2022</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Dual-market website presence for Ocean Tobacco across Minnesota and Wisconsin. Consistent brand identity with region-specific content and a bold, wave-inspired visual language.</p>
+        <div class="video-wrap" style="margin-bottom: 0.75rem;">
+          <iframe src="https://player.vimeo.com/video/1115656842?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco WI Website Demo"></iframe>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115657266?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco MN Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- VoxVera -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>VoxVera.io</h3>
+            <span class="year">2024</span>
+          </div>
+        </div>
+        <p class="work-card-desc">End-to-end brand launch for a next-generation AI audio dubbing platform. Pitch deck, logo, full site design, and project coordination — concept to launch, executed flawlessly.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115659680?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Vox Vera Website Demo"></iframe>
+        </div>
+      </div>
+
+      <!-- LumaSkin -->
+      <div class="work-card glass">
+        <div class="work-card-header">
+          <div class="work-card-meta">
+            <h3>LumaSkin</h3>
+            <span class="year">2025</span>
+          </div>
+        </div>
+        <p class="work-card-desc">Full visual identity, branding, product imagery, and site design for a skincare and wellness device brand. A seamless online shopping experience highlighting promotions, product details, and customer engagement.</p>
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/1115663555?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Lumaskin Website Demo"></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2><span class="gradient-text">Ready to Be Next?</span></h2>
+    <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-size: 1.05rem;">Let's build something you'll want to show off.</p>
+    <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2.5rem; font-size: 1rem;">Book Your Free Consultation</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="packages.html">Website Packages</a>
+        <a href="photovideo.html">Photo / Video</a>
+        <a href="tel:7634478781">Contact Us Today</a>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/vaura.agency" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/vaura.agency" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@vaura.agency" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://poplme.co/benjismith" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
+      </div>
+      <div class="footer-bottom">
+        <img src="White Logo w Words Center.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
+        <p>Elevate your online presence.</p>
+        <p>&copy; 2026 VAURA Digital Branding & Marketing.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA Button -->
+  <a href="tel:7634478781" class="floating-logo glass-button">
+    <img src="Logo no writing wht.png" alt="VAURA">
+  </a>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('visible'); });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { mobileMenu.classList.remove('visible'); });
+    });
+  </script>
+</body>
+</html>
