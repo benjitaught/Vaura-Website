@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Packages — VAURA Digital Craftsmanship</title>
+  <title>Website Packages — VAURA Branding & Marketing Agency</title>
   <link rel="icon" type="image/png" href="vaura favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -139,7 +139,7 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.92);
       backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
@@ -160,6 +160,11 @@
     #mobile-menu a:hover {
       color: #00ff96;
       transform: translateY(-3px);
+    }
+
+    #mobile-menu a.active {
+      color: #00ccff;
+      text-shadow: 0 0 12px rgba(0, 204, 255, 0.7);
     }
 
     @media (max-width: 768px) {
@@ -665,7 +670,7 @@
     <div id="mobile-menu">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
-      <a href="packages.html">Website Packages</a>
+      <a href="packages.html" class="active">Website Packages</a>
       <a href="photovideo.html">Photo / Video</a>
       <a href="work.html">Our Work</a>
       <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>

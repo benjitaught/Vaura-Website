@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VAURA — Digital Craftsmanship</title>
+  <title>VAURA — Branding & Marketing Agency</title>
   <link rel="icon" type="image/png" href="vaura favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -145,7 +145,7 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.92);
       backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
@@ -168,6 +168,11 @@
       transform: translateY(-3px);
     }
 
+    #mobile-menu a.active {
+      color: #00ccff;
+      text-shadow: 0 0 12px rgba(0, 204, 255, 0.7);
+    }
+
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -185,7 +190,7 @@
       display: flex;
       align-items: center;
       padding-top: 80px;
-      margin-bottom: 2rem;
+      margin-bottom: 0;
     }
 
     /* Stamped logo — hangs off the left ~30% */
@@ -309,7 +314,7 @@
     /* Partners Section */
     .partners-section {
       background: rgba(255, 255, 255, 0.03);
-      padding: 4rem 0;
+      padding: 1.5rem 0 4rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
@@ -669,6 +674,11 @@
     .rb-6 { top: 240px; right: 2%;   --dur: 6s;  --delay: -5s;   --rot: -1deg;   }
 
     @media (max-width: 768px) {
+      .reviews-stars-row {
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-bottom: 2rem;
+      }
       .reviews-bubble-wrap { height: 780px; }
       .rb-1 { top: 40px;  left: 0;   max-width: 80vw; }
       .rb-2 { top: 200px; left: 10%; max-width: 78vw; }
@@ -824,10 +834,25 @@
       }
 
       .service-grid,
-      .packages-grid,
       .photo-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+      }
+
+      .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+
+      .packages-grid .package-card {
+        padding: 1rem 0.875rem;
+      }
+
+      .packages-grid .package-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 280px;
+        margin: 0 auto;
+        width: 100%;
       }
 
       .nav-links {
@@ -842,7 +867,13 @@
       }
 
       .package-price {
-        font-size: 2.25rem;
+        font-size: 1.6rem;
+      }
+
+      .package-name {
+        font-size: 1.1rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.5rem;
       }
     }
   </style>

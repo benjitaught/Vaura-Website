@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Work — VAURA Digital Craftsmanship</title>
+  <title>Our Work — VAURA Branding & Marketing Agency</title>
   <link rel="icon" type="image/png" href="vaura favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://player.vimeo.com/api/player.js"></script>
@@ -111,7 +111,7 @@
       position: absolute; top: 100%; left: 1.5rem; right: 1.5rem;
       margin-top: 0.5rem; border-radius: 1.5rem; padding: 1.5rem;
       text-align: center; flex-direction: column; gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(50px);
+      background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
@@ -123,6 +123,11 @@
     }
 
     #mobile-menu a:hover { color: #00ff96; }
+
+    #mobile-menu a.active {
+      color: #00ccff;
+      text-shadow: 0 0 12px rgba(0, 204, 255, 0.7);
+    }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -398,6 +403,11 @@
     .rb-6 { top: 240px; right: 2%;   --dur: 6s;   --delay: -5s;  --rot: -1deg;   }
 
     @media (max-width: 768px) {
+      .reviews-stars-row {
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-bottom: 2rem;
+      }
       .reviews-bubble-wrap { height: 780px; }
       .rb-1 { top: 40px;  left: 0;   max-width: 80vw; }
       .rb-2 { top: 200px; left: 10%; max-width: 78vw; }
@@ -513,7 +523,7 @@
       <a href="services.html">Services</a>
       <a href="packages.html">Website Packages</a>
       <a href="photovideo.html">Photo / Video</a>
-      <a href="work.html">Our Work</a>
+      <a href="work.html" class="active">Our Work</a>
       <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
     </div>
   </nav>
