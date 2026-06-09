@@ -311,6 +311,14 @@
       line-height: 1.6;
     }
 
+    /* Hide service card clones on desktop */
+    .service-card-clone { display: none; }
+
+    @keyframes scrollServices {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* Partners Section */
     .partners-section {
       background: rgba(255, 255, 255, 0.03);
@@ -839,22 +847,24 @@
         gap: 1.5rem;
       }
 
-      /* Service cards carousel */
+      /* Service cards — continuous scroll carousel */
       .service-carousel-outer {
         overflow: hidden;
         position: relative;
       }
 
+      .service-card-clone { display: block; }
+
       .service-grid {
         display: flex !important;
         flex-wrap: nowrap;
-        gap: 1rem;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        margin-bottom: 1rem;
+        gap: 1.25rem;
+        width: max-content;
+        animation: scrollServices 28s linear infinite;
       }
 
       .service-grid .service-card {
-        flex: 0 0 calc(50% - 0.5rem);
+        flex: 0 0 calc(44vw);
         min-width: 0;
       }
 
@@ -1007,6 +1017,31 @@
           <p>Clothing graphics, ad creatives & more.</p>
         </div>
         <div class="service-card glass">
+          <h3>SEO & Mgmt</h3>
+          <p>Long-term growth and consulting.</p>
+        </div>
+        <!-- duplicates for seamless loop — hidden on desktop -->
+        <div class="service-card glass service-card-clone" aria-hidden="true">
+          <h3>Web Dev</h3>
+          <p>Bespoke, high-performance websites that convert.</p>
+        </div>
+        <div class="service-card glass service-card-clone" aria-hidden="true">
+          <h3>Branding</h3>
+          <p>Logos, visual systems, and full brand stories.</p>
+        </div>
+        <div class="service-card glass service-card-clone" aria-hidden="true">
+          <h3>Photo & Video</h3>
+          <p>Professional shoots, editing, and cinematic content.</p>
+        </div>
+        <div class="service-card glass service-card-clone" aria-hidden="true">
+          <h3>Marketing</h3>
+          <p>Strategic paid campaigns across platforms.</p>
+        </div>
+        <div class="service-card glass service-card-clone" aria-hidden="true">
+          <h3>Graphic Design</h3>
+          <p>Clothing graphics, ad creatives & more.</p>
+        </div>
+        <div class="service-card glass service-card-clone" aria-hidden="true">
           <h3>SEO & Mgmt</h3>
           <p>Long-term growth and consulting.</p>
         </div>
@@ -1232,52 +1267,6 @@
       });
     });
 
-    // Service cards carousel — mobile only
-    (function () {
-      function initServiceCarousel() {
-        if (window.innerWidth > 768) return;
-        var outer = document.querySelector('.service-carousel-outer');
-        var grid = document.querySelector('.service-grid');
-        if (!outer || !grid) return;
-
-        var cards = grid.querySelectorAll('.service-card');
-        var pages = Math.ceil(cards.length / 2); // 2 per page
-        var page = 0;
-        var timer;
-
-        function goTo(p) {
-          page = ((p % pages) + pages) % pages;
-          // Each page = full outer width (2 cards fill 100%)
-          grid.style.transform = 'translateX(-' + (page * outer.offsetWidth) + 'px)';
-        }
-
-        function startTimer() {
-          clearInterval(timer);
-          timer = setInterval(function () { goTo(page + 1); }, 3000);
-        }
-
-        // Touch swipe support
-        var touchStartX = 0;
-        outer.addEventListener('touchstart', function (e) {
-          touchStartX = e.touches[0].clientX;
-          clearInterval(timer);
-        }, { passive: true });
-
-        outer.addEventListener('touchend', function (e) {
-          var diff = touchStartX - e.changedTouches[0].clientX;
-          if (Math.abs(diff) > 40) goTo(diff > 0 ? page + 1 : page - 1);
-          startTimer();
-        }, { passive: true });
-
-        startTimer();
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initServiceCarousel);
-      } else {
-        initServiceCarousel();
-      }
-    })();
   </script>
 </body>
 </html>
