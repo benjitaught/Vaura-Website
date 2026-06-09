@@ -311,11 +311,6 @@
       line-height: 1.6;
     }
 
-    /* Carousel dots — desktop hidden, mobile shown via media query */
-    .carousel-dots {
-      display: none;
-    }
-
     /* Partners Section */
     .partners-section {
       background: rgba(255, 255, 255, 0.03);
@@ -863,25 +858,6 @@
         min-width: 0;
       }
 
-      .carousel-dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1rem;
-      }
-
-      .carousel-dots .dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.25);
-        transition: background 0.3s ease, transform 0.3s ease;
-      }
-
-      .carousel-dots .dot.active {
-        background: #00ff96;
-        transform: scale(1.4);
-      }
 
       .packages-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1034,11 +1010,6 @@
           <h3>SEO & Mgmt</h3>
           <p>Long-term growth and consulting.</p>
         </div>
-      </div>
-      <div class="carousel-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
       </div>
     </div>
     <div style="text-align: center; margin-top: 2rem; margin-bottom: 3rem;">
@@ -1265,22 +1236,40 @@
     (function () {
       function initServiceCarousel() {
         if (window.innerWidth > 768) return;
+        var outer = document.querySelector('.service-carousel-outer');
         var grid = document.querySelector('.service-grid');
-        var dots = Array.from(document.querySelectorAll('.carousel-dots .dot'));
-        if (!grid) return;
-        var cards = Array.from(grid.querySelectorAll('.service-card'));
-        var perPage = 2;
-        var pages = Math.ceil(cards.length / perPage);
+        if (!outer || !grid) return;
+
+        var cards = grid.querySelectorAll('.service-card');
+        var pages = Math.ceil(cards.length / 2); // 2 per page
         var page = 0;
+        var timer;
 
         function goTo(p) {
           page = ((p % pages) + pages) % pages;
-          var offset = cards[page * perPage] ? cards[page * perPage].offsetLeft : 0;
-          grid.style.transform = 'translateX(-' + offset + 'px)';
-          dots.forEach(function (d, i) { d.classList.toggle('active', i === page); });
+          // Each page = full outer width (2 cards fill 100%)
+          grid.style.transform = 'translateX(-' + (page * outer.offsetWidth) + 'px)';
         }
 
-        setInterval(function () { goTo(page + 1); }, 3000);
+        function startTimer() {
+          clearInterval(timer);
+          timer = setInterval(function () { goTo(page + 1); }, 3000);
+        }
+
+        // Touch swipe support
+        var touchStartX = 0;
+        outer.addEventListener('touchstart', function (e) {
+          touchStartX = e.touches[0].clientX;
+          clearInterval(timer);
+        }, { passive: true });
+
+        outer.addEventListener('touchend', function (e) {
+          var diff = touchStartX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) goTo(diff > 0 ? page + 1 : page - 1);
+          startTimer();
+        }, { passive: true });
+
+        startTimer();
       }
 
       if (document.readyState === 'loading') {
