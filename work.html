@@ -13,14 +13,12 @@
     @font-face {
       font-family: 'HeliosExt';
       src: url('HeliosExt.woff') format('woff'), url('HeliosExt.otf') format('opentype');
-      font-weight: 400;
-      font-style: normal;
+      font-weight: 400; font-style: normal;
     }
     @font-face {
       font-family: 'HeliosExt';
       src: url('HeliosExt-Bold.woff') format('woff'), url('HeliosExt-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
+      font-weight: 700; font-style: normal;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,39 +73,25 @@
 
     /* Navigation */
     nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 50;
+      position: fixed; top: 0; width: 100%; z-index: 50;
       backdrop-filter: blur(28px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 1rem 0;
     }
 
     nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
+      max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; justify-content: center; align-items: center; gap: 2rem;
     }
 
     .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-      justify-content: center;
+      display: flex; gap: 2rem; align-items: center;
+      list-style: none; justify-content: center;
     }
 
     .nav-links a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      color: #ffffff; text-decoration: none;
+      font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;
     }
 
     .nav-links a:hover { color: #00ff96; transform: translateY(-3px); }
@@ -118,40 +102,24 @@
     }
 
     .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: #ffffff;
-      cursor: pointer;
-      padding: 0;
+      display: none; background: none; border: none;
+      color: #ffffff; cursor: pointer; padding: 0;
     }
 
     #mobile-menu {
       display: none !important;
-      position: absolute;
-      top: 100%;
-      left: 1.5rem;
-      right: 1.5rem;
-      margin-top: 0.5rem;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      text-align: center;
-      flex-direction: column;
-      gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(50px);
+      position: absolute; top: 100%; left: 1.5rem; right: 1.5rem;
+      margin-top: 0.5rem; border-radius: 1.5rem; padding: 1.5rem;
+      text-align: center; flex-direction: column; gap: 1.5rem;
+      background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
     #mobile-menu.visible { display: flex !important; }
 
     #mobile-menu a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      display: block;
-      transition: all 0.3s ease;
+      color: #ffffff; text-decoration: none;
+      font-size: 1rem; font-weight: 500; display: block; transition: all 0.3s ease;
     }
 
     #mobile-menu a:hover { color: #00ff96; }
@@ -163,72 +131,44 @@
 
     /* Hero */
     .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 45vh;
-      display: flex;
-      align-items: center;
-      padding-top: 80px;
-      margin-bottom: 1rem;
+      position: relative; overflow: hidden; min-height: 45vh;
+      display: flex; align-items: center; padding-top: 80px; margin-bottom: 1rem;
     }
 
     .hero-logo-stamp {
-      position: absolute;
-      left: -10%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 55%;
-      max-width: 700px;
-      opacity: 0.2;
-      pointer-events: none;
-      filter: blur(1px);
+      position: absolute; left: -10%; top: 50%; transform: translateY(-50%);
+      width: 55%; max-width: 700px; opacity: 0.2; pointer-events: none; filter: blur(1px);
     }
 
     .hero-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+      max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem;
+      text-align: center; position: relative; z-index: 1;
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700;
+      margin-bottom: 1.5rem; line-height: 1.2; letter-spacing: -0.02em;
       font-family: 'HeliosExt', 'Inter', sans-serif;
     }
 
     .hero-subtitle {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 600px;
-      margin: 0 auto;
+      font-size: 1.1rem; color: rgba(255, 255, 255, 0.7);
+      max-width: 600px; margin: 0 auto;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
     /* Work Grid */
     .work-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2.5rem;
-      padding: 4rem 0;
+      padding: 4rem 0 2rem;
     }
 
     .work-card {
-      border-radius: 1.5rem;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
+      border-radius: 1.5rem; overflow: hidden;
+      transition: all 0.3s ease; display: flex; flex-direction: column;
     }
 
     .work-card:hover {
@@ -236,71 +176,205 @@
       box-shadow: 0 24px 72px rgba(0, 255, 150, 0.12);
     }
 
+    /* Extra cards hidden by default */
+    .work-card.extra { display: none; }
+    .work-grid.expanded .work-card.extra { display: flex; }
+
     .work-card-header {
       padding: 1.75rem 1.75rem 1.25rem;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 1rem;
     }
 
     .work-card-meta h3 {
       font-family: 'HeliosExt', 'Inter', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-size: 1.4rem; font-weight: 700;
       background: linear-gradient(135deg, #00ff96, #00ccff);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.25rem;
+      background-clip: text; -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; margin-bottom: 0.25rem;
     }
 
     .work-card-meta .year {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.4);
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-size: 0.8rem; color: rgba(255, 255, 255, 0.4);
+      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
     }
 
     .work-card-desc {
       padding: 0 1.75rem 1.25rem;
-      color: rgba(255, 255, 255, 0.65);
-      font-size: 0.9rem;
-      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.65); font-size: 0.9rem; line-height: 1.65;
     }
 
-    /* Video Embed */
     .video-wrap {
-      position: relative;
-      padding: 56.25% 0 0 0;
-      margin: 0 1.75rem 1.75rem;
-      border-radius: 1rem;
-      overflow: hidden;
+      position: relative; padding: 56.25% 0 0 0;
+      margin: 0 1.75rem 1.75rem; border-radius: 1rem; overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .video-wrap iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; border: none;
+    }
+
+    /* View More button */
+    .view-more-wrap {
+      text-align: center;
+      padding: 1rem 0 3rem;
+    }
+
+    #view-more-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.85rem 2.5rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    #view-more-btn:hover {
+      background: rgba(0, 255, 150, 0.12);
+      border-color: rgba(0, 255, 150, 0.4);
+      color: #00ff96;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 255, 150, 0.15);
+    }
+
+    #view-more-btn i {
+      transition: transform 0.3s ease;
+    }
+
+    #view-more-btn.open i {
+      transform: rotate(180deg);
     }
 
     /* CTA Section */
     .cta-section {
-      text-align: center;
-      padding: 4rem 1.5rem;
+      text-align: center; padding: 4rem 1.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .cta-section h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+      margin-bottom: 1.5rem; font-family: 'HeliosExt', 'Inter', sans-serif;
+    }
+
+    /* Google Reviews Section */
+    .reviews-section {
+      padding: 5rem 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reviews-section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .reviews-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       margin-bottom: 1.5rem;
-      font-family: 'HeliosExt', 'Inter', sans-serif;
+    }
+
+    .reviews-label .google-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%; background: #F4B400;
+    }
+
+    .reviews-stars-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+
+    .reviews-stars-row .stars { color: #F4B400; font-size: 1.1rem; letter-spacing: 2px; }
+
+    .reviews-bubble-wrap {
+      position: relative;
+      height: 520px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 28%);
+    }
+
+    .review-bubble {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      max-width: 320px;
+      animation: floatBubble var(--dur, 6s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .review-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -8px; left: 22px;
+      width: 16px; height: 16px;
+      background: rgba(255, 255, 255, 0.07);
+      border-right: 1px solid rgba(255,255,255,0.14);
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      transform: rotate(45deg);
+      backdrop-filter: blur(24px);
+    }
+
+    .review-bubble .bubble-header {
+      display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem;
+    }
+
+    .review-bubble .bubble-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #000; flex-shrink: 0;
+    }
+
+    .review-bubble .bubble-name { font-size: 0.85rem; font-weight: 600; color: #fff; }
+    .review-bubble .bubble-stars { color: #F4B400; font-size: 0.7rem; letter-spacing: 1px; }
+    .review-bubble .bubble-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.55; }
+
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+      50%       { transform: translateY(-10px) rotate(var(--rot, 0deg)); }
+    }
+
+    .rb-1 { top: 60px;  left: 0%;    --dur: 7s;   --delay: 0s;   --rot: -1.5deg; }
+    .rb-2 { top: 20px;  left: 28%;   --dur: 6s;   --delay: -2s;  --rot: 1deg;    }
+    .rb-3 { top: 55px;  right: 0%;   --dur: 8s;   --delay: -4s;  --rot: 2deg;    }
+    .rb-4 { top: 230px; left: 5%;    --dur: 6.5s; --delay: -1s;  --rot: -2deg;   }
+    .rb-5 { top: 200px; left: 32%;   --dur: 7.5s; --delay: -3s;  --rot: 0.5deg;  }
+    .rb-6 { top: 240px; right: 2%;   --dur: 6s;   --delay: -5s;  --rot: -1deg;   }
+
+    @media (max-width: 768px) {
+      .reviews-bubble-wrap { height: 780px; }
+      .rb-1 { top: 40px;  left: 0;   max-width: 80vw; }
+      .rb-2 { top: 200px; left: 10%; max-width: 78vw; }
+      .rb-3 { top: 380px; left: 5%;  max-width: 82vw; }
+      .rb-4, .rb-5, .rb-6 { display: none; }
     }
 
     /* Footer */
@@ -314,94 +388,59 @@
     .footer-content { max-width: 1200px; margin: 0 auto; }
 
     .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+      display: flex; justify-content: center;
+      gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;
     }
 
     .footer-links a {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
+      color: rgba(255, 255, 255, 0.6); text-decoration: none;
+      font-size: 0.9rem; transition: color 0.3s ease;
     }
 
     .footer-links a:hover { color: #00ff96; }
 
     .footer-socials {
-      display: flex;
-      justify-content: center;
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+      display: flex; justify-content: center;
+      gap: 1.25rem; margin-bottom: 2rem; flex-wrap: wrap;
     }
 
     .footer-socials a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 12px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
+      color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;
+      text-decoration: none; transition: all 0.3s ease;
     }
 
     .footer-socials a:hover {
-      background: rgba(0, 255, 150, 0.15);
-      border-color: rgba(0, 255, 150, 0.4);
-      color: #00ff96;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 255, 150, 0.2);
+      background: rgba(0, 255, 150, 0.15); border-color: rgba(0, 255, 150, 0.4);
+      color: #00ff96; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0, 255, 150, 0.2);
     }
 
     .footer-socials a.popl:hover {
-      background: rgba(0, 204, 255, 0.15);
-      border-color: rgba(0, 204, 255, 0.4);
-      color: #00ccff;
-      box-shadow: 0 8px 24px rgba(0, 204, 255, 0.2);
+      background: rgba(0, 204, 255, 0.15); border-color: rgba(0, 204, 255, 0.4);
+      color: #00ccff; box-shadow: 0 8px 24px rgba(0, 204, 255, 0.2);
     }
 
     .footer-socials a.google:hover {
-      background: rgba(244, 180, 0, 0.15);
-      border-color: rgba(244, 180, 0, 0.4);
-      color: #F4B400;
-      box-shadow: 0 8px 24px rgba(244, 180, 0, 0.2);
+      background: rgba(244, 180, 0, 0.15); border-color: rgba(244, 180, 0, 0.4);
+      color: #F4B400; box-shadow: 0 8px 24px rgba(244, 180, 0, 0.2);
     }
 
     .footer-bottom {
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.85rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.4); font-size: 0.85rem;
+      padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     /* Floating CTA */
     .floating-logo {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 50;
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
+      position: fixed; bottom: 25px; right: 25px; z-index: 50;
+      width: 60px; height: 60px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
     }
 
-    .floating-logo:hover {
-      transform: scale(1.1);
-      box-shadow: 0 15px 50px rgba(0, 255, 150, 0.3);
-    }
-
+    .floating-logo:hover { transform: scale(1.1); box-shadow: 0 15px 50px rgba(0, 255, 150, 0.3); }
     .floating-logo img { height: 22px; width: auto; }
 
     /* Responsive */
@@ -411,7 +450,7 @@
 
     @media (max-width: 768px) {
       .hero { min-height: 38vh; padding-top: 70px; }
-      .work-grid { gap: 1.5rem; padding: 2rem 0; }
+      .work-grid { gap: 1.5rem; padding: 2rem 0 1rem; }
       .floating-logo { width: 50px; height: 50px; }
     }
   </style>
@@ -456,9 +495,9 @@
 
   <!-- Work Grid -->
   <div class="container">
-    <div class="work-grid">
+    <div class="work-grid" id="work-grid">
 
-      <!-- Matrix Medical -->
+      <!-- 1 — Matrix Medical (always visible) -->
       <div class="work-card glass">
         <div class="work-card-header">
           <div class="work-card-meta">
@@ -472,7 +511,7 @@
         </div>
       </div>
 
-      <!-- Pure Mechanical -->
+      <!-- 2 — Pure Mechanical (always visible) -->
       <div class="work-card glass">
         <div class="work-card-header">
           <div class="work-card-meta">
@@ -486,7 +525,7 @@
         </div>
       </div>
 
-      <!-- Rich Nerdz -->
+      <!-- 3 — Rich Nerdz (always visible) -->
       <div class="work-card glass">
         <div class="work-card-header">
           <div class="work-card-meta">
@@ -500,7 +539,7 @@
         </div>
       </div>
 
-      <!-- Car Club Rental -->
+      <!-- 4 — Car Club Rental (always visible) -->
       <div class="work-card glass">
         <div class="work-card-header">
           <div class="work-card-meta">
@@ -514,8 +553,10 @@
         </div>
       </div>
 
+      <!-- 5+ EXTRA cards (hidden until View More) -->
+
       <!-- Ocean Wholesale -->
-      <div class="work-card glass">
+      <div class="work-card glass extra">
         <div class="work-card-header">
           <div class="work-card-meta">
             <h3>Ocean Wholesale</h3>
@@ -529,7 +570,7 @@
       </div>
 
       <!-- Mow Bros -->
-      <div class="work-card glass">
+      <div class="work-card glass extra">
         <div class="work-card-header">
           <div class="work-card-meta">
             <h3>Mow Bros</h3>
@@ -543,7 +584,7 @@
       </div>
 
       <!-- Jappy -->
-      <div class="work-card glass">
+      <div class="work-card glass extra">
         <div class="work-card-header">
           <div class="work-card-meta">
             <h3>Jappy</h3>
@@ -557,7 +598,7 @@
       </div>
 
       <!-- MBE -->
-      <div class="work-card glass">
+      <div class="work-card glass extra">
         <div class="work-card-header">
           <div class="work-card-meta">
             <h3>Moneybag Exotics</h3>
@@ -571,7 +612,7 @@
       </div>
 
       <!-- Pet Beds For You -->
-      <div class="work-card glass">
+      <div class="work-card glass extra">
         <div class="work-card-header">
           <div class="work-card-meta">
             <h3>Pet Beds For You</h3>
@@ -585,7 +626,7 @@
       </div>
 
       <!-- Ocean Tobacco -->
-      <div class="work-card glass">
+      <div class="work-card glass extra">
         <div class="work-card-header">
           <div class="work-card-meta">
             <h3>Ocean Tobacco</h3>
@@ -602,7 +643,7 @@
       </div>
 
       <!-- VoxVera -->
-      <div class="work-card glass">
+      <div class="work-card glass extra">
         <div class="work-card-header">
           <div class="work-card-meta">
             <h3>VoxVera.io</h3>
@@ -616,7 +657,7 @@
       </div>
 
       <!-- LumaSkin -->
-      <div class="work-card glass">
+      <div class="work-card glass extra">
         <div class="work-card-header">
           <div class="work-card-meta">
             <h3>LumaSkin</h3>
@@ -630,14 +671,106 @@
       </div>
 
     </div>
+
+    <!-- View More button -->
+    <div class="view-more-wrap">
+      <button id="view-more-btn">
+        <span id="btn-label">View More Work</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+    </div>
   </div>
 
   <!-- CTA -->
   <section class="cta-section">
     <h2><span class="gradient-text">Ready to Be Next?</span></h2>
     <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-size: 1.05rem;">Let's build something you'll want to show off.</p>
-    <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2.5rem; font-size: 1rem;">Book Your Free Consultation</a>
+    <a href="https://calendly.com/vaura/general-discovery-clone" target="_blank" class="glass-button" style="padding: 1rem 2.5rem; font-size: 1rem;">Book Your Free Consultation</a>
   </section>
+
+  <!-- Google Reviews -->
+  <div class="reviews-section">
+    <div class="reviews-section-inner">
+      <div class="reviews-label">
+        <span class="google-dot"></span>
+        Google Reviews
+      </div>
+      <div class="reviews-stars-row">
+        <span class="stars">★★★★★</span>
+        <span>5.0 &nbsp;·&nbsp; Verified on Google</span>
+        <a href="https://g.page/r/CZaO4TNAzK-NEBM/review" target="_blank" style="color: #F4B400; font-size: 0.85rem; text-decoration: none; font-weight: 600;">Leave a review →</a>
+      </div>
+      <div class="reviews-bubble-wrap">
+
+        <div class="review-bubble glass rb-1">
+          <div class="bubble-header">
+            <div class="bubble-avatar">TS</div>
+            <div>
+              <div class="bubble-name">Tim Siegel</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"Benji did a great job on our Shopify site. The performance, accessibility and SEO are solid a year after launch, way better than my other WordPress sites ever performed. I highly recommend!"</p>
+        </div>
+
+        <div class="review-bubble glass rb-2">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ccff, #c850ff);">JC</div>
+            <div>
+              <div class="bubble-name">Jared Crawford-Akeredolu</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"I cannot recommend Vaura enough! From start to finish, their team delivered top-notch branding and marketing services that exceeded my expectations. Their ability to combine creativity with strategy is truly impressive."</p>
+        </div>
+
+        <div class="review-bubble glass rb-3">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #F4B400, #00ff96);">KT</div>
+            <div>
+              <div class="bubble-name">Kelly Torp</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"Benji did our website and was great to work with! He brought professionalism and quality which in turn gave us a great product! I would recommend 100%!"</p>
+        </div>
+
+        <div class="review-bubble glass rb-4">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ff96, #00ccff);">MR</div>
+            <div>
+              <div class="bubble-name">Marjae Rouser</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"Personally, I received more than exceptional service. Really transparent about the process and projections were accurate! I'm glad I reached out."</p>
+        </div>
+
+        <div class="review-bubble glass rb-5">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #c850ff, #00ccff);">AE</div>
+            <div>
+              <div class="bubble-name">Aiden Evans</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"Great communication and made it easy to work with them!! I'm very pleased."</p>
+        </div>
+
+        <div class="review-bubble glass rb-6">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ccff, #F4B400);">JS</div>
+            <div>
+              <div class="bubble-name">Japnoor Singh</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"Great communication. Good work. Couldn't ask for more."</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -654,7 +787,7 @@
         <a href="https://www.facebook.com/vaura.agency" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="https://www.tiktok.com/@vaura.agency" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         <a href="https://poplme.co/benjismith" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
-        <a href="https://share.google/mV0X8NOunWxULwUeG" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
+        <a href="https://g.page/r/CZaO4TNAzK-NEBM/review" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
       </div>
       <div class="footer-bottom">
         <img src="White Logo w Words Center.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
@@ -670,11 +803,23 @@
   </a>
 
   <script>
+    // Mobile menu
     const mobileMenuBtn = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('visible'); });
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => { mobileMenu.classList.remove('visible'); });
+    });
+
+    // View More / View Less
+    const viewMoreBtn = document.getElementById('view-more-btn');
+    const workGrid = document.getElementById('work-grid');
+    const btnLabel = document.getElementById('btn-label');
+
+    viewMoreBtn.addEventListener('click', () => {
+      const isExpanded = workGrid.classList.toggle('expanded');
+      btnLabel.textContent = isExpanded ? 'Show Less' : 'View More Work';
+      viewMoreBtn.classList.toggle('open', isExpanded);
     });
   </script>
 </body>
