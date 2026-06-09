@@ -311,6 +311,11 @@
       line-height: 1.6;
     }
 
+    /* Carousel dots — desktop hidden, mobile shown via media query */
+    .carousel-dots {
+      display: none;
+    }
+
     /* Partners Section */
     .partners-section {
       background: rgba(255, 255, 255, 0.03);
@@ -834,10 +839,48 @@
         font-size: 1.75rem;
       }
 
-      .service-grid,
       .photo-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+      }
+
+      /* Service cards carousel */
+      .service-carousel-outer {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .service-grid {
+        display: flex !important;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-bottom: 1rem;
+      }
+
+      .service-grid .service-card {
+        flex: 0 0 calc(50% - 0.5rem);
+        min-width: 0;
+      }
+
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .carousel-dots .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+
+      .carousel-dots .dot.active {
+        background: #00ff96;
+        transform: scale(1.4);
       }
 
       .packages-grid {
@@ -965,30 +1008,37 @@
   <!-- What We Do -->
   <section class="container" style="padding-top: 2rem;">
     <h2>What We Do</h2>
-    <div class="service-grid">
-      <div class="service-card glass">
-        <h3>Web Dev</h3>
-        <p>Bespoke, high-performance websites that convert.</p>
+    <div class="service-carousel-outer">
+      <div class="service-grid">
+        <div class="service-card glass">
+          <h3>Web Dev</h3>
+          <p>Bespoke, high-performance websites that convert.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Branding</h3>
+          <p>Logos, visual systems, and full brand stories.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Photo & Video</h3>
+          <p>Professional shoots, editing, and cinematic content.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Marketing</h3>
+          <p>Strategic paid campaigns across platforms.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Graphic Design</h3>
+          <p>Clothing graphics, ad creatives & more.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>SEO & Mgmt</h3>
+          <p>Long-term growth and consulting.</p>
+        </div>
       </div>
-      <div class="service-card glass">
-        <h3>Branding</h3>
-        <p>Logos, visual systems, and full brand stories.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>Photo & Video</h3>
-        <p>Professional shoots, editing, and cinematic content.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>Marketing</h3>
-        <p>Strategic paid campaigns across platforms.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>Graphic Design</h3>
-        <p>Clothing graphics, ad creatives & more.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>SEO & Mgmt</h3>
-        <p>Long-term growth and consulting.</p>
+      <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
     </div>
     <div style="text-align: center; margin-top: 2rem; margin-bottom: 3rem;">
@@ -1210,6 +1260,35 @@
         mobileMenu.classList.remove('visible');
       });
     });
+
+    // Service cards carousel — mobile only
+    (function () {
+      function initServiceCarousel() {
+        if (window.innerWidth > 768) return;
+        var grid = document.querySelector('.service-grid');
+        var dots = Array.from(document.querySelectorAll('.carousel-dots .dot'));
+        if (!grid) return;
+        var cards = Array.from(grid.querySelectorAll('.service-card'));
+        var perPage = 2;
+        var pages = Math.ceil(cards.length / perPage);
+        var page = 0;
+
+        function goTo(p) {
+          page = ((p % pages) + pages) % pages;
+          var offset = cards[page * perPage] ? cards[page * perPage].offsetLeft : 0;
+          grid.style.transform = 'translateX(-' + offset + 'px)';
+          dots.forEach(function (d, i) { d.classList.toggle('active', i === page); });
+        }
+
+        setInterval(function () { goTo(page + 1); }, 3000);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initServiceCarousel);
+      } else {
+        initServiceCarousel();
+      }
+    })();
   </script>
 </body>
 </html>
