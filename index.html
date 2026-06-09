@@ -29,7 +29,7 @@
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'HeliosExt', 'Inter', system-ui, sans-serif;
       background: #000000;
       color: #ffffff;
       line-height: 1.6;
@@ -145,7 +145,7 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.97);
       backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
@@ -185,7 +185,7 @@
       display: flex;
       align-items: center;
       padding-top: 80px;
-      margin-bottom: 2rem;
+      margin-bottom: 0;
     }
 
     /* Stamped logo — hangs off the left ~30% */
@@ -274,23 +274,56 @@
       margin-right: auto;
     }
 
-    /* Service Grid */
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
+    /* Service Carousel */
+    .services-carousel-section {
+      padding: 4rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .services-carousel-wrap {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    .services-carousel-wrap::before,
+    .services-carousel-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .services-carousel-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, #000000 0%, transparent 100%);
+    }
+
+    .services-carousel-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, #000000 0%, transparent 100%);
+    }
+
+    .services-carousel-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+      animation: scrollServices 28s linear infinite;
+    }
+
+    @keyframes scrollServices {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .service-card {
+      flex: 0 0 calc(50vw - 2.25rem);
+      max-width: 560px;
       padding: 2rem;
       border-radius: 1.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 64px rgba(0, 255, 150, 0.15);
     }
 
     .service-card h3 {
@@ -309,7 +342,7 @@
     /* Partners Section */
     .partners-section {
       background: rgba(255, 255, 255, 0.03);
-      padding: 4rem 0;
+      padding: 1.5rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
@@ -366,9 +399,77 @@
     /* Packages Grid */
     .packages-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-bottom: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+      .packages-grid .package-card:nth-child(3) {
+        grid-column: 1 / -1;
+        max-width: 440px;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .packages-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+      }
+      .packages-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .packages-grid .package-card {
+        flex: 0 0 82%;
+        scroll-snap-align: center;
+        padding: 1.5rem 1.25rem;
+      }
+      .packages-grid .package-card:nth-child(3) {
+        grid-column: auto;
+        max-width: 100%;
+        margin: 0;
+      }
+      .package-name {
+        font-size: 1.1rem;
+      }
+      .package-price {
+        font-size: 2rem;
+      }
+      /* Dot indicators */
+      .pkg-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .pkg-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.25);
+        transition: background 0.3s ease;
+        cursor: pointer;
+      }
+      .pkg-dot.active {
+        background: #00ff96;
+      }
+    }
+    @media (min-width: 601px) {
+      .pkg-dots { display: none; }
     }
 
     .package-card {
@@ -391,14 +492,13 @@
 
     .popular-badge {
       position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 1rem;
+      right: 1rem;
       background: rgba(0, 255, 150, 0.15);
       border: 1px solid rgba(0, 255, 150, 0.4);
-      padding: 0.5rem 1.2rem;
+      padding: 0.35rem 0.85rem;
       border-radius: 9999px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -466,6 +566,7 @@
       transition: all 0.3s ease;
       background: linear-gradient(135deg, #00ff96, #00ccff);
       color: #000000;
+      text-align: center;
     }
 
     .package-cta a:hover {
@@ -530,7 +631,7 @@
 
     /* Google Reviews Section */
     .reviews-section {
-      padding: 5rem 0 0;
+      padding: 2rem 0 0;
       position: relative;
       overflow: hidden;
     }
@@ -681,7 +782,7 @@
     /* Footer */
     footer {
       background: rgba(255, 255, 255, 0.03);
-      padding: 3rem 1.5rem;
+      padding: 1.5rem 1.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
     }
@@ -824,7 +925,6 @@
       }
 
       .service-grid,
-      .packages-grid,
       .photo-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -857,7 +957,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="packages.html">Website Packages</a></li>
         <li><a href="photovideo.html">Photo / Video</a></li>
-        <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
+        <li><a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
       <div style="flex: 1;"></div>
       <button class="mobile-menu-btn" id="menu-toggle">
@@ -868,7 +968,7 @@
       <a href="services.html">Services</a>
       <a href="packages.html">Website Packages</a>
       <a href="photovideo.html">Photo / Video</a>
-      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
+      <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
     </div>
   </nav>
 
@@ -920,41 +1020,69 @@
   </section>
 
   <!-- What We Do -->
-  <section class="container" style="padding-top: 2rem;">
+  <section class="services-carousel-section">
     <h2>What We Do</h2>
-    <div class="service-grid">
-      <div class="service-card glass">
-        <h3>Web Dev</h3>
-        <p>Bespoke, high-performance websites that convert.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>Branding</h3>
-        <p>Logos, visual systems, and full brand stories.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>Photo & Video</h3>
-        <p>Professional shoots, editing, and cinematic content.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>Marketing</h3>
-        <p>Strategic paid campaigns across platforms.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>Graphic Design</h3>
-        <p>Clothing graphics, ad creatives & more.</p>
-      </div>
-      <div class="service-card glass">
-        <h3>SEO & Mgmt</h3>
-        <p>Long-term growth and consulting.</p>
+    <div class="services-carousel-wrap">
+      <div class="services-carousel-track">
+        <!-- original set -->
+        <div class="service-card glass">
+          <h3>Web Dev</h3>
+          <p>Bespoke, high-performance websites that convert.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Branding</h3>
+          <p>Logos, visual systems, and full brand stories.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Photo & Video</h3>
+          <p>Professional shoots, editing, and cinematic content.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Marketing</h3>
+          <p>Strategic paid campaigns across platforms.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Graphic Design</h3>
+          <p>Clothing graphics, ad creatives & more.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>SEO & Mgmt</h3>
+          <p>Long-term growth and consulting.</p>
+        </div>
+        <!-- duplicate set for seamless loop -->
+        <div class="service-card glass">
+          <h3>Web Dev</h3>
+          <p>Bespoke, high-performance websites that convert.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Branding</h3>
+          <p>Logos, visual systems, and full brand stories.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Photo & Video</h3>
+          <p>Professional shoots, editing, and cinematic content.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Marketing</h3>
+          <p>Strategic paid campaigns across platforms.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>Graphic Design</h3>
+          <p>Clothing graphics, ad creatives & more.</p>
+        </div>
+        <div class="service-card glass">
+          <h3>SEO & Mgmt</h3>
+          <p>Long-term growth and consulting.</p>
+        </div>
       </div>
     </div>
-    <div style="text-align: center; margin-top: 2rem; margin-bottom: 3rem;">
+    <div style="text-align: center; margin-top: 2rem; margin-bottom: 1rem;">
       <a href="services.html" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Learn More</a>
     </div>
   </section>
 
   <!-- Website Packages -->
-  <section class="container" style="padding-top: 6rem;">
+  <section class="container" style="padding-top: 2rem;">
     <h2>Website Packages</h2>
     <p class="section-subtitle">Choose your level of digital excellence</p>
     <div class="packages-grid">
@@ -974,7 +1102,7 @@
       </div>
 
       <div class="package-card glass featured">
-        <div class="popular-badge">MOST POPULAR</div>
+        <div class="popular-badge">POPULAR</div>
         <h3 class="package-name">Professional</h3>
         <div class="package-price">$5,000</div>
         <p class="package-period">one-time investment</p>
@@ -1003,6 +1131,11 @@
           <a href="https://calendly.com/vaura/general-discovery" target="_blank">Let's Talk</a>
         </div>
       </div>
+    </div>
+    <div class="pkg-dots">
+      <div class="pkg-dot active"></div>
+      <div class="pkg-dot"></div>
+      <div class="pkg-dot"></div>
     </div>
     <div style="text-align: center; margin-top: 2rem; margin-bottom: 6rem;">
       <a href="packages.html" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">View All Packages →</a>
@@ -1132,13 +1265,13 @@
         <a href="services.html">Services</a>
         <a href="packages.html">Website Packages</a>
         <a href="photovideo.html">Photo / Video</a>
-        <a href="tel:7634478781">Contact Us Today</a>
+        <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank">Contact Us Today</a>
       </div>
       <div class="footer-socials">
         <a href="https://www.instagram.com/vaura.agency" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/vaura.agency" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="https://www.tiktok.com/@vaura.agency" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://poplme.co/benjismith" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
+        <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
         <a href="https://g.page/r/CZaO4TNAzK-NEBM/review" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
       </div>
       <div class="footer-bottom">
@@ -1150,7 +1283,7 @@
   </footer>
 
   <!-- Floating CTA Button -->
-  <a href="tel:7634478781" class="floating-logo glass-button">
+  <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="floating-logo glass-button">
     <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
@@ -1167,6 +1300,31 @@
         mobileMenu.classList.remove('visible');
       });
     });
+
+    // Package carousel dots (mobile only)
+    (function() {
+      const grid = document.querySelector('.packages-grid');
+      const dots = document.querySelectorAll('.pkg-dot');
+      if (!grid || !dots.length) return;
+
+      function updateDots() {
+        const card = grid.querySelector('.package-card');
+        const cardWidth = card.offsetWidth + 16;
+        const index = Math.round(grid.scrollLeft / cardWidth);
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      }
+
+      grid.addEventListener('scroll', updateDots, { passive: true });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          const card = grid.querySelector('.package-card');
+          const cardWidth = card.offsetWidth + 16;
+          grid.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+        });
+      });
+    })();
+
   </script>
 </body>
 </html>

@@ -29,7 +29,7 @@
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'HeliosExt', 'Inter', system-ui, sans-serif;
       background: #000000;
       color: #ffffff;
       line-height: 1.6;
@@ -139,7 +139,7 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.97);
       backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
@@ -360,7 +360,7 @@
     /* CTA Section */
     .cta-section {
       text-align: center;
-      padding: 4rem 1.5rem;
+      padding: 2rem 1.5rem 4rem;
     }
 
     .cta-section h2 {
@@ -531,6 +531,133 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
+    /* Mobile carousels for service sections */
+    @media (max-width: 600px) {
+      .service-grid,
+      .service-pair {
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+        grid-template-columns: unset;
+      }
+      .service-grid::-webkit-scrollbar,
+      .service-pair::-webkit-scrollbar {
+        display: none;
+      }
+      .service-grid .service-card,
+      .service-pair .service-detail {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+      }
+    }
+
+    /* Google Reviews Section */
+    .reviews-section {
+      padding: 3rem 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .reviews-section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .reviews-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    .reviews-label .google-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #F4B400;
+    }
+    .reviews-stars-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+    .reviews-stars-row .stars { color: #F4B400; font-size: 1.1rem; letter-spacing: 2px; }
+    .reviews-bubble-wrap {
+      position: relative;
+      height: 520px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 28%);
+    }
+    .review-bubble {
+      position: absolute;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      max-width: 320px;
+      animation: floatBubble var(--dur, 6s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+    .review-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -8px; left: 22px;
+      width: 16px; height: 16px;
+      background: rgba(255,255,255,0.07);
+      border-right: 1px solid rgba(255,255,255,0.14);
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      transform: rotate(45deg);
+      backdrop-filter: blur(24px);
+    }
+    .review-bubble .bubble-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+    .review-bubble .bubble-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #000; flex-shrink: 0;
+    }
+    .review-bubble .bubble-name { font-size: 0.85rem; font-weight: 600; color: #fff; }
+    .review-bubble .bubble-stars { color: #F4B400; font-size: 0.7rem; letter-spacing: 1px; }
+    .review-bubble .bubble-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.55; }
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+      50%       { transform: translateY(-10px) rotate(var(--rot, 0deg)); }
+    }
+    .rb-1 { top: 60px;  left: 0%;    --dur: 7s;   --delay: 0s;   --rot: -1.5deg; }
+    .rb-2 { top: 20px;  left: 28%;   --dur: 6s;   --delay: -2s;  --rot: 1deg;    }
+    .rb-3 { top: 55px;  right: 0%;   --dur: 8s;   --delay: -4s;  --rot: 2deg;    }
+    .rb-4 { top: 230px; left: 5%;    --dur: 6.5s; --delay: -1s;  --rot: -2deg;   }
+    .rb-5 { top: 200px; left: 32%;   --dur: 7.5s; --delay: -3s;  --rot: 0.5deg;  }
+    .rb-6 { top: 240px; right: 2%;   --dur: 6s;   --delay: -5s;  --rot: -1deg;   }
+    @media (max-width: 768px) {
+      .reviews-bubble-wrap { height: 780px; }
+      .rb-1 { top: 40px;  left: 0;   max-width: 80vw; }
+      .rb-2 { top: 200px; left: 10%; max-width: 78vw; }
+      .rb-3 { top: 380px; left: 5%;  max-width: 82vw; }
+      .rb-4 { display: none; }
+      .rb-5 { display: none; }
+      .rb-6 { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -543,7 +670,7 @@
         <li><a href="services.html" class="active">Services</a></li>
         <li><a href="packages.html">Website Packages</a></li>
         <li><a href="photovideo.html">Photo / Video</a></li>
-        <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
+        <li><a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
       <div style="flex: 1;"></div>
       <button class="mobile-menu-btn" id="menu-toggle">
@@ -555,7 +682,7 @@
       <a href="services.html">Services</a>
       <a href="packages.html">Website Packages</a>
       <a href="photovideo.html">Photo / Video</a>
-      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
+      <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
     </div>
   </nav>
 
@@ -714,9 +841,68 @@
   <!-- CTA Section -->
   <section class="cta-section">
     <h2><span class="gradient-text">Ready to Get Started?</span></h2>
-    <p class="cta-text">Let's discuss your project, timeline, and vision. Schedule a consultation call with our team to explore what's possible.</p>
-    <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2.5rem; font-size: 1rem;">Schedule Your Free Consultation</a>
+    <p class="cta-text">Let's discuss your project, timeline, and vision. Schedule a free consult with our team to explore what's possible.</p>
+    <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2.5rem; font-size: 1rem;">Schedule Your Free Consult</a>
   </section>
+
+  <!-- Google Reviews -->
+  <div class="reviews-section">
+    <div class="reviews-section-inner">
+      <div class="reviews-label">
+        <span class="google-dot"></span>
+        Google Reviews
+      </div>
+      <div class="reviews-stars-row">
+        <span class="stars">★★★★★</span>
+        <span>5.0 &nbsp;·&nbsp; Verified on Google</span>
+        <a href="https://g.page/r/CZaO4TNAzK-NEBM/review" target="_blank" style="color: #F4B400; font-size: 0.85rem; text-decoration: none; font-weight: 600;">Leave a review →</a>
+      </div>
+      <div class="reviews-bubble-wrap">
+        <div class="review-bubble glass rb-1">
+          <div class="bubble-header">
+            <div class="bubble-avatar">TS</div>
+            <div><div class="bubble-name">Tim Siegel</div><div class="bubble-stars">★★★★★</div></div>
+          </div>
+          <p class="bubble-text">"Benji did a great job on our Shopify site. The performance, accessibility and SEO are solid a year after launch, way better than my other WordPress sites ever performed. I highly recommend!"</p>
+        </div>
+        <div class="review-bubble glass rb-2">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ccff, #c850ff);">JC</div>
+            <div><div class="bubble-name">Jared Crawford-Akeredolu</div><div class="bubble-stars">★★★★★</div></div>
+          </div>
+          <p class="bubble-text">"I cannot recommend Vaura enough! From start to finish, their team delivered top-notch branding and marketing services that exceeded my expectations."</p>
+        </div>
+        <div class="review-bubble glass rb-3">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #F4B400, #00ff96);">KT</div>
+            <div><div class="bubble-name">Kelly Torp</div><div class="bubble-stars">★★★★★</div></div>
+          </div>
+          <p class="bubble-text">"Benji did our website and was great to work with! He brought professionalism and quality which in turn gave us a great product! I would recommend 100%!"</p>
+        </div>
+        <div class="review-bubble glass rb-4">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ff96, #00ccff);">MR</div>
+            <div><div class="bubble-name">Marjae Rouser</div><div class="bubble-stars">★★★★★</div></div>
+          </div>
+          <p class="bubble-text">"Personally, I received more than exceptional service. Really transparent about the process and projections were accurate! I'm glad I reached out."</p>
+        </div>
+        <div class="review-bubble glass rb-5">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #c850ff, #00ccff);">AE</div>
+            <div><div class="bubble-name">Aiden Evans</div><div class="bubble-stars">★★★★★</div></div>
+          </div>
+          <p class="bubble-text">"Great communication and made it easy to work with them!! I'm very pleased."</p>
+        </div>
+        <div class="review-bubble glass rb-6">
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ccff, #F4B400);">JS</div>
+            <div><div class="bubble-name">Japnoor Singh</div><div class="bubble-stars">★★★★★</div></div>
+          </div>
+          <p class="bubble-text">"Great communication. Good work. Couldn't ask for more."</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -726,13 +912,13 @@
         <a href="services.html">Services</a>
         <a href="packages.html">Website Packages</a>
         <a href="photovideo.html">Photo / Video</a>
-        <a href="tel:7634478781">Contact Us Today</a>
+        <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank">Contact Us Today</a>
       </div>
       <div class="footer-socials">
         <a href="https://www.instagram.com/vaura.agency" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/vaura.agency" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="https://www.tiktok.com/@vaura.agency" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://poplme.co/benjismith" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
+        <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
         <a href="https://share.google/mV0X8NOunWxULwUeG" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
       </div>
       <div class="footer-bottom">
@@ -744,7 +930,7 @@
   </footer>
 
   <!-- Floating CTA Button -->
-  <a href="tel:7634478781" class="floating-logo glass-button">
+  <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="floating-logo glass-button">
     <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 

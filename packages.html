@@ -29,7 +29,7 @@
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'HeliosExt', 'Inter', system-ui, sans-serif;
       background: #000000;
       color: #ffffff;
       line-height: 1.6;
@@ -139,7 +139,7 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.97);
       backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
@@ -270,10 +270,10 @@
     /* Package Grid */
     .package-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-bottom: 3rem;
-      align-items: center;
+      align-items: stretch;
     }
 
     .package-card {
@@ -286,12 +286,7 @@
     }
 
     .package-card.featured {
-      transform: scale(1.05);
       border: 2px solid rgba(0, 255, 150, 0.5);
-    }
-
-    .package-card.featured .popular-badge {
-      display: block;
     }
 
     .package-card:hover {
@@ -299,25 +294,24 @@
       box-shadow: 0 20px 80px rgba(0, 255, 150, 0.2);
     }
 
-    .package-card.featured:hover {
-      transform: translateY(-8px) scale(1.05);
-    }
-
     .popular-badge {
       display: none;
       position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 1rem;
+      right: 1rem;
       background: rgba(0, 255, 150, 0.15);
       border: 1px solid rgba(0, 255, 150, 0.4);
-      padding: 0.5rem 1.2rem;
+      padding: 0.35rem 0.85rem;
       border-radius: 9999px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: #00ff96;
+    }
+
+    .package-card.featured .popular-badge {
+      display: block;
     }
 
     .package-name {
@@ -348,8 +342,8 @@
       color: rgba(255, 255, 255, 0.7);
       font-size: 0.95rem;
       margin-bottom: 2rem;
-      flex-grow: 1;
       line-height: 1.6;
+      min-height: 6.4rem;
     }
 
     .package-features {
@@ -375,7 +369,8 @@
     }
 
     .package-cta {
-      margin-top: 2rem;
+      margin-top: auto;
+      padding-top: 2rem;
       display: flex;
       gap: 1rem;
     }
@@ -441,8 +436,11 @@
     }
 
     .comparison-table .check {
-      color: #00ff96;
+      color: #00ccff;
       font-weight: 700;
+    }
+    .comparison-table .check::first-letter {
+      color: #00ff96;
     }
 
     /* Custom Packages */
@@ -691,6 +689,18 @@
       width: auto;
     }
 
+    /* Always-included carousel hidden on desktop */
+    .always-included-track-wrap { display: none; }
+    .always-included-static { display: grid; }
+
+    /* Pkg dots hidden on desktop */
+    .pkg-dots { display: none; }
+
+    /* What's Always Included section spacing */
+    .always-included-section {
+      padding-top: 3rem;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero {
@@ -712,17 +722,83 @@
         gap: 1.5rem;
       }
 
-      .package-card.featured {
-        transform: scale(1);
-      }
-
-      .package-card.featured:hover {
-        transform: translateY(-8px) scale(1);
-      }
-
       .package-price {
         font-size: 2.5rem;
       }
+
+      /* Mobile package carousel */
+      .package-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+        grid-template-columns: unset;
+        align-items: stretch;
+      }
+      .package-grid::-webkit-scrollbar { display: none; }
+      .package-grid .package-card {
+        flex: 0 0 82%;
+        scroll-snap-align: center;
+      }
+      .pkg-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .pkg-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.25);
+        transition: background 0.3s ease;
+        cursor: pointer;
+      }
+      .pkg-dot.active { background: #00ff96; }
+
+      /* Mobile always-included carousel */
+      .always-included-track-wrap {
+        overflow: hidden;
+        position: relative;
+      }
+      .always-included-track-wrap::before,
+      .always-included-track-wrap::after {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0;
+        width: 60px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .always-included-track-wrap::before {
+        left: 0;
+        background: linear-gradient(to right, #000 0%, transparent 100%);
+      }
+      .always-included-track-wrap::after {
+        right: 0;
+        background: linear-gradient(to left, #000 0%, transparent 100%);
+      }
+      .always-included-track {
+        display: flex;
+        gap: 1rem;
+        width: max-content;
+        animation: scrollAlways 36s linear infinite;
+      }
+      .always-included-track .always-card {
+        flex: 0 0 72vw;
+      }
+      @keyframes scrollAlways {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      /* Hide static grid on mobile */
+      .always-included-static { display: none; }
+      .always-included-track-wrap { display: block; }
 
       .comparison-table {
         font-size: 0.85rem;
@@ -751,7 +827,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="packages.html" class="active">Website Packages</a></li>
         <li><a href="photovideo.html">Photo / Video</a></li>
-        <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
+        <li><a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
       <div style="flex: 1;"></div>
       <button class="mobile-menu-btn" id="menu-toggle">
@@ -763,7 +839,7 @@
       <a href="services.html">Services</a>
       <a href="packages.html">Website Packages</a>
       <a href="photovideo.html">Photo / Video</a>
-      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
+      <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
     </div>
   </nav>
 
@@ -807,7 +883,7 @@
 
       <!-- Professional Package (Featured) -->
       <div class="package-card glass featured">
-        <div class="popular-badge">MOST POPULAR</div>
+        <div class="popular-badge">POPULAR</div>
         <h3 class="package-name">Professional</h3>
         <div class="package-price">$5,000</div>
         <p class="package-price-period">one-time investment</p>
@@ -826,7 +902,7 @@
         </ul>
         
         <div class="package-cta">
-          <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="primary">Schedule Discovery Call</a>
+          <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="primary">Schedule Call</a>
         </div>
       </div>
 
@@ -854,6 +930,11 @@
           <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="primary">Let's Talk</a>
         </div>
       </div>
+    </div>
+    <div class="pkg-dots">
+      <div class="pkg-dot active"></div>
+      <div class="pkg-dot"></div>
+      <div class="pkg-dot"></div>
     </div>
 
     <!-- Comparison Table -->
@@ -939,42 +1020,95 @@
     <div class="custom-package glass">
       <h3>Custom Solutions</h3>
       <p>Need something completely different? Multi-site networks, progressive web apps, membership platforms, or specialized platforms? We build custom solutions tailored to your exact business needs.</p>
-      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Discuss Your Project</a>
+      <a href="https://calendly.com/vaura/website-discovery-onboarding" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Discuss Your Project</a>
     </div>
   </section>
 
   <!-- What's Included Section -->
-  <section class="container">
-    <h2>What's Always Included</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-      <div class="glass" style="padding: 2rem; border-radius: 1.5rem;">
+  <section class="container always-included-section">
+    <h2>What's <span class="gradient-text">Always</span> Included</h2>
+
+    <!-- Desktop static grid -->
+    <div class="always-included-static" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+      <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🔒 Security & Performance</h4>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p>
       </div>
-      
-      <div class="glass" style="padding: 2rem; border-radius: 1.5rem;">
+      <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📱 Mobile First</h4>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p>
       </div>
-      
-      <div class="glass" style="padding: 2rem; border-radius: 1.5rem;">
+      <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">⚡ Speed First</h4>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p>
       </div>
-
-      <div class="glass" style="padding: 2rem; border-radius: 1.5rem;">
+      <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🎯 SEO Ready</h4>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p>
       </div>
-
-      <div class="glass" style="padding: 2rem; border-radius: 1.5rem;">
+      <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📊 Analytics Setup</h4>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p>
       </div>
-
-      <div class="glass" style="padding: 2rem; border-radius: 1.5rem;">
+      <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🤝 Your Support</h4>
         <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p>
+      </div>
+    </div>
+
+    <!-- Mobile auto-scroll carousel -->
+    <div class="always-included-track-wrap">
+      <div class="always-included-track">
+        <!-- original set -->
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🔒 Security & Performance</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📱 Mobile First</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">⚡ Speed First</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🎯 SEO Ready</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📊 Analytics Setup</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🤝 Your Support</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p>
+        </div>
+        <!-- duplicate set for seamless loop -->
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🔒 Security & Performance</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📱 Mobile First</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">⚡ Speed First</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🎯 SEO Ready</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📊 Analytics Setup</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p>
+        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
+          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🤝 Your Support</h4>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1082,7 +1216,7 @@
   <section class="cta-section">
     <h2><span class="gradient-text">Ready to Launch?</span></h2>
     <p class="cta-text">Let's schedule a call to discuss your project timeline and the best package for your needs.</p>
-    <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Free Consultation</a>
+    <a href="https://calendly.com/vaura/website-discovery-onboarding" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Free Consultation</a>
   </section>
 
   <!-- Google Reviews -->
@@ -1138,13 +1272,13 @@
         <a href="services.html">Services</a>
         <a href="packages.html">Website Packages</a>
         <a href="photovideo.html">Photo / Video</a>
-        <a href="tel:7634478781">Contact Us Today</a>
+        <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank">Contact Us Today</a>
       </div>
       <div class="footer-socials">
         <a href="https://www.instagram.com/vaura.agency" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/vaura.agency" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="https://www.tiktok.com/@vaura.agency" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://poplme.co/benjismith" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
+        <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
         <a href="https://share.google/mV0X8NOunWxULwUeG" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
       </div>
       <div class="footer-bottom">
@@ -1156,7 +1290,7 @@
   </footer>
 
   <!-- Floating CTA Button -->
-  <a href="tel:7634478781" class="floating-logo glass-button">
+  <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="floating-logo glass-button">
     <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
@@ -1207,6 +1341,27 @@
     window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { if (!expanded) { currentIndex = Math.min(currentIndex, maxIndex()); goTo(currentIndex); } }, 120); });
 
     startAutoplay();
+
+    // Package carousel dots (mobile only)
+    (function() {
+      const grid = document.querySelector('.package-grid');
+      const dots = document.querySelectorAll('.pkg-dot');
+      if (!grid || !dots.length) return;
+      function updateDots() {
+        const card = grid.querySelector('.package-card');
+        const cardWidth = card.offsetWidth + 16;
+        const index = Math.round(grid.scrollLeft / cardWidth);
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      }
+      grid.addEventListener('scroll', updateDots, { passive: true });
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          const card = grid.querySelector('.package-card');
+          const cardWidth = card.offsetWidth + 16;
+          grid.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+        });
+      });
+    })();
   </script>
 </body>
 </html>

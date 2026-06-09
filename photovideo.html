@@ -29,7 +29,7 @@
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'HeliosExt', 'Inter', system-ui, sans-serif;
       background: #000000;
       color: #ffffff;
       line-height: 1.6;
@@ -139,7 +139,7 @@
       text-align: center;
       flex-direction: column;
       gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.97);
       backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
@@ -330,11 +330,16 @@
       margin-bottom: 0.5rem;
     }
 
+    .packages-section {
+      padding-top: 4rem;
+    }
+
     .package-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-bottom: 3rem;
+      align-items: stretch;
     }
 
     .package-card {
@@ -348,7 +353,6 @@
 
     .package-card.featured {
       border: 2px solid rgba(0, 255, 150, 0.5);
-      transform: scale(1.02);
     }
 
     .package-card:hover {
@@ -356,20 +360,15 @@
       box-shadow: 0 20px 80px rgba(0, 255, 150, 0.2);
     }
 
-    .package-card.featured:hover {
-      transform: translateY(-8px) scale(1.02);
-    }
-
     .popular-badge {
       position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 1rem;
+      right: 1rem;
       background: rgba(0, 255, 150, 0.15);
       border: 1px solid rgba(0, 255, 150, 0.4);
-      padding: 0.5rem 1.2rem;
+      padding: 0.35rem 0.85rem;
       border-radius: 9999px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -404,8 +403,8 @@
       color: rgba(255, 255, 255, 0.7);
       font-size: 0.95rem;
       margin-bottom: 2rem;
-      flex-grow: 1;
       line-height: 1.6;
+      min-height: 8rem;
     }
 
     .package-details {
@@ -431,7 +430,8 @@
     }
 
     .package-cta {
-      margin-top: 2rem;
+      margin-top: auto;
+      padding-top: 2rem;
     }
 
     .package-cta a {
@@ -484,7 +484,6 @@
       color: rgba(255, 255, 255, 0.7);
       font-size: 0.9rem;
       margin-bottom: 1.5rem;
-      flex-grow: 1;
       line-height: 1.6;
     }
 
@@ -539,7 +538,7 @@
 
     /* ── Photography Showcase ── */
     .photo-showcase {
-      padding: 5rem 0 0;
+      padding: 2rem 0 0;
       position: relative;
     }
 
@@ -647,10 +646,46 @@
       .photo-float-col img { border-radius: 0.75rem; }
     }
 
+    /* Always-included auto-scroll carousel */
+    .always-included-track-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    .always-included-track-wrap::before,
+    .always-included-track-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 60px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .always-included-track-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, #000 0%, transparent 100%);
+    }
+    .always-included-track-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, #000 0%, transparent 100%);
+    }
+    .always-included-track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      animation: scrollAlwaysPV 36s linear infinite;
+    }
+    .always-included-track .highlight {
+      flex: 0 0 72vw;
+    }
+    @keyframes scrollAlwaysPV {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* CTA Section */
     .cta-section {
       text-align: center;
-      padding: 4rem 1.5rem;
+      padding: 6rem 1.5rem 4rem;
     }
 
     .cta-section h2 {
@@ -777,6 +812,12 @@
     }
 
     /* Responsive */
+    /* Always-included: show static grid on desktop, hide carousel */
+    .always-included-static { display: grid; }
+    .always-included-track-wrap { display: none; }
+    /* Pkg dots hidden on desktop */
+    .pkg-dots { display: none; }
+
     @media (max-width: 768px) {
       .hero {
         min-height: 40vh;
@@ -792,19 +833,82 @@
         font-size: 1.75rem;
       }
 
+      /* What We Shoot — swipe carousel */
       .service-type-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+        grid-template-columns: unset;
+      }
+      .service-type-grid::-webkit-scrollbar { display: none; }
+      .service-type-grid .service-type-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
       }
 
+      /* Core packages — swipe carousel */
       .package-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+        grid-template-columns: unset;
+        align-items: stretch;
+      }
+      .package-grid::-webkit-scrollbar { display: none; }
+      .package-grid .package-card {
+        flex: 0 0 82%;
+        scroll-snap-align: center;
+      }
+      .pkg-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .pkg-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.25);
+        transition: background 0.3s ease;
+        cursor: pointer;
+      }
+      .pkg-dot.active { background: #00ff96; }
+
+      /* Add-on grid — swipe carousel */
+      .addon-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+        grid-template-columns: unset;
+      }
+      .addon-grid::-webkit-scrollbar { display: none; }
+      .addon-grid .addon-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
       }
 
-      .package-card.featured {
-        transform: scale(1);
-      }
+      /* Always-included: hide static, show auto-scroll carousel */
+      .always-included-static { display: none; }
+      .always-included-track-wrap { display: block; }
 
       .package-card.featured:hover {
         transform: translateY(-8px) scale(1);
@@ -840,7 +944,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="packages.html">Website Packages</a></li>
         <li><a href="photovideo.html" class="active">Photo / Video</a></li>
-        <li><a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
+        <li><a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
       <div style="flex: 1;"></div>
       <button class="mobile-menu-btn" id="menu-toggle">
@@ -852,7 +956,7 @@
       <a href="services.html">Services</a>
       <a href="packages.html">Website Packages</a>
       <a href="photovideo.html">Photo / Video</a>
-      <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
+      <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.75rem 1.5rem;">Book a Call</a>
     </div>
   </nav>
 
@@ -867,7 +971,7 @@
 
   <!-- Service Types Overview -->
   <section class="container">
-    <h2>What We Shoot</h2>
+    <h2>What We <span class="gradient-text">Shoot</span></h2>
     <p class="section-subtitle">From product launches to corporate headshots to cinematic event coverage, we create visual assets that tell your story.</p>
     
     <div class="service-type-grid">
@@ -947,7 +1051,7 @@
 
   <!-- Core Packages -->
   <section class="container packages-section">
-    <h2>Core Production Packages</h2>
+    <h2>Core <span class="gradient-text">Production</span> Packages</h2>
     <p class="section-subtitle">Complete solutions for new brands and established companies ready to scale their visual assets.</p>
     
     <div class="package-grid">
@@ -977,7 +1081,7 @@
 
       <!-- Full Brand Overhaul -->
       <div class="package-card glass featured">
-        <div class="popular-badge">MOST POPULAR</div>
+        <div class="popular-badge">POPULAR</div>
         <h3 class="package-name">Full Brand Overhaul</h3>
         <div class="package-price">$3,500</div>
         <p class="package-price-period">Established brands & regional companies</p>
@@ -997,7 +1101,7 @@
         </ul>
         
         <div class="package-cta">
-          <a href="https://calendly.com/vaura/general-discovery" target="_blank">Schedule Discovery Call</a>
+          <a href="https://calendly.com/vaura/general-discovery" target="_blank">Schedule Call</a>
         </div>
       </div>
 
@@ -1026,16 +1130,21 @@
         </div>
       </div>
     </div>
+    <div class="pkg-dots">
+      <div class="pkg-dot active"></div>
+      <div class="pkg-dot"></div>
+      <div class="pkg-dot"></div>
+    </div>
   </section>
 
   <!-- High-Margin Add-On Solutions -->
-  <section class="container">
-    <h2>Specialized Add-On Solutions</h2>
+  <section class="container" style="padding-top: 4rem;">
+    <h2><span class="gradient-text">Specialized</span> Add-On Solutions</h2>
     <p class="section-subtitle">Focused, high-ROI packages for specific needs. Combine with core packages or book standalone.</p>
     
     <div class="addon-grid">
       <div class="addon-card glass">
-        <h3>Premium Portrait & Portfolio Refresh</h3>
+        <h3>Portrait/Portfolio Refresh</h3>
         <div class="addon-price">$450</div>
         <p>Swift, confidence-first 45-minute session for models, creatives, corporate professionals, or premium dating profiles.</p>
         <ul>
@@ -1049,7 +1158,7 @@
       </div>
 
       <div class="addon-card glass">
-        <h3>E-Commerce Product Launch Batch</h3>
+        <h3>E-Commerce Product Launch</h3>
         <div class="addon-price">$999</div>
         <p>Hyper-clean macro product shots on seamless backdrops combined with stylized flat-lays optimized for Shopify and Amazon.</p>
         <ul>
@@ -1064,7 +1173,7 @@
       </div>
 
       <div class="addon-card glass">
-        <h3>Commercial Events & Wedding Coverage</h3>
+        <h3>Commercial Events/Weddings</h3>
         <div class="addon-price">From $2,200</div>
         <p>Consecutive, high-end documentation with prompt color-corrected delivery and direct high-resolution print rights.</p>
         <ul>
@@ -1122,53 +1231,70 @@
     </div>
   </section>
 
-  <!-- What's Included -->
-  <section class="container">
-    <h2>Always Included</h2>
-    <div class="highlights">
+  <!-- What's Always Included -->
+  <section class="container always-included-section" style="padding-top: 3rem;">
+    <h2>What's <span class="gradient-text">Always</span> Included</h2>
+
+    <!-- Desktop static grid -->
+    <div class="always-included-static highlights">
       <div class="highlight glass">
         <div class="highlight-icon">🎯</div>
         <h4>Professional Editing</h4>
         <p>Master retouching, color grading, and optimization. Every image is polished for your brand.</p>
       </div>
-
       <div class="highlight glass">
         <div class="highlight-icon">📱</div>
         <h4>Multiple Formats</h4>
         <p>Desktop, mobile, social media, and print formats delivered. Ready to use everywhere.</p>
       </div>
-
       <div class="highlight glass">
         <div class="highlight-icon">✅</div>
         <h4>Commercial Rights</h4>
         <p>Full commercial usage rights included. Use your images without restrictions.</p>
       </div>
-
       <div class="highlight glass">
         <div class="highlight-icon">⚡</div>
         <h4>Fast Turnaround</h4>
         <p>Delivery timelines built into each package. Priority for professional clients.</p>
       </div>
-
       <div class="highlight glass">
         <div class="highlight-icon">🎨</div>
         <h4>Creative Direction</h4>
         <p>We handle styling, direction, and creative vision. You focus on your business.</p>
       </div>
-
       <div class="highlight glass">
         <div class="highlight-icon">💾</div>
         <h4>Unlimited Revisions</h4>
         <p>We refine until you're thrilled. Your satisfaction is our priority.</p>
       </div>
     </div>
+
+    <!-- Mobile auto-scroll carousel -->
+    <div class="always-included-track-wrap">
+      <div class="always-included-track">
+        <!-- original set -->
+        <div class="highlight glass"><div class="highlight-icon">🎯</div><h4>Professional Editing</h4><p>Master retouching, color grading, and optimization. Every image is polished for your brand.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">📱</div><h4>Multiple Formats</h4><p>Desktop, mobile, social media, and print formats delivered. Ready to use everywhere.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">✅</div><h4>Commercial Rights</h4><p>Full commercial usage rights included. Use your images without restrictions.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">⚡</div><h4>Fast Turnaround</h4><p>Delivery timelines built into each package. Priority for professional clients.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">🎨</div><h4>Creative Direction</h4><p>We handle styling, direction, and creative vision. You focus on your business.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">💾</div><h4>Unlimited Revisions</h4><p>We refine until you're thrilled. Your satisfaction is our priority.</p></div>
+        <!-- duplicate set for seamless loop -->
+        <div class="highlight glass"><div class="highlight-icon">🎯</div><h4>Professional Editing</h4><p>Master retouching, color grading, and optimization. Every image is polished for your brand.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">📱</div><h4>Multiple Formats</h4><p>Desktop, mobile, social media, and print formats delivered. Ready to use everywhere.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">✅</div><h4>Commercial Rights</h4><p>Full commercial usage rights included. Use your images without restrictions.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">⚡</div><h4>Fast Turnaround</h4><p>Delivery timelines built into each package. Priority for professional clients.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">🎨</div><h4>Creative Direction</h4><p>We handle styling, direction, and creative vision. You focus on your business.</p></div>
+        <div class="highlight glass"><div class="highlight-icon">💾</div><h4>Unlimited Revisions</h4><p>We refine until you're thrilled. Your satisfaction is our priority.</p></div>
+      </div>
+    </div>
   </section>
 
   <!-- CTA Section -->
   <section class="cta-section">
-    <h2><span class="gradient-text">Ready to Capture Your Vision?</span></h2>
-    <p class="cta-text">Let's discuss your project, timeline, and creative goals. Schedule a consultation to explore which package is right for you.</p>
-    <a href="https://calendly.com/vaura/general-discovery-clone" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Free Consultation</a>
+    <h2>Ready to <span class="gradient-text">Capture</span> Your <span class="gradient-text">Vision</span>?</h2>
+    <p class="cta-text">Let's discuss your project, timeline, and creative goals. Schedule a free consult to explore which package is right for you.</p>
+    <a href="https://calendly.com/vaura/general-discovery-clone" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Free Consult</a>
   </section>
 
   <!-- Photography Showcase -->
@@ -1325,13 +1451,13 @@
         <a href="services.html">Services</a>
         <a href="packages.html">Website Packages</a>
         <a href="photovideo.html">Photo / Video</a>
-        <a href="tel:7634478781">Contact Us Today</a>
+        <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank">Contact Us Today</a>
       </div>
       <div class="footer-socials">
         <a href="https://www.instagram.com/vaura.agency" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="https://www.facebook.com/vaura.agency" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="https://www.tiktok.com/@vaura.agency" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://poplme.co/benjismith" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
+        <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" aria-label="Digital Business Card" class="popl"><i class="fa-solid fa-address-card"></i></a>
         <a href="https://share.google/mV0X8NOunWxULwUeG" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
       </div>
       <div class="footer-bottom">
@@ -1343,7 +1469,7 @@
   </footer>
 
   <!-- Floating CTA Button -->
-  <a href="tel:7634478781" class="floating-logo glass-button">
+  <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="floating-logo glass-button">
     <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
@@ -1360,6 +1486,27 @@
         mobileMenu.classList.remove('visible');
       });
     });
+
+    // Package carousel dots (mobile only)
+    (function() {
+      const grid = document.querySelector('.package-grid');
+      const dots = document.querySelectorAll('.pkg-dot');
+      if (!grid || !dots.length) return;
+      function updateDots() {
+        const card = grid.querySelector('.package-card');
+        const cardWidth = card.offsetWidth + 16;
+        const index = Math.round(grid.scrollLeft / cardWidth);
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      }
+      grid.addEventListener('scroll', updateDots, { passive: true });
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          const card = grid.querySelector('.package-card');
+          const cardWidth = card.offsetWidth + 16;
+          grid.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+        });
+      });
+    })();
   </script>
 </body>
 </html>
