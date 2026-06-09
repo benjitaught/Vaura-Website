@@ -158,17 +158,32 @@
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* Work Grid */
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2.5rem;
-      padding: 4rem 0 2rem;
+    /* ── Portfolio Section ── */
+    .work-section { padding: 3rem 0 0; }
+
+    /* Carousel wrapper clips the scrolling track */
+    .carousel-wrapper {
+      overflow: hidden;
+      position: relative;
     }
 
+    /* The track: flex row by default (carousel mode) */
+    .carousel-track {
+      display: flex;
+      gap: 2rem;
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+      padding-bottom: 0.5rem; /* room for card box-shadow */
+    }
+
+    /* Cards */
     .work-card {
       border-radius: 1.5rem; overflow: hidden;
-      transition: all 0.3s ease; display: flex; flex-direction: column;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      display: flex; flex-direction: column;
+      /* Desktop: show 2 at a time */
+      flex: 0 0 calc(50% - 1rem);
+      min-width: 0;
     }
 
     .work-card:hover {
@@ -176,49 +191,74 @@
       box-shadow: 0 24px 72px rgba(0, 255, 150, 0.12);
     }
 
-    /* Extra cards hidden by default */
-    .work-card.extra { display: none; }
-    .work-grid.expanded .work-card.extra { display: flex; }
+    /* ── EXPANDED STATE ── */
+    .work-section.expanded .carousel-wrapper {
+      overflow: visible;
+    }
+    .work-section.expanded .carousel-track {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      transform: none !important;
+      transition: none;
+      gap: 2.5rem;
+    }
+    .work-section.expanded .carousel-track .work-card {
+      flex: unset;
+    }
+    /* Hide nav controls when expanded */
+    .work-section.expanded .carousel-controls { display: none !important; }
 
-    .work-card-header {
-      padding: 1.75rem 1.75rem 1.25rem;
-      display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 1rem;
+    /* Carousel controls row */
+    .carousel-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.75rem;
     }
 
-    .work-card-meta h3 {
-      font-family: 'HeliosExt', 'Inter', sans-serif;
-      font-size: 1.4rem; font-weight: 700;
-      background: linear-gradient(135deg, #00ff96, #00ccff);
-      background-clip: text; -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; margin-bottom: 0.25rem;
+    .carousel-nav {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
     }
 
-    .work-card-meta .year {
-      font-size: 0.8rem; color: rgba(255, 255, 255, 0.4);
-      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    .carousel-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff; cursor: pointer; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .carousel-btn:hover {
+      background: rgba(0,255,150,0.12);
+      border-color: rgba(0,255,150,0.4);
+      color: #00ff96;
+    }
+    .carousel-btn:disabled {
+      opacity: 0.25; cursor: default; pointer-events: none;
     }
 
-    .work-card-desc {
-      padding: 0 1.75rem 1.25rem;
-      color: rgba(255, 255, 255, 0.65); font-size: 0.9rem; line-height: 1.65;
+    /* Dot indicators (visible on mobile only by default, shown always) */
+    .carousel-dots {
+      display: flex;
+      gap: 0.45rem;
+      justify-content: center;
+    }
+    .carousel-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      transition: all 0.3s ease; cursor: pointer;
+    }
+    .carousel-dot.active {
+      background: #00ff96; width: 22px; border-radius: 4px;
     }
 
-    .video-wrap {
-      position: relative; padding: 56.25% 0 0 0;
-      margin: 0 1.75rem 1.75rem; border-radius: 1rem; overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .video-wrap iframe {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; border: none;
-    }
-
-    /* View More button */
+    /* View All / Close button */
     .view-more-wrap {
       text-align: center;
-      padding: 1rem 0 3rem;
+      padding: 1.75rem 0 3rem;
     }
 
     #view-more-btn {
@@ -235,7 +275,6 @@
       align-items: center;
       gap: 0.6rem;
     }
-
     #view-more-btn:hover {
       background: rgba(0, 255, 150, 0.12);
       border-color: rgba(0, 255, 150, 0.4);
@@ -243,13 +282,38 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(0, 255, 150, 0.15);
     }
+    #view-more-btn i { transition: transform 0.3s ease; }
+    #view-more-btn.open i { transform: rotate(180deg); }
 
-    #view-more-btn i {
-      transition: transform 0.3s ease;
+    /* Card internals */
+    .work-card-header {
+      padding: 1.75rem 1.75rem 1.25rem;
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 1rem;
     }
-
-    #view-more-btn.open i {
-      transform: rotate(180deg);
+    .work-card-meta h3 {
+      font-family: 'HeliosExt', 'Inter', sans-serif;
+      font-size: 1.4rem; font-weight: 700;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text; -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; margin-bottom: 0.25rem;
+    }
+    .work-card-meta .year {
+      font-size: 0.8rem; color: rgba(255, 255, 255, 0.4);
+      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .work-card-desc {
+      padding: 0 1.75rem 1.25rem;
+      color: rgba(255, 255, 255, 0.65); font-size: 0.9rem; line-height: 1.65;
+    }
+    .video-wrap {
+      position: relative; padding: 56.25% 0 0 0;
+      margin: 0 1.75rem 1.75rem; border-radius: 1rem; overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .video-wrap iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; border: none;
     }
 
     /* CTA Section */
@@ -444,14 +508,20 @@
     .floating-logo img { height: 22px; width: auto; }
 
     /* Responsive */
-    @media (max-width: 900px) {
-      .work-grid { grid-template-columns: 1fr; }
-    }
-
     @media (max-width: 768px) {
       .hero { min-height: 38vh; padding-top: 70px; }
-      .work-grid { gap: 1.5rem; padding: 2rem 0 1rem; }
       .floating-logo { width: 50px; height: 50px; }
+
+      /* Mobile: 1 card visible, ~88vw wide */
+      .carousel-track .work-card {
+        flex: 0 0 calc(88vw - 3rem);
+      }
+
+      /* Mobile expanded: single column */
+      .work-section.expanded .carousel-track {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -493,193 +563,121 @@
     </div>
   </section>
 
-  <!-- Work Grid -->
-  <div class="container">
-    <div class="work-grid" id="work-grid">
+  <!-- Portfolio Carousel / Expanded Grid -->
+  <section class="work-section" id="work-section">
+    <div class="container">
 
-      <!-- 1 — Matrix Medical (always visible) -->
-      <div class="work-card glass">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Matrix Medical</h3>
-            <span class="year">2022</span>
+      <!-- Carousel wrapper (hidden in expanded mode via CSS) -->
+      <div class="carousel-wrapper" id="carousel-wrapper">
+        <div class="carousel-track" id="carousel-track">
+
+          <!-- 1 — Matrix Medical -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Matrix Medical</h3><span class="year">2022</span></div></div>
+            <p class="work-card-desc">Full e-commerce buildout for a Minneapolis medical equipment supplier. Custom menus, advanced product filters, wishlist, low-stock alerts, and a seamless buying experience for healthcare facilities nationwide.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1113737425?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Matrix Medical Website Overview"></iframe></div>
           </div>
+
+          <!-- 2 — Pure Mechanical -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Pure Mechanical LLC</h3><span class="year">2023</span></div></div>
+            <p class="work-card-desc">Professional website for a mechanical services company. Clean, responsive design built to generate leads and communicate reliability to residential and commercial clients.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1114407869?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pure Mechanical LLC Website"></iframe></div>
+          </div>
+
+          <!-- 3 — Rich Nerdz -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Rich Nerdz</h3><span class="year">2025</span></div></div>
+            <p class="work-card-desc">Streetwear brand identity and e-commerce experience. Bold visuals, custom graphics, and a shopping experience that matches the energy of the brand.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115361252?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="RichNerdz Website Demo"></iframe></div>
+          </div>
+
+          <!-- 4 — Car Club Rental -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Car Club Rental</h3><span class="year">2023</span></div></div>
+            <p class="work-card-desc">Premium vehicle rental platform designed to showcase an exotic and luxury fleet. Built for seamless online bookings with a high-end look and feel that converts browsers into renters.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115624298?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Car Club Rental Website Demo"></iframe></div>
+          </div>
+
+          <!-- 5 — Ocean Wholesale -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Ocean Wholesale</h3><span class="year">2022</span></div></div>
+            <p class="work-card-desc">Full-scale wholesale marketplace for a brand that creates waves. Complete branding, product catalog architecture, and a buyer-first shopping experience built to scale.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115631198?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Wholesale Website Demo"></iframe></div>
+          </div>
+
+          <!-- 6 — Mow Bros -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Mow Bros</h3><span class="year">2023</span></div></div>
+            <p class="work-card-desc">Lead-generating website for a Minnesota landscaping company. Responsive design with service pages, galleries, and a booking flow that turns local search traffic into booked jobs year-round.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115635752?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Mow Bros Website Demo"></iframe></div>
+          </div>
+
+          <!-- 7 — Jappy -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Jappy</h3><span class="year">2024</span></div></div>
+            <p class="work-card-desc">Sleek brand website with a distinct identity and a modern digital presence. Crafted to capture the brand's personality and connect with its audience online.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115639888?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Jappy Website Demo"></iframe></div>
+          </div>
+
+          <!-- 8 — Moneybag Exotics -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Moneybag Exotics</h3><span class="year">2025</span></div></div>
+            <p class="work-card-desc">Full brand experience for a streetwear label built on ambition. Custom logos, moving images, animations, and fonts — from their sold-out first drop to an ongoing collection that lives at the intersection of risk and style.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115645900?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Money Bag Exotics Website Demo"></iframe></div>
+          </div>
+
+          <!-- 9 — Pet Beds For You -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Pet Beds For You</h3><span class="year">2019</span></div></div>
+            <p class="work-card-desc">E-commerce website for a pet products brand. Clean product presentation, intuitive navigation, and a design that communicates trust and warmth to pet owners shopping online.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115648562?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pet Beds For You Website Demo"></iframe></div>
+          </div>
+
+          <!-- 10 — Ocean Tobacco -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Ocean Tobacco</h3><span class="year">2022</span></div></div>
+            <p class="work-card-desc">Dual-market website presence for Ocean Tobacco across Minnesota and Wisconsin. Consistent brand identity with region-specific content and a bold, wave-inspired visual language.</p>
+            <div class="video-wrap" style="margin-bottom:0.75rem"><iframe src="https://player.vimeo.com/video/1115656842?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco WI"></iframe></div>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115657266?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco MN"></iframe></div>
+          </div>
+
+          <!-- 11 — VoxVera -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>VoxVera.io</h3><span class="year">2024</span></div></div>
+            <p class="work-card-desc">End-to-end brand launch for a next-generation AI audio dubbing platform. Pitch deck, logo, full site design, and project coordination — concept to launch, executed flawlessly.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115659680?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Vox Vera Website Demo"></iframe></div>
+          </div>
+
+          <!-- 12 — LumaSkin -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>LumaSkin</h3><span class="year">2025</span></div></div>
+            <p class="work-card-desc">Full visual identity, branding, product imagery, and site design for a skincare and wellness device brand. A seamless online shopping experience highlighting promotions, product details, and customer engagement.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115663555?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Lumaskin Website Demo"></iframe></div>
+          </div>
+
+        </div><!-- /carousel-track -->
+      </div><!-- /carousel-wrapper -->
+
+      <!-- Arrow nav + dots (hidden when expanded) -->
+      <div class="carousel-controls" id="carousel-controls">
+        <div class="carousel-nav">
+          <button class="carousel-btn" id="prev-btn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="carousel-btn" id="next-btn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
-        <p class="work-card-desc">Full e-commerce buildout for a Minneapolis medical equipment supplier. Custom menus, advanced product filters, wishlist, low-stock alerts, and a seamless buying experience for healthcare facilities nationwide.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1113737425?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Matrix Medical Website Overview"></iframe>
-        </div>
+        <div class="carousel-dots" id="carousel-dots"></div>
       </div>
 
-      <!-- 2 — Pure Mechanical (always visible) -->
-      <div class="work-card glass">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Pure Mechanical LLC</h3>
-            <span class="year">2023</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Professional website for a mechanical services company. Clean, responsive design built to generate leads and communicate reliability to residential and commercial clients.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1114407869?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pure Mechanical LLC Website"></iframe>
-        </div>
-      </div>
-
-      <!-- 3 — Rich Nerdz (always visible) -->
-      <div class="work-card glass">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Rich Nerdz</h3>
-            <span class="year">2025</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Streetwear brand identity and e-commerce experience. Bold visuals, custom graphics, and a shopping experience that matches the energy of the brand.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115361252?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="RichNerdz Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- 4 — Car Club Rental (always visible) -->
-      <div class="work-card glass">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Car Club Rental</h3>
-            <span class="year">2023</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Premium vehicle rental platform designed to showcase an exotic and luxury fleet. Built for seamless online bookings with a high-end look and feel that converts browsers into renters.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115624298?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Car Club Rental Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- 5+ EXTRA cards (hidden until View More) -->
-
-      <!-- Ocean Wholesale -->
-      <div class="work-card glass extra">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Ocean Wholesale</h3>
-            <span class="year">2022</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Full-scale wholesale marketplace for a brand that creates waves. Complete branding, product catalog architecture, and a buyer-first shopping experience built to scale.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115631198?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Wholesale Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- Mow Bros -->
-      <div class="work-card glass extra">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Mow Bros</h3>
-            <span class="year">2023</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Lead-generating website for a Minnesota landscaping company. Responsive design with service pages, galleries, and a booking flow that turns local search traffic into booked jobs year-round.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115635752?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Mow Bros Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- Jappy -->
-      <div class="work-card glass extra">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Jappy</h3>
-            <span class="year">2024</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Sleek brand website with a distinct identity and a modern digital presence. Crafted to capture the brand's personality and connect with its audience online.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115639888?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Jappy Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- MBE -->
-      <div class="work-card glass extra">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Moneybag Exotics</h3>
-            <span class="year">2025</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Full brand experience for a streetwear label built on ambition. Custom logos, moving images, animations, and fonts — from their sold-out first drop to an ongoing collection that lives at the intersection of risk and style.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115645900?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Money Bag Exotics Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- Pet Beds For You -->
-      <div class="work-card glass extra">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Pet Beds For You</h3>
-            <span class="year">2019</span>
-          </div>
-        </div>
-        <p class="work-card-desc">E-commerce website for a pet products brand. Clean product presentation, intuitive navigation, and a design that communicates trust and warmth to pet owners shopping online.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115648562?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pet Beds For You Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- Ocean Tobacco -->
-      <div class="work-card glass extra">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>Ocean Tobacco</h3>
-            <span class="year">2022</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Dual-market website presence for Ocean Tobacco across Minnesota and Wisconsin. Consistent brand identity with region-specific content and a bold, wave-inspired visual language.</p>
-        <div class="video-wrap" style="margin-bottom: 0.75rem;">
-          <iframe src="https://player.vimeo.com/video/1115656842?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco WI Website Demo"></iframe>
-        </div>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115657266?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco MN Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- VoxVera -->
-      <div class="work-card glass extra">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>VoxVera.io</h3>
-            <span class="year">2024</span>
-          </div>
-        </div>
-        <p class="work-card-desc">End-to-end brand launch for a next-generation AI audio dubbing platform. Pitch deck, logo, full site design, and project coordination — concept to launch, executed flawlessly.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115659680?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Vox Vera Website Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- LumaSkin -->
-      <div class="work-card glass extra">
-        <div class="work-card-header">
-          <div class="work-card-meta">
-            <h3>LumaSkin</h3>
-            <span class="year">2025</span>
-          </div>
-        </div>
-        <p class="work-card-desc">Full visual identity, branding, product imagery, and site design for a skincare and wellness device brand. A seamless online shopping experience highlighting promotions, product details, and customer engagement.</p>
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/1115663555?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Lumaskin Website Demo"></iframe>
-        </div>
+      <!-- View All / Close button -->
+      <div class="view-more-wrap">
+        <button id="view-more-btn">
+          <span id="btn-label">View All Work</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
       </div>
 
     </div>
-
-    <!-- View More button -->
-    <div class="view-more-wrap">
-      <button id="view-more-btn">
-        <span id="btn-label">View More Work</span>
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-    </div>
-  </div>
+  </section>
 
   <!-- CTA -->
   <section class="cta-section">
@@ -803,24 +801,123 @@
   </a>
 
   <script>
-    // Mobile menu
+    // ── Mobile nav menu ──
     const mobileMenuBtn = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('visible'); });
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => { mobileMenu.classList.remove('visible'); });
+    const mobileMenu    = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('visible'));
+    mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('visible')));
+
+    // ── Carousel ──
+    const workSection  = document.getElementById('work-section');
+    const track        = document.getElementById('carousel-track');
+    const dotsWrap     = document.getElementById('carousel-dots');
+    const prevBtn      = document.getElementById('prev-btn');
+    const nextBtn      = document.getElementById('next-btn');
+    const viewMoreBtn  = document.getElementById('view-more-btn');
+    const btnLabel     = document.getElementById('btn-label');
+
+    const cards        = Array.from(track.children);
+    const total        = cards.length;
+    let   currentIndex = 0;
+    let   touchStartX  = 0;
+    let   expanded     = false;
+
+    // How many cards are visible at once
+    function visibleCount() {
+      return window.innerWidth > 768 ? 2 : 1;
+    }
+
+    // Max slide index
+    function maxIndex() {
+      return Math.max(0, total - visibleCount());
+    }
+
+    // Build dot indicators
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      const steps = maxIndex() + 1;
+      for (let i = 0; i < steps; i++) {
+        const d = document.createElement('button');
+        d.className = 'carousel-dot' + (i === currentIndex ? ' active' : '');
+        d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(d);
+      }
+    }
+
+    function updateDots() {
+      dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function updateButtons() {
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex >= maxIndex();
+    }
+
+    function getCardWidth() {
+      if (cards.length === 0) return 0;
+      const style  = getComputedStyle(track);
+      const gap    = parseFloat(style.gap) || 32;
+      const first  = cards[0];
+      return first.offsetWidth + gap;
+    }
+
+    function goTo(index) {
+      currentIndex = Math.max(0, Math.min(index, maxIndex()));
+      if (!expanded) {
+        track.style.transform = `translateX(-${currentIndex * getCardWidth()}px)`;
+      }
+      updateDots();
+      updateButtons();
+    }
+
+    prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+    nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+
+    // Touch / swipe support
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      if (expanded) return;
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1);
+      }
     });
 
-    // View More / View Less
-    const viewMoreBtn = document.getElementById('view-more-btn');
-    const workGrid = document.getElementById('work-grid');
-    const btnLabel = document.getElementById('btn-label');
-
+    // View All / Close toggle
     viewMoreBtn.addEventListener('click', () => {
-      const isExpanded = workGrid.classList.toggle('expanded');
-      btnLabel.textContent = isExpanded ? 'Show Less' : 'View More Work';
-      viewMoreBtn.classList.toggle('open', isExpanded);
+      expanded = !expanded;
+      workSection.classList.toggle('expanded', expanded);
+      if (expanded) {
+        track.style.transform = 'none';
+        btnLabel.textContent = 'Close';
+        viewMoreBtn.classList.add('open');
+      } else {
+        btnLabel.textContent = 'View All Work';
+        viewMoreBtn.classList.remove('open');
+        // Re-apply carousel position
+        requestAnimationFrame(() => goTo(currentIndex));
+      }
     });
+
+    // Re-init on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (!expanded) {
+          currentIndex = Math.min(currentIndex, maxIndex());
+          buildDots();
+          goTo(currentIndex);
+        }
+      }, 120);
+    });
+
+    // Init
+    buildDots();
+    updateButtons();
   </script>
 </body>
 </html>
