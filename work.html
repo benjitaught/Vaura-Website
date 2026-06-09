@@ -217,43 +217,7 @@
       margin-top: 1.75rem;
     }
 
-    .carousel-nav {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    .carousel-btn {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: #fff; cursor: pointer; font-size: 0.9rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.3s ease;
-    }
-    .carousel-btn:hover {
-      background: rgba(0,255,150,0.12);
-      border-color: rgba(0,255,150,0.4);
-      color: #00ff96;
-    }
-    .carousel-btn:disabled {
-      opacity: 0.25; cursor: default; pointer-events: none;
-    }
-
-    /* Dot indicators (visible on mobile only by default, shown always) */
-    .carousel-dots {
-      display: flex;
-      gap: 0.45rem;
-      justify-content: center;
-    }
-    .carousel-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: rgba(255,255,255,0.25);
-      transition: all 0.3s ease; cursor: pointer;
-    }
-    .carousel-dot.active {
-      background: #00ff96; width: 22px; border-radius: 4px;
-    }
+    /* Arrows + dots removed — autoplay only */
 
     /* View All / Close button */
     .view-more-wrap {
@@ -634,22 +598,28 @@
             <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115648562?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pet Beds For You Website Demo"></iframe></div>
           </div>
 
-          <!-- 10 — Ocean Tobacco -->
+          <!-- 10 — Ocean Tobacco WI -->
           <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Ocean Tobacco</h3><span class="year">2022</span></div></div>
-            <p class="work-card-desc">Dual-market website presence for Ocean Tobacco across Minnesota and Wisconsin. Consistent brand identity with region-specific content and a bold, wave-inspired visual language.</p>
-            <div class="video-wrap" style="margin-bottom:0.75rem"><iframe src="https://player.vimeo.com/video/1115656842?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco WI"></iframe></div>
+            <div class="work-card-header"><div class="work-card-meta"><h3>Ocean Tobacco WI</h3><span class="year">2022</span></div></div>
+            <p class="work-card-desc">Wisconsin market website for Ocean Tobacco. Bold, wave-inspired visual identity built to drive foot traffic and online brand awareness across the state.</p>
+            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115656842?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco WI"></iframe></div>
+          </div>
+
+          <!-- 11 — Ocean Tobacco MN -->
+          <div class="work-card glass">
+            <div class="work-card-header"><div class="work-card-meta"><h3>Ocean Tobacco MN</h3><span class="year">2022</span></div></div>
+            <p class="work-card-desc">Minnesota market website for Ocean Tobacco. Region-specific content with a consistent brand language that connects with local customers and reinforces the Ocean identity.</p>
             <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115657266?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco MN"></iframe></div>
           </div>
 
-          <!-- 11 — VoxVera -->
+          <!-- 12 — VoxVera -->
           <div class="work-card glass">
             <div class="work-card-header"><div class="work-card-meta"><h3>VoxVera.io</h3><span class="year">2024</span></div></div>
             <p class="work-card-desc">End-to-end brand launch for a next-generation AI audio dubbing platform. Pitch deck, logo, full site design, and project coordination — concept to launch, executed flawlessly.</p>
             <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115659680?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Vox Vera Website Demo"></iframe></div>
           </div>
 
-          <!-- 12 — LumaSkin -->
+          <!-- 13 — LumaSkin -->
           <div class="work-card glass">
             <div class="work-card-header"><div class="work-card-meta"><h3>LumaSkin</h3><span class="year">2025</span></div></div>
             <p class="work-card-desc">Full visual identity, branding, product imagery, and site design for a skincare and wellness device brand. A seamless online shopping experience highlighting promotions, product details, and customer engagement.</p>
@@ -659,14 +629,7 @@
         </div><!-- /carousel-track -->
       </div><!-- /carousel-wrapper -->
 
-      <!-- Arrow nav + dots (hidden when expanded) -->
-      <div class="carousel-controls" id="carousel-controls">
-        <div class="carousel-nav">
-          <button class="carousel-btn" id="prev-btn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
-          <button class="carousel-btn" id="next-btn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-        <div class="carousel-dots" id="carousel-dots"></div>
-      </div>
+      <!-- No arrows or dots — autoplay handles progression -->
 
       <!-- View All / Close button -->
       <div class="view-more-wrap">
@@ -808,73 +771,53 @@
     mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('visible')));
 
     // ── Carousel ──
-    const workSection  = document.getElementById('work-section');
-    const track        = document.getElementById('carousel-track');
-    const dotsWrap     = document.getElementById('carousel-dots');
-    const prevBtn      = document.getElementById('prev-btn');
-    const nextBtn      = document.getElementById('next-btn');
-    const viewMoreBtn  = document.getElementById('view-more-btn');
-    const btnLabel     = document.getElementById('btn-label');
+    const workSection = document.getElementById('work-section');
+    const track       = document.getElementById('carousel-track');
+    const viewMoreBtn = document.getElementById('view-more-btn');
+    const btnLabel    = document.getElementById('btn-label');
 
-    const cards        = Array.from(track.children);
-    const total        = cards.length;
+    const cards       = Array.from(track.children);
+    const total       = cards.length;
     let   currentIndex = 0;
     let   touchStartX  = 0;
     let   expanded     = false;
+    let   autoTimer    = null;
 
-    // How many cards are visible at once
     function visibleCount() {
       return window.innerWidth > 768 ? 2 : 1;
     }
 
-    // Max slide index
     function maxIndex() {
       return Math.max(0, total - visibleCount());
     }
 
-    // Build dot indicators
-    function buildDots() {
-      dotsWrap.innerHTML = '';
-      const steps = maxIndex() + 1;
-      for (let i = 0; i < steps; i++) {
-        const d = document.createElement('button');
-        d.className = 'carousel-dot' + (i === currentIndex ? ' active' : '');
-        d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        d.addEventListener('click', () => goTo(i));
-        dotsWrap.appendChild(d);
-      }
-    }
-
-    function updateDots() {
-      dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === currentIndex);
-      });
-    }
-
-    function updateButtons() {
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex >= maxIndex();
-    }
-
     function getCardWidth() {
-      if (cards.length === 0) return 0;
-      const style  = getComputedStyle(track);
-      const gap    = parseFloat(style.gap) || 32;
-      const first  = cards[0];
-      return first.offsetWidth + gap;
+      if (!cards.length) return 0;
+      const gap = parseFloat(getComputedStyle(track).gap) || 32;
+      return cards[0].offsetWidth + gap;
     }
 
     function goTo(index) {
-      currentIndex = Math.max(0, Math.min(index, maxIndex()));
+      // Wrap around for seamless autoplay loop
+      if (index > maxIndex()) index = 0;
+      if (index < 0) index = maxIndex();
+      currentIndex = index;
       if (!expanded) {
         track.style.transform = `translateX(-${currentIndex * getCardWidth()}px)`;
       }
-      updateDots();
-      updateButtons();
     }
 
-    prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+    // Autoplay every 3 seconds
+    function startAutoplay() {
+      stopAutoplay();
+      autoTimer = setInterval(() => {
+        if (!expanded) goTo(currentIndex + 1);
+      }, 3000);
+    }
+
+    function stopAutoplay() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
 
     // Touch / swipe support
     track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
@@ -883,6 +826,7 @@
       const diff = touchStartX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) {
         diff > 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1);
+        startAutoplay(); // reset timer after manual swipe
       }
     });
 
@@ -891,33 +835,31 @@
       expanded = !expanded;
       workSection.classList.toggle('expanded', expanded);
       if (expanded) {
+        stopAutoplay();
         track.style.transform = 'none';
         btnLabel.textContent = 'Close';
         viewMoreBtn.classList.add('open');
       } else {
         btnLabel.textContent = 'View All Work';
         viewMoreBtn.classList.remove('open');
-        // Re-apply carousel position
-        requestAnimationFrame(() => goTo(currentIndex));
+        requestAnimationFrame(() => { goTo(currentIndex); startAutoplay(); });
       }
     });
 
-    // Re-init on resize
+    // Recalculate on resize
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         if (!expanded) {
           currentIndex = Math.min(currentIndex, maxIndex());
-          buildDots();
           goTo(currentIndex);
         }
       }, 120);
     });
 
     // Init
-    buildDots();
-    updateButtons();
+    startAutoplay();
   </script>
 </body>
 </html>
