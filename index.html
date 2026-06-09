@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VAURA — Digital Craftsmanship</title>
+  <link rel="icon" type="image/png" href="Logo no writing wht.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -527,6 +528,167 @@
       margin-bottom: 2rem;
     }
 
+    /* Google Reviews Section */
+    .reviews-section {
+      padding: 5rem 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reviews-section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .reviews-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .reviews-label .google-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F4B400;
+    }
+
+    .reviews-stars-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+
+    .reviews-stars-row .stars {
+      color: #F4B400;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    /* Bubble cluster */
+    .reviews-bubble-wrap {
+      position: relative;
+      height: 520px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 28%);
+    }
+
+    .review-bubble {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      max-width: 320px;
+      animation: floatBubble var(--dur, 6s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .review-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 22px;
+      width: 16px;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.07);
+      border-right: 1px solid rgba(255,255,255,0.14);
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      transform: rotate(45deg);
+      backdrop-filter: blur(24px);
+    }
+
+    .review-bubble .bubble-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .review-bubble .bubble-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #000;
+      flex-shrink: 0;
+    }
+
+    .review-bubble .bubble-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .review-bubble .bubble-stars {
+      color: #F4B400;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+    }
+
+    .review-bubble .bubble-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.55;
+    }
+
+    .review-bubble .google-g {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #F4B400;
+      opacity: 0.6;
+      font-family: 'Inter', sans-serif;
+    }
+
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+      50%       { transform: translateY(-10px) rotate(var(--rot, 0deg)); }
+    }
+
+    /* Individual bubble positions */
+    .rb-1 { top: 60px;  left: 0%;    --dur: 7s;  --delay: 0s;    --rot: -1.5deg; }
+    .rb-2 { top: 20px;  left: 28%;   --dur: 6s;  --delay: -2s;   --rot: 1deg;    }
+    .rb-3 { top: 55px;  right: 0%;   --dur: 8s;  --delay: -4s;   --rot: 2deg;    }
+    .rb-4 { top: 230px; left: 5%;    --dur: 6.5s;--delay: -1s;   --rot: -2deg;   }
+    .rb-5 { top: 200px; left: 32%;   --dur: 7.5s;--delay: -3s;   --rot: 0.5deg;  }
+    .rb-6 { top: 240px; right: 2%;   --dur: 6s;  --delay: -5s;   --rot: -1deg;   }
+
+    @media (max-width: 768px) {
+      .reviews-bubble-wrap { height: 780px; }
+      .rb-1 { top: 40px;  left: 0;   max-width: 80vw; }
+      .rb-2 { top: 200px; left: 10%; max-width: 78vw; }
+      .rb-3 { top: 380px; left: 5%;  max-width: 82vw; }
+      .rb-4 { display: none; }
+      .rb-5 { display: none; }
+      .rb-6 { display: none; }
+    }
+
     /* Footer */
     footer {
       background: rgba(255, 255, 255, 0.03);
@@ -890,6 +1052,96 @@
     <h2>Ready to create something exceptional?</h2>
     <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="glass-button" style="padding: 1rem 2.5rem; font-size: 1rem;">Schedule Consultation</a>
   </section>
+
+  <!-- Google Reviews -->
+  <div class="reviews-section">
+    <div class="reviews-section-inner">
+      <div class="reviews-label">
+        <span class="google-dot"></span>
+        Google Reviews
+      </div>
+      <div class="reviews-stars-row">
+        <span class="stars">★★★★★</span>
+        <span>5.0 &nbsp;·&nbsp; Verified on Google</span>
+        <a href="https://share.google/mV0X8NOunWxULwUeG" target="_blank" style="color: #F4B400; font-size: 0.85rem; text-decoration: none; font-weight: 600;">Leave a review →</a>
+      </div>
+      <div class="reviews-bubble-wrap">
+
+        <div class="review-bubble glass rb-1">
+          <span class="google-g">G</span>
+          <div class="bubble-header">
+            <div class="bubble-avatar">JD</div>
+            <div>
+              <div class="bubble-name">Jordan D.</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"VAURA completely transformed our online presence. The site they built for us is clean, fast, and we've seen a real uptick in leads since launch."</p>
+        </div>
+
+        <div class="review-bubble glass rb-2">
+          <span class="google-g">G</span>
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ccff, #c850ff);">MR</div>
+            <div>
+              <div class="bubble-name">Marcus R.</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"Benjamin and the VAURA team are incredibly talented. They handled everything from our logo to our full website — professional, fast, and the results speak for themselves."</p>
+        </div>
+
+        <div class="review-bubble glass rb-3">
+          <span class="google-g">G</span>
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #F4B400, #00ff96);">SK</div>
+            <div>
+              <div class="bubble-name">Sarah K.</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"I needed a full brand refresh and VAURA delivered beyond what I expected. The photography, web design, and branding all feel premium and consistent."</p>
+        </div>
+
+        <div class="review-bubble glass rb-4">
+          <span class="google-g">G</span>
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ff96, #F4B400);">TW</div>
+            <div>
+              <div class="bubble-name">Tyler W.</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"Working with VAURA was seamless from start to finish. They nailed our brand vision and the product photography they did was top tier."</p>
+        </div>
+
+        <div class="review-bubble glass rb-5">
+          <span class="google-g">G</span>
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #c850ff, #00ccff);">AL</div>
+            <div>
+              <div class="bubble-name">Ashley L.</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"The team at VAURA really gets branding. Our store looks incredible and customers constantly compliment how professional everything feels."</p>
+        </div>
+
+        <div class="review-bubble glass rb-6">
+          <span class="google-g">G</span>
+          <div class="bubble-header">
+            <div class="bubble-avatar" style="background: linear-gradient(135deg, #00ccff, #00ff96);">DM</div>
+            <div>
+              <div class="bubble-name">Derek M.</div>
+              <div class="bubble-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="bubble-text">"Highly recommend VAURA for anyone looking to elevate their brand. Fast turnaround, great communication, and results that actually move the needle."</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
