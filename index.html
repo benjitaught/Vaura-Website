@@ -314,11 +314,6 @@
     /* Hide service card clones on desktop */
     .service-card-clone { display: none; }
 
-    @keyframes scrollServices {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
     /* Partners Section */
     .partners-section {
       background: rgba(255, 255, 255, 0.03);
@@ -882,7 +877,7 @@
         flex-wrap: nowrap;
         gap: 0;
         width: max-content;
-        animation: scrollServices 20s linear infinite;
+        will-change: transform;
       }
 
       /* margin-right instead of gap so -50% lands exactly on the clone start */
@@ -1290,6 +1285,39 @@
         mobileMenu.classList.remove('visible');
       });
     });
+
+    // Continuous service card ticker — mobile only
+    (function () {
+      function initServiceTicker() {
+        if (window.innerWidth > 768) return;
+        var grid = document.querySelector('.service-grid');
+        if (!grid) return;
+
+        var pos = 0;
+        var speed = 0.6; // px per frame (~36 px/s at 60fps)
+        var half = 0;
+
+        function tick() {
+          if (!half) half = grid.scrollWidth / 2;
+          pos += speed;
+          if (pos >= half) pos -= half; // wrap using exact measured width — no jump
+          grid.style.transform = 'translateX(-' + pos + 'px)';
+          requestAnimationFrame(tick);
+        }
+
+        // Brief delay so layout is fully painted before measuring scrollWidth
+        setTimeout(function () {
+          half = grid.scrollWidth / 2;
+          requestAnimationFrame(tick);
+        }, 50);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initServiceTicker);
+      } else {
+        initServiceTicker();
+      }
+    })();
 
   </script>
 </body>
