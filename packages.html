@@ -482,8 +482,16 @@
       .always-included-track-wrap { display: block; }
       .ad-table th, .ad-table td { padding: 0.8rem; font-size: 0.82rem; }
       .floating-logo { width: 50px; height: 50px; font-size: 1.2rem; }
-      /* Work carousel: one card at a time on mobile */
-      .carousel-track .work-card { flex: 0 0 calc(100vw - 3rem); }
+      /* Work carousel: one card at a time on mobile, swipable */
+      .carousel-wrapper {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .carousel-wrapper::-webkit-scrollbar { display: none; }
+      .carousel-track { gap: 1rem; padding: 0 1rem 1rem; margin: 0 -1rem; }
+      .carousel-track .work-card { flex: 0 0 calc(100vw - 3rem); scroll-snap-align: center; }
     }
     @media (min-width: 769px) {
       .always-included-static { display: grid; }
