@@ -1324,6 +1324,7 @@
 
     // Work carousel
     const track = document.getElementById('carousel-track');
+    const wrapper = document.querySelector('.carousel-wrapper');
     const workSection = document.getElementById('work-section');
     const viewMoreBtn = document.getElementById('view-more-btn');
     const btnLabel = document.getElementById('btn-label');
@@ -1333,10 +1334,21 @@
     const visibleCards = 2;
 
     function getCardCount() { return track.querySelectorAll('.work-card').length; }
+    function isMobile() { return window.innerWidth <= 768; }
+
     function updateCarousel() {
       if (workSection.classList.contains('expanded')) return;
-      const cardWidth = track.querySelector('.work-card').offsetWidth + 32;
-      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+      const card = track.querySelector('.work-card');
+      const cardWidth = card.offsetWidth + 32;
+
+      if (isMobile()) {
+        // On mobile, use smooth scroll to center the card
+        const scrollPos = currentIndex * cardWidth - (wrapper.offsetWidth / 2) + (cardWidth / 2);
+        wrapper.scrollLeft = Math.max(0, scrollPos);
+      } else {
+        // On desktop, use transform
+        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+      }
     }
 
     prevBtn.addEventListener('click', () => {
@@ -1344,6 +1356,17 @@
     });
     nextBtn.addEventListener('click', () => {
       if (currentIndex < getCardCount() - visibleCards) { currentIndex++; updateCarousel(); }
+    });
+
+    // Sync button state when user swipes on mobile
+    wrapper.addEventListener('scroll', () => {
+      if (!isMobile()) return;
+      const card = track.querySelector('.work-card');
+      const cardWidth = card.offsetWidth + 32;
+      const scrollPos = wrapper.scrollLeft;
+      const centerPos = scrollPos + (wrapper.offsetWidth / 2);
+      currentIndex = Math.round(centerPos / cardWidth) - 1;
+      currentIndex = Math.max(0, Math.min(currentIndex, getCardCount() - visibleCards));
     });
 
     viewMoreBtn.addEventListener('click', () => {
