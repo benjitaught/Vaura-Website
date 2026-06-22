@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Packages — VAURA Digital Craftsmanship</title>
+  <title>Website Packages & Management — VAURA Digital</title>
   <link rel="icon" type="image/png" href="vaura favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -21,12 +21,8 @@
       font-weight: 700;
       font-style: normal;
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'HeliosExt', 'Inter', system-ui, sans-serif;
@@ -41,7 +37,6 @@
       background-attachment: fixed;
     }
 
-    /* Glass Morphism Utilities */
     .glass {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(28px);
@@ -49,583 +44,332 @@
     }
 
     .glass-button {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(32px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      border: none;
+      box-shadow: 0 8px 32px rgba(0, 255, 150, 0.25);
       transition: all 0.3s ease;
-      color: #ffffff;
+      color: #000000;
       text-decoration: none;
       display: inline-block;
       cursor: pointer;
-      font-weight: 500;
+      font-weight: 600;
       padding: 0.75rem 1.5rem;
       border-radius: 1rem;
       text-align: center;
     }
-
     .glass-button:hover {
-      background: rgba(255, 255, 255, 0.22);
       transform: translateY(-2px);
-      box-shadow: 0 12px 48px rgba(0, 255, 150, 0.2);
+      box-shadow: 0 12px 48px rgba(0, 255, 150, 0.4);
+    }
+    /* Nav Book a Call stays glass */
+    nav .glass-button {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(32px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #ffffff;
+      font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    nav .glass-button:hover {
+      background: rgba(255,255,255,0.22);
+      box-shadow: 0 12px 48px rgba(0,255,150,0.2);
     }
 
     /* Navigation */
     nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 50;
+      position: fixed; top: 0; width: 100%; z-index: 50;
       backdrop-filter: blur(28px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 1rem 0;
     }
-
     nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
+      max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; justify-content: center; align-items: center; gap: 2rem;
     }
-
     .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-      justify-content: center;
+      display: flex; gap: 2rem; align-items: center;
+      list-style: none; justify-content: center;
     }
-
     .nav-links a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      color: #ffffff; text-decoration: none;
+      font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;
     }
-
-    .nav-links a:hover {
-      color: #00ff96;
-      transform: translateY(-3px);
-    }
-
-    .nav-links a.active {
-      color: #00ccff;
-      text-shadow: 0 0 12px rgba(0, 204, 255, 0.7);
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0;
-    }
-
+    .nav-links a:hover { color: #00ff96; transform: translateY(-3px); }
+    .nav-links a.active { color: #00ccff; text-shadow: 0 0 12px rgba(0, 204, 255, 0.7); }
+    .mobile-menu-btn { display: none; background: none; border: none; color: #ffffff; font-size: 1.5rem; cursor: pointer; padding: 0; }
     #mobile-menu {
-      display: none !important;
-      position: absolute;
-      top: 100%;
-      left: 1.5rem;
-      right: 1.5rem;
-      margin-top: 0.5rem;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      text-align: center;
-      flex-direction: column;
-      gap: 1.5rem;
-      background: rgba(0, 0, 0, 0.97);
-      backdrop-filter: blur(50px);
+      display: none !important; position: absolute; top: 100%;
+      left: 1.5rem; right: 1.5rem; margin-top: 0.5rem;
+      border-radius: 1.5rem; padding: 1.5rem; text-align: center;
+      flex-direction: column; gap: 1.5rem;
+      background: rgba(0, 0, 0, 0.97); backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
-
-    #mobile-menu.visible {
-      display: flex !important;
-    }
-
-    #mobile-menu a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      display: block;
-      transition: all 0.3s ease;
-    }
-
-    #mobile-menu a:hover {
-      color: #00ff96;
-      transform: translateY(-3px);
-    }
-
+    #mobile-menu.visible { display: flex !important; }
+    #mobile-menu a { color: #ffffff; text-decoration: none; font-size: 1rem; font-weight: 500; display: block; transition: all 0.3s ease; }
+    #mobile-menu a:hover { color: #00ff96; transform: translateY(-3px); }
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      .mobile-menu-btn {
-        display: block;
-      }
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
     }
 
-    /* Hero Section */
+    /* Hero */
     .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 45vh;
-      display: flex;
-      align-items: center;
-      padding-top: 80px;
-      margin-bottom: 2rem;
+      position: relative; overflow: hidden; min-height: 45vh;
+      display: flex; align-items: center; padding-top: 80px; margin-bottom: 2rem;
     }
-
     .hero-logo-stamp {
-      position: absolute;
-      left: -10%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 55%;
-      max-width: 700px;
-      opacity: 0.2;
-      pointer-events: none;
-      user-select: none;
-      filter: blur(1px);
+      position: absolute; left: -10%; top: 50%; transform: translateY(-50%);
+      width: 55%; max-width: 700px; opacity: 0.2; pointer-events: none; user-select: none; filter: blur(1px);
     }
-
     .gradient-text {
       background: linear-gradient(135deg, #00ff96, #00ccff);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-
-    .hero-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
+    .hero-content { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; text-align: center; position: relative; z-index: 1; }
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      font-family: \'HeliosExt\', \'Inter\', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; margin-bottom: 1rem;
+      line-height: 1.2; letter-spacing: -0.02em; font-family: 'HeliosExt', 'Inter', sans-serif;
     }
+    .hero-subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Section Spacing */
-    section {
-      padding: 4rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    section:last-of-type {
-      border-bottom: none;
-    }
+    section { padding: 4rem 0 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    section:first-of-type { padding-top: 3rem; }
+    section:last-of-type { border-bottom: none; }
 
     h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-align: center;
-      letter-spacing: -0.01em;
-      font-family: \'HeliosExt\', \'Inter\', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 700; margin-bottom: 0.6rem; margin-top: 0;
+      text-align: center; letter-spacing: -0.01em; font-family: 'HeliosExt', 'Inter', sans-serif;
     }
-
-    h3 {
-      font-family: \'HeliosExt\', \'Inter\', sans-serif;
-    }
+    h3 { font-family: 'HeliosExt', 'Inter', sans-serif; }
 
     .section-subtitle {
-      text-align: center;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 1rem;
-      margin-bottom: 3rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      text-align: center; color: rgba(255,255,255,0.6); font-size: 0.95rem;
+      margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;
     }
 
-    /* Package Grid */
-    .package-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-bottom: 3rem;
-      align-items: stretch;
+    /* ── Choose Your Path ── */
+    .path-grid {
+      display: flex; flex-direction: row; gap: 1.5rem; margin-bottom: 1rem; overflow: visible;
+    }
+    .path-card {
+      padding: 2rem 1.5rem; border-radius: 1.5rem; text-align: center;
+      transition: all 0.3s ease; cursor: pointer; border: 2px solid transparent;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      flex: 1 1 0; min-width: 0;
+    }
+    .path-card:hover { transform: translateY(-6px); box-shadow: 0 16px 60px rgba(0,255,150,0.15); border-color: rgba(0,255,150,0.3); }
+    .path-icon { font-size: 2.5rem; }
+    .path-card h3 { font-size: 1.25rem; font-weight: 700; }
+    .path-card p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.5; }
+    .path-tag {
+      display: inline-block; padding: 0.3rem 0.75rem; border-radius: 9999px;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      border: 1px solid rgba(0,255,150,0.3); color: #00ff96; background: rgba(0,255,150,0.08);
     }
 
-    .package-card {
-      padding: 2.5rem;
-      border-radius: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s ease;
-      position: relative;
+    /* ── One-Time Design Packages ── */
+    .design-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
     }
-
-    .package-card.featured {
-      border: 2px solid rgba(0, 255, 150, 0.5);
+    .design-card {
+      padding: 2rem 1.5rem; border-radius: 1.5rem;
+      display: flex; flex-direction: column; transition: all 0.3s ease; position: relative;
     }
-
-    .package-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 80px rgba(0, 255, 150, 0.2);
-    }
-
+    .design-card:hover { transform: translateY(-6px); box-shadow: 0 20px 70px rgba(0,255,150,0.15); }
+    .design-card.featured { border: 2px solid rgba(0,255,150,0.5); }
     .popular-badge {
-      display: none;
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(0, 255, 150, 0.15);
-      border: 1px solid rgba(0, 255, 150, 0.4);
-      padding: 0.35rem 0.85rem;
-      border-radius: 9999px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #00ff96;
+      display: none; position: absolute; top: 1rem; right: 1rem;
+      background: rgba(0,255,150,0.15); border: 1px solid rgba(0,255,150,0.4);
+      padding: 0.35rem 0.85rem; border-radius: 9999px;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #00ff96;
     }
-
-    .package-card.featured .popular-badge {
-      display: block;
-    }
-
-    .package-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .package-price {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
+    .design-card.featured .popular-badge { display: block; }
+    .design-tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; }
+    .design-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
+    .design-price {
+      font-size: 2.5rem; font-weight: 700; margin-bottom: 0.3rem;
       background: linear-gradient(135deg, #00ff96, #00ccff);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-
-    .package-price-period {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 2rem;
-      font-weight: 500;
+    .design-price-note { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; }
+    .design-features { list-style: none; flex: 1; }
+    .design-features li {
+      padding: 0.6rem 0; padding-left: 1.4rem; position: relative;
+      color: rgba(255,255,255,0.7); font-size: 0.88rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-
-    .package-description {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-      min-height: 6.4rem;
+    .design-features li:before { content: '✓'; position: absolute; left: 0; color: #00ff96; font-weight: 700; }
+    .design-cta { margin-top: 1.5rem; }
+    .btn-primary {
+      display: block; width: 100%; padding: 0.9rem; border-radius: 1rem; text-align: center;
+      text-decoration: none; font-weight: 600; transition: all 0.3s ease;
+      background: linear-gradient(135deg, #00ff96, #00ccff); color: #000000;
     }
-
-    .package-features {
-      list-style: none;
-      margin: 2rem 0;
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,255,150,0.3); }
+    .btn-secondary {
+      display: block; width: 100%; padding: 0.9rem; border-radius: 1rem; text-align: center;
+      text-decoration: none; font-weight: 600; transition: all 0.3s ease;
+      background: linear-gradient(135deg, #00ff96, #00ccff); color: #000000;
     }
+    .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,255,150,0.3); }
 
-    .package-features li {
-      padding: 0.75rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* ── Management Tiers ── */
+    .mgmt-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
     }
-
-    .package-features li:before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: #00ff96;
-      font-weight: 700;
+    .mgmt-card {
+      padding: 2.5rem; border-radius: 1.5rem;
+      display: flex; flex-direction: column; transition: all 0.3s ease; position: relative;
     }
-
-    .package-cta {
-      margin-top: auto;
-      padding-top: 2rem;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .package-cta a {
-      flex: 1;
-      padding: 1rem;
-      border-radius: 1rem;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .package-cta .primary {
+    .mgmt-card:hover { transform: translateY(-8px); box-shadow: 0 20px 80px rgba(0,255,150,0.2); }
+    .mgmt-card.featured { border: 2px solid rgba(0,255,150,0.5); }
+    .mgmt-price {
+      font-size: 3.5rem; font-weight: 700; margin-bottom: 0.25rem;
       background: linear-gradient(135deg, #00ff96, #00ccff);
-      color: #000000;
+      background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .mgmt-period { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 0.5rem; }
+    .mgmt-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
+    .mgmt-desc { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.55; }
+    .mgmt-meta {
+      display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .mgmt-badge {
+      padding: 0.3rem 0.7rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 600;
+      background: rgba(0,204,255,0.1); border: 1px solid rgba(0,204,255,0.25); color: #00ccff;
+    }
+    .mgmt-features { list-style: none; flex: 1; margin-bottom: 1.5rem; }
+    .mgmt-features li {
+      padding: 0.65rem 0; padding-left: 1.4rem; position: relative;
+      color: rgba(255,255,255,0.7); font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .mgmt-features li:before { content: '✓'; position: absolute; left: 0; color: #00ff96; font-weight: 700; }
+    .mgmt-features li.not-included { color: rgba(255,255,255,0.3); }
+    .mgmt-features li.not-included:before { content: '—'; color: rgba(255,255,255,0.2); }
+    .mgmt-cta { margin-top: auto; }
+    .commitment-note {
+      font-size: 0.75rem; color: rgba(255,255,255,0.35); text-align: center; margin-top: 0.75rem;
     }
 
-    .package-cta .primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 255, 150, 0.3);
+    /* ── Upsells ── */
+    .upsell-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
     }
+    .upsell-price { display: none; }
+    .upsell-card {
+      padding: 1.75rem; border-radius: 1.5rem; transition: all 0.3s ease;
+    }
+    .upsell-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,255,150,0.12); }
+    .upsell-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .upsell-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .upsell-price {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .upsell-desc { color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.5; }
 
-    .package-cta .secondary {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ffffff;
+    /* ── Ad Management Table ── */
+    .ad-table-wrap { overflow-x: auto; margin-top: 2rem; }
+    .ad-table {
+      width: 100%; border-collapse: collapse; font-size: 0.92rem;
     }
+    .ad-table th, .ad-table td {
+      padding: 1.1rem 1.25rem; text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .ad-table th { background: rgba(255,255,255,0.06); font-weight: 700; color: rgba(255,255,255,0.9); }
+    .ad-table td { color: rgba(255,255,255,0.7); }
+    .ad-table tr:hover td { background: rgba(255,255,255,0.03); }
+    .ad-highlight { color: #00ff96; font-weight: 700; }
 
-    .package-cta .secondary:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
+    /* ── Comparison table ── */
+    .comparison-section { margin-top: 3rem; padding-top: 3rem; border-top: 2px solid rgba(255,255,255,0.1); }
+    .comparison-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    .comparison-table th, .comparison-table td { padding: 1.1rem 1.2rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .comparison-table th { background: rgba(255,255,255,0.05); font-weight: 700; font-size: 0.9rem; color: rgba(255,255,255,0.9); }
+    .comparison-table td { color: rgba(255,255,255,0.65); font-size: 0.9rem; }
+    .comparison-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .comparison-table .check { color: #00ccff; font-weight: 700; }
+    .comparison-table .check::first-letter { color: #00ff96; }
 
-    /* Comparison Table */
-    .comparison-section {
-      margin-top: 4rem;
-      padding: 3rem 0;
-      border-top: 2px solid rgba(255, 255, 255, 0.1);
+    /* ── Path sections: hidden until selected ── */
+    .path-section { display: none; animation: sectionReveal 0.45s ease; }
+    .path-section.active { display: block; }
+    @keyframes sectionReveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    /* Default glow on Design+Mgmt card, overridden when user selects */
+    .path-card.default-glow {
+      border-color: rgba(0,255,150,0.55) !important;
+      box-shadow: 0 0 28px rgba(0,255,150,0.18);
     }
+    .path-card.selected {
+      border-color: rgba(0,255,150,0.6) !important;
+      background: rgba(0,255,150,0.07);
+      box-shadow: 0 0 32px rgba(0,255,150,0.22);
+    }
+    /* View all toggle link */
+    .view-all-link {
+      display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;
+      color: rgba(255,255,255,0.45); font-size: 0.82rem; text-decoration: underline;
+      text-underline-offset: 3px; background: none; border: none;
+      font-family: 'HeliosExt', 'Inter', sans-serif; transition: color 0.2s ease;
+    }
+    .view-all-link:hover { color: #00ff96; }
 
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 2rem;
-    }
+    /* ── Always Included ── */
+    .always-included-section { padding-top: 3rem; }
+    .always-included-static { display: grid; }
 
-    .comparison-table th,
-    .comparison-table td {
-      padding: 1.2rem;
-      text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .comparison-table th {
-      background: rgba(255, 255, 255, 0.05);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .comparison-table td {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .comparison-table .check {
-      color: #00ccff;
-      font-weight: 700;
-    }
-    .comparison-table .check::first-letter {
-      color: #00ff96;
-    }
-
-    /* Custom Packages */
-    .custom-package {
-      padding: 3rem 2rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .custom-package h3 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .custom-package p {
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 2rem;
-      line-height: 1.7;
-    }
-
-    /* CTA Section */
-    .cta-section {
-      text-align: center;
-      padding: 4rem 1.5rem;
-    }
-
-    .cta-section h2 {
-      margin-bottom: 1.5rem;
-    }
-
-    .cta-text {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Footer */
-    footer {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 3rem 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      text-align: center;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.6);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: #00ff96;
-    }
-
-    .footer-bottom {
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.85rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .footer-socials {
-      display: flex;
-      justify-content: center;
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-socials a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .footer-socials a:hover {
-      background: rgba(0, 255, 150, 0.15);
-      border-color: rgba(0, 255, 150, 0.4);
-      color: #00ff96;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 255, 150, 0.2);
-    }
-
-    .footer-socials a.popl:hover {
-      background: rgba(0, 204, 255, 0.15);
-      border-color: rgba(0, 204, 255, 0.4);
-      color: #00ccff;
-      box-shadow: 0 8px 24px rgba(0, 204, 255, 0.2);
-    }
-
-    .footer-socials a.google:hover {
-      background: rgba(244, 180, 0, 0.15);
-      border-color: rgba(244, 180, 0, 0.4);
-      color: #F4B400;
-      box-shadow: 0 8px 24px rgba(244, 180, 0, 0.2);
-    }
-
-    /* ── Our Work Carousel ── */
+    /* ── Our Work ── */
     .work-section { padding: 4rem 0 0; }
-
     .carousel-wrapper { overflow: hidden; position: relative; }
-
     .carousel-track {
       display: flex; gap: 2rem;
       transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform; padding-bottom: 0.5rem;
     }
-
     .work-card {
-      border-radius: 1.5rem; overflow: hidden;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      display: flex; flex-direction: column;
-      flex: 0 0 calc(50% - 1rem); min-width: 0;
+      border-radius: 1.5rem; overflow: hidden; transition: box-shadow 0.3s ease, transform 0.3s ease;
+      display: flex; flex-direction: column; flex: 0 0 calc(50% - 1rem); min-width: 0;
     }
-
     .work-card:hover { transform: translateY(-4px); box-shadow: 0 24px 72px rgba(0,255,150,0.12); }
-
     .work-section.expanded .carousel-wrapper { overflow: visible; }
-    .work-section.expanded .carousel-track {
-      display: grid; grid-template-columns: repeat(2,1fr);
-      transform: none !important; transition: none; gap: 2.5rem;
-    }
+    .work-section.expanded .carousel-track { display: grid; grid-template-columns: repeat(2,1fr); transform: none !important; transition: none; gap: 2.5rem; }
     .work-section.expanded .carousel-track .work-card { flex: unset; }
     .work-section.expanded .carousel-controls { display: none !important; }
-
     .view-more-wrap { text-align: center; padding: 1.75rem 0 3rem; }
-
     #view-more-btn {
+      background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7);
+      padding: 0.75rem 1.75rem; border-radius: 1rem; cursor: pointer; font-size: 0.9rem;
+      display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;
+      font-family: 'HeliosExt', 'Inter', sans-serif;
+    }
+    #view-more-btn:hover { border-color: #00ff96; color: #00ff96; }
+    .work-card-header { padding: 1.5rem 1.5rem 0.75rem; }
+    .work-card-meta { display: flex; justify-content: space-between; align-items: center; }
+    .work-card-meta h3 { font-size: 1.1rem; font-weight: 700; }
+    .work-card-meta .year { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+    .work-card-desc { padding: 0 1.5rem 1rem; color: rgba(255,255,255,0.65); font-size: 0.88rem; line-height: 1.55; }
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .carousel-controls { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
+    .carousel-btn {
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
-      color: #fff; font-size: 0.95rem; font-weight: 600;
-      padding: 0.85rem 2.5rem; border-radius: 1rem; cursor: pointer;
-      transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.6rem;
+      color: #fff; width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+      font-size: 1rem; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
     }
-    #view-more-btn:hover {
-      background: rgba(0,255,150,0.12); border-color: rgba(0,255,150,0.4);
-      color: #00ff96; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,255,150,0.15);
-    }
-    #view-more-btn i { transition: transform 0.3s ease; }
-    #view-more-btn.open i { transform: rotate(180deg); }
+    .carousel-btn:hover { background: rgba(0,255,150,0.15); border-color: #00ff96; color: #00ff96; }
 
-    .work-card-header { padding: 1.75rem 1.75rem 1.25rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-    .work-card-meta h3 {
-      font-family: 'HeliosExt','Inter',sans-serif; font-size: 1.4rem; font-weight: 700;
-      background: linear-gradient(135deg,#00ff96,#00ccff); background-clip: text;
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.25rem;
-    }
-    .work-card-meta .year { font-size: 0.8rem; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
-    .work-card-desc { padding: 0 1.75rem 1.25rem; color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.65; }
-    .video-wrap { position: relative; padding: 56.25% 0 0 0; margin: 0 1.75rem 1.75rem; border-radius: 1rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
-    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    /* ── CTA Section ── */
+    .cta-section { text-align: center; padding: 4rem 1.5rem; }
+    .cta-section h2 { margin-bottom: 1.5rem; }
+    .cta-text { font-size: 1.1rem; color: rgba(255,255,255,0.7); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-    @media (max-width: 768px) {
-      .carousel-track .work-card { flex: 0 0 calc(88vw - 3rem); }
-      .work-section.expanded .carousel-track { grid-template-columns: 1fr; gap: 1.5rem; }
-    }
-
-    /* ── Google Reviews ── */
+    /* ── Google Reviews (floating bubbles) ── */
     .reviews-section { padding: 5rem 0 0; position: relative; overflow: hidden; }
     .reviews-section-inner { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; text-align: center; }
     .reviews-label {
@@ -640,11 +384,11 @@
     .reviews-bubble-wrap { position: relative; height: 520px; -webkit-mask-image: linear-gradient(to bottom,transparent 0%,black 28%); mask-image: linear-gradient(to bottom,transparent 0%,black 28%); }
     .review-bubble { position: absolute; background: rgba(255,255,255,0.07); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; padding: 1.25rem 1.5rem; text-align: left; max-width: 320px; animation: floatBubble var(--dur,6s) ease-in-out infinite; animation-delay: var(--delay,0s); }
     .review-bubble::before { content: ''; position: absolute; bottom: -8px; left: 22px; width: 16px; height: 16px; background: rgba(255,255,255,0.07); border-right: 1px solid rgba(255,255,255,0.14); border-bottom: 1px solid rgba(255,255,255,0.14); transform: rotate(45deg); backdrop-filter: blur(24px); }
-    .review-bubble .bubble-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
-    .review-bubble .bubble-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#00ff96,#00ccff); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #000; flex-shrink: 0; }
-    .review-bubble .bubble-name { font-size: 0.85rem; font-weight: 600; color: #fff; }
-    .review-bubble .bubble-stars { color: #F4B400; font-size: 0.7rem; letter-spacing: 1px; }
-    .review-bubble .bubble-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.55; }
+    .bubble-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+    .bubble-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#00ff96,#00ccff); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #000; flex-shrink: 0; }
+    .bubble-name { font-size: 0.85rem; font-weight: 600; color: #fff; }
+    .bubble-stars { color: #F4B400; font-size: 0.7rem; letter-spacing: 1px; }
+    .bubble-text { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.55; }
     @keyframes floatBubble {
       0%,100% { transform: translateY(0px) rotate(var(--rot,0deg)); }
       50%      { transform: translateY(-10px) rotate(var(--rot,0deg)); }
@@ -663,157 +407,85 @@
       .rb-4,.rb-5,.rb-6 { display:none; }
     }
 
-    /* Floating CTA */
+    /* ── Footer ── */
+    footer { background: rgba(255,255,255,0.03); padding: 3rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
+    .footer-links a:hover { color: #00ff96; }
+    .footer-bottom { color: rgba(255,255,255,0.4); font-size: 0.85rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-socials { display: flex; justify-content: center; gap: 1.25rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; }
+    .footer-socials a:hover { background: rgba(0,255,150,0.15); border-color: rgba(0,255,150,0.4); color: #00ff96; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,255,150,0.2); }
+    .footer-socials a.popl:hover { background: rgba(0,204,255,0.15); border-color: rgba(0,204,255,0.4); color: #00ccff; box-shadow: 0 8px 24px rgba(0,204,255,0.2); }
+    .footer-socials a.google:hover { background: rgba(244,180,0,0.15); border-color: rgba(244,180,0,0.4); color: #F4B400; box-shadow: 0 8px 24px rgba(244,180,0,0.2); }
+
+    /* ── Floating Logo ── */
     .floating-logo {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 50;
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      transition: all 0.3s ease;
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100;
+      width: 56px; height: 56px; border-radius: 50%; padding: 0;
+      display: flex; align-items: center; justify-content: center;
     }
+    .floating-logo img { width: 28px; height: auto; }
 
-    .floating-logo:hover {
-      transform: scale(1.1);
-      box-shadow: 0 15px 50px rgba(0, 255, 150, 0.3);
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .design-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
-    .floating-logo img {
-      height: 22px;
-      width: auto;
-    }
-
-    /* Always-included carousel hidden on desktop */
-    .always-included-track-wrap { display: none; }
-    .always-included-static { display: grid; }
-
-    /* Pkg dots hidden on desktop */
-    .pkg-dots { display: none; }
-
-    /* What's Always Included section spacing */
-    .always-included-section {
-      padding-top: 3rem;
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .hero {
-        min-height: 35vh;
-        padding-top: 70px;
+      .hero { min-height: 30vh; padding-top: 70px; }
+      section { padding: 2rem 0; }
+      h2 { font-size: 1.65rem; margin-bottom: 0.75rem; }
+      .section-subtitle { margin-bottom: 1.5rem; font-size: 0.9rem; }
+      /* path-grid: horizontal swipe carousel */
+      .path-grid {
+        overflow-x: scroll; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; gap: 1rem;
+        padding: 0.5rem 1rem 1rem; margin: 0 -1.5rem; scrollbar-width: none;
       }
-
-      section {
-        padding: 2.5rem 0;
+      .path-grid::-webkit-scrollbar { display: none; }
+      .path-grid .path-card { flex: 0 0 78%; scroll-snap-align: center; min-width: 0; }
+      .design-grid {
+        display: flex; flex-direction: row; overflow-x: scroll; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; gap: 1rem; padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem; scrollbar-width: none; grid-template-columns: unset;
       }
-
-      h2 {
-        margin-bottom: 1.5rem;
-        font-size: 1.75rem;
+      .design-grid::-webkit-scrollbar { display: none; }
+      .design-grid .design-card { flex: 0 0 82%; scroll-snap-align: center; }
+      .mgmt-grid {
+        display: flex; flex-direction: row; overflow-x: scroll; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; gap: 1rem; padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem; scrollbar-width: none;
       }
-
-      .package-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+      .mgmt-grid::-webkit-scrollbar { display: none; }
+      .mgmt-grid .mgmt-card { flex: 0 0 85%; scroll-snap-align: center; }
+      /* upsell-grid: horizontal swipe carousel on mobile */
+      .upsell-grid {
+        display: flex; flex-direction: row; overflow-x: scroll; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; gap: 1rem; padding: 0.5rem 1rem 1rem;
+        margin: 0 -1.5rem; scrollbar-width: none; grid-template-columns: unset;
       }
-
-      .package-price {
-        font-size: 2.5rem;
-      }
-
-      /* Mobile package carousel */
-      .package-grid {
-        display: flex;
-        flex-direction: row;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        gap: 1rem;
-        padding: 0.5rem 1rem 1rem;
-        margin: 0 -1.5rem;
-        scrollbar-width: none;
-        grid-template-columns: unset;
-        align-items: stretch;
-      }
-      .package-grid::-webkit-scrollbar { display: none; }
-      .package-grid .package-card {
-        flex: 0 0 82%;
-        scroll-snap-align: center;
-      }
-      .pkg-dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 0.75rem;
-        margin-bottom: 0.5rem;
-      }
-      .pkg-dot {
-        width: 7px; height: 7px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.25);
-        transition: background 0.3s ease;
-        cursor: pointer;
-      }
+      .upsell-grid::-webkit-scrollbar { display: none; }
+      .upsell-grid .upsell-card { flex: 0 0 78%; scroll-snap-align: center; }
+      .pkg-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.75rem; margin-bottom: 0.5rem; }
+      .pkg-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.25); transition: background 0.3s ease; cursor: pointer; }
       .pkg-dot.active { background: #00ff96; }
-
-      /* Mobile always-included carousel */
-      .always-included-track-wrap {
-        overflow: hidden;
-        position: relative;
-      }
-      .always-included-track-wrap::before,
-      .always-included-track-wrap::after {
-        content: '';
-        position: absolute;
-        top: 0; bottom: 0;
-        width: 60px;
-        z-index: 2;
-        pointer-events: none;
-      }
-      .always-included-track-wrap::before {
-        left: 0;
-        background: linear-gradient(to right, #000 0%, transparent 100%);
-      }
-      .always-included-track-wrap::after {
-        right: 0;
-        background: linear-gradient(to left, #000 0%, transparent 100%);
-      }
-      .always-included-track {
-        display: flex;
-        gap: 1rem;
-        width: max-content;
-        animation: scrollAlways 36s linear infinite;
-      }
-      .always-included-track .always-card {
-        flex: 0 0 72vw;
-      }
-      @keyframes scrollAlways {
-        0%   { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-      }
-      /* Hide static grid on mobile */
+      .always-included-section { padding-top: 2rem; }
+      .always-included-track-wrap { overflow: hidden; position: relative; }
+      .always-included-track-wrap::before, .always-included-track-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none; }
+      .always-included-track-wrap::before { left: 0; background: linear-gradient(to right, #000 0%, transparent 100%); }
+      .always-included-track-wrap::after { right: 0; background: linear-gradient(to left, #000 0%, transparent 100%); }
+      .always-included-track { display: flex; gap: 1rem; width: max-content; animation: scrollAlways 36s linear infinite; }
+      .always-included-track .always-card { flex: 0 0 72vw; }
+      @keyframes scrollAlways { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
       .always-included-static { display: none; }
       .always-included-track-wrap { display: block; }
-
-      .comparison-table {
-        font-size: 0.85rem;
-      }
-
-      .comparison-table th,
-      .comparison-table td {
-        padding: 0.8rem;
-      }
-
-      .floating-logo {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-      }
+      .ad-table th, .ad-table td { padding: 0.8rem; font-size: 0.82rem; }
+      .floating-logo { width: 50px; height: 50px; font-size: 1.2rem; }
+    }
+    @media (min-width: 769px) {
+      .always-included-static { display: grid; }
+      .always-included-track-wrap { display: none; }
     }
   </style>
 </head>
@@ -843,7 +515,7 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <img src="White Logo w Words Center.png" alt="" class="hero-logo-stamp">
     <div class="hero-content">
@@ -852,99 +524,139 @@
     </div>
   </section>
 
-  <!-- Packages -->
+  <!-- Choose Your Path -->
   <section class="container">
-    <p class="section-subtitle">Choose the package that fits your vision and goals. All packages include mobile responsiveness, SSL security, and 30 days of free support.</p>
-    
-    <div class="package-grid">
-      <!-- Starter Package -->
-      <div class="package-card glass">
-        <div class="popular-badge">STARTING POINT</div>
-        <h3 class="package-name">Starter</h3>
-        <div class="package-price">$3,500</div>
-        <p class="package-price-period">one-time investment</p>
-        
-        <p class="package-description">Perfect for new businesses and entrepreneurs needing a professional web presence.</p>
-        
-        <ul class="package-features">
+    <h2>Choose Your <span class="gradient-text">Path</span></h2>
+    <p class="section-subtitle">Select the path that suits your needs and pricing will appear below ↓</p>
+    <div class="path-grid" id="path-grid">
+      <div class="path-card glass" id="path-design-mgmt" onclick="selectPath('design-mgmt')" style="border: 2px solid rgba(0,255,150,0.3); cursor:pointer;">
+        <div class="path-icon">🚀</div>
+        <div class="path-tag" style="background: rgba(0,255,150,0.12); border-color: rgba(0,255,150,0.4);">Most Popular</div>
+        <h3>Design + Management</h3>
+        <p>We build it and we run it. Your site lives under VAURA's care — hosting, updates, and growth included.</p>
+      </div>
+      <div class="path-card glass" id="path-design-only" onclick="selectPath('design-only')" style="cursor:pointer;">
+        <div class="path-icon">🎨</div>
+        <div class="path-tag">One-Time</div>
+        <h3>Website Design Only</h3>
+        <p>We build your site, you own it outright. Full handoff with no ongoing commitment. Perfect if you have in-house support or want complete control.</p>
+      </div>
+      <div class="path-card glass" id="path-mgmt-only" onclick="selectPath('mgmt-only')" style="cursor:pointer;">
+        <div class="path-icon">🔧</div>
+        <div class="path-tag">Recurring</div>
+        <h3>Management Only</h3>
+        <p>Already have a site? Hand it off to us. We'll handle hosting, updates, and ongoing maintenance so you can focus on running your business.</p>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 1rem;">
+      <button class="view-all-link" id="view-all-btn" onclick="toggleViewAll()">↓ Click here to view all options</button>
+    </p>
+  </section>
+
+  <!-- Custom Website Design (One-Time) — shown for Design Only + Design+Mgmt paths -->
+  <section class="container path-section" id="section-design">
+    <h2>Custom Website <span class="gradient-text">Design</span></h2>
+    <p class="section-subtitle">One-time investment. You own the site outright. All builds include mobile responsiveness, SSL, and 30 days of free support.</p>
+
+    <div class="design-grid">
+      <!-- Landing Page -->
+      <div class="design-card glass">
+        <div class="design-tier">Entry Level</div>
+        <div class="design-name">Landing Page</div>
+        <div class="design-price">$1,500</div>
+        <p class="design-price-note">one-time · you own it</p>
+        <ul class="design-features">
+          <li>Single-page design</li>
+          <li>Mobile responsive</li>
+          <li>Contact form + email</li>
+          <li>SSL & basic SEO</li>
+          <li>Google Analytics</li>
+          <li>30 days free support</li>
+        </ul>
+        <div class="design-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Starter -->
+      <div class="design-card glass">
+        <div class="design-tier">Starter</div>
+        <div class="design-name">Starter Site</div>
+        <div class="design-price">$3,500</div>
+        <p class="design-price-note">one-time · you own it</p>
+        <ul class="design-features">
           <li>Up to 5 pages</li>
           <li>Mobile responsive design</li>
           <li>Basic SEO setup</li>
-          <li>Contact forms & email integration</li>
+          <li>Contact forms & email</li>
           <li>Social media links</li>
-          <li>Google Analytics integration</li>
+          <li>Google Analytics</li>
           <li>30 days free support</li>
         </ul>
-        
-        <div class="package-cta">
-          <a href="https://calendly.com/vaura/30min" target="_blank" class="primary">Get Started</a>
+        <div class="design-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
         </div>
       </div>
 
-      <!-- Professional Package (Featured) -->
-      <div class="package-card glass featured">
+      <!-- Professional (Featured) -->
+      <div class="design-card glass featured">
         <div class="popular-badge">POPULAR</div>
-        <h3 class="package-name">Professional</h3>
-        <div class="package-price">$5,000</div>
-        <p class="package-price-period">one-time investment</p>
-        
-        <p class="package-description">Our most popular choice. Built for established brands looking to make a real impact online.</p>
-        
-        <ul class="package-features">
+        <div class="design-tier">Professional</div>
+        <div class="design-name">Professional Site</div>
+        <div class="design-price">$5,000</div>
+        <p class="design-price-note">one-time · you own it</p>
+        <ul class="design-features">
           <li>Up to 10 pages</li>
-          <li>Fully custom, bespoke design</li>
+          <li>Fully custom bespoke design</li>
           <li>Advanced SEO & copywriting</li>
-          <li>Blog functionality & CMS</li>
+          <li>Blog / CMS included</li>
           <li>E-commerce ready (up to 50 products)</li>
-          <li>User testimonial system</li>
-          <li>60 days free support & maintenance</li>
+          <li>Testimonial system</li>
+          <li>60 days free support</li>
           <li>Performance optimization</li>
         </ul>
-        
-        <div class="package-cta">
-          <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="primary">Schedule Call</a>
+        <div class="design-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Schedule Call</a>
         </div>
       </div>
 
-      <!-- Premium Package -->
-      <div class="package-card glass">
-        <div class="popular-badge">ENTERPRISE</div>
-        <h3 class="package-name">Premium</h3>
-        <div class="package-price">$10,000+</div>
-        <p class="package-price-period">custom scope</p>
-        
-        <p class="package-description">Unlimited possibilities. Complete digital ecosystem for brands that demand excellence.</p>
-        
-        <ul class="package-features">
-          <li>20+ pages with custom functionality</li>
-          <li>Bespoke user experience & interactions</li>
+      <!-- Premium -->
+      <div class="design-card glass">
+        <div class="design-tier">Enterprise</div>
+        <div class="design-name">Premium Site</div>
+        <div class="design-price">$10,000+</div>
+        <p class="design-price-note">custom scope · you own it</p>
+        <ul class="design-features">
+          <li>20+ pages, custom functionality</li>
+          <li>Bespoke UX & interactions</li>
           <li>Advanced animations & effects</li>
           <li>Full e-commerce integration</li>
           <li>API integrations & custom tools</li>
-          <li>Membership/subscription systems</li>
+          <li>Membership / subscription systems</li>
           <li>Priority support & quarterly reviews</li>
           <li>Ongoing content updates included</li>
         </ul>
-        
-        <div class="package-cta">
-          <a href="https://calendly.com/vaura/general-discovery" target="_blank" class="primary">Let's Talk</a>
+        <div class="design-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Let's Talk</a>
         </div>
       </div>
     </div>
-    <div class="pkg-dots">
+    <div class="pkg-dots" id="design-dots" style="display: none;">
       <div class="pkg-dot active"></div>
+      <div class="pkg-dot"></div>
       <div class="pkg-dot"></div>
       <div class="pkg-dot"></div>
     </div>
 
     <!-- Comparison Table -->
     <div class="comparison-section">
-      <h3 style="font-size: 1.5rem; text-align: left; margin-bottom: 2rem;">Detailed Comparison</h3>
+      <h3 style="font-size: 1.5rem; text-align: left; margin-bottom: 2rem; font-family: 'HeliosExt', 'Inter', sans-serif;">Detailed Comparison</h3>
       <div style="overflow-x: auto;">
         <table class="comparison-table">
           <thead>
             <tr>
               <th>Feature</th>
+              <th>Landing Page</th>
               <th>Starter</th>
               <th>Professional</th>
               <th>Premium</th>
@@ -952,7 +664,15 @@
           </thead>
           <tbody>
             <tr>
+              <td>Price</td>
+              <td>$1,500</td>
+              <td>$3,500</td>
+              <td>$5,000</td>
+              <td>$10,000+</td>
+            </tr>
+            <tr>
               <td>Number of Pages</td>
+              <td>1 page</td>
               <td>Up to 5</td>
               <td>Up to 10</td>
               <td>Unlimited</td>
@@ -960,11 +680,13 @@
             <tr>
               <td>Custom Design</td>
               <td>Template Based</td>
+              <td>Template Based</td>
               <td class="check">✓ Full Custom</td>
               <td class="check">✓ Bespoke</td>
             </tr>
             <tr>
               <td>SEO Optimization</td>
+              <td>Basic</td>
               <td>Basic</td>
               <td class="check">✓ Advanced</td>
               <td class="check">✓ Advanced</td>
@@ -972,11 +694,13 @@
             <tr>
               <td>E-Commerce</td>
               <td>Not Included</td>
+              <td>Not Included</td>
               <td class="check">✓ Up to 50 Products</td>
               <td class="check">✓ Unlimited</td>
             </tr>
             <tr>
-              <td>Blog/CMS</td>
+              <td>Blog / CMS</td>
+              <td>Not Included</td>
               <td>Not Included</td>
               <td class="check">✓ Included</td>
               <td class="check">✓ Advanced</td>
@@ -984,47 +708,358 @@
             <tr>
               <td>API Integration</td>
               <td>Not Included</td>
+              <td>Not Included</td>
               <td>Basic</td>
               <td class="check">✓ Full Integration</td>
+            </tr>
+            <tr>
+              <td>Animations & Effects</td>
+              <td>Not Included</td>
+              <td>Standard</td>
+              <td>Standard</td>
+              <td class="check">✓ Advanced</td>
+            </tr>
+            <tr>
+              <td>Membership / Subscriptions</td>
+              <td>Not Included</td>
+              <td>Not Included</td>
+              <td>Not Included</td>
+              <td class="check">✓ Included</td>
             </tr>
             <tr>
               <td>Mobile Responsive</td>
               <td class="check">✓ Yes</td>
               <td class="check">✓ Yes</td>
               <td class="check">✓ Yes</td>
+              <td class="check">✓ Yes</td>
             </tr>
             <tr>
-              <td>Free Support</td>
+              <td>SSL & Security</td>
+              <td class="check">✓ Yes</td>
+              <td class="check">✓ Yes</td>
+              <td class="check">✓ Yes</td>
+              <td class="check">✓ Yes</td>
+            </tr>
+            <tr>
+              <td>Google Analytics</td>
+              <td class="check">✓ Yes</td>
+              <td class="check">✓ Yes</td>
+              <td class="check">✓ Yes</td>
+              <td class="check">✓ Yes</td>
+            </tr>
+            <tr>
+              <td>Free Support After Launch</td>
+              <td>30 days</td>
               <td>30 days</td>
               <td>60 days</td>
               <td>3 months</td>
             </tr>
             <tr>
+              <td>Revision Rounds</td>
+              <td>1</td>
+              <td>2</td>
+              <td>4</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
               <td>Performance Optimization</td>
+              <td>Standard</td>
               <td>Standard</td>
               <td class="check">✓ Advanced</td>
               <td class="check">✓ Premium</td>
             </tr>
             <tr>
-              <td>Revision Rounds</td>
-              <td>2</td>
-              <td>4</td>
-              <td>Unlimited</td>
+              <td>Priority Support</td>
+              <td>Not Included</td>
+              <td>Not Included</td>
+              <td>Not Included</td>
+              <td class="check">✓ Included</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    <!-- Custom Solutions Box -->
+    <div class="glass" style="padding: 3rem 2rem; border-radius: 1.5rem; text-align: center; margin-top: 3rem;">
+      <h3 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; font-family: 'HeliosExt', 'Inter', sans-serif;">Custom Solutions</h3>
+      <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem; line-height: 1.7; max-width: 600px; margin-left: auto; margin-right: auto;">Need something completely different? Multi-site networks, progressive web apps, membership platforms, or specialized platforms? We build custom solutions tailored to your exact business needs.</p>
+      <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Discuss Your Project</a>
+    </div>
 
-    <!-- Custom Solutions -->
-    <div class="custom-package glass">
-      <h3>Custom Solutions</h3>
-      <p>Need something completely different? Multi-site networks, progressive web apps, membership platforms, or specialized platforms? We build custom solutions tailored to your exact business needs.</p>
-      <a href="https://calendly.com/vaura/website-discovery-onboarding" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Discuss Your Project</a>
+  </section>
+
+  <!-- Design + Management Plans — shown for Design+Mgmt path -->
+  <section class="container path-section" id="section-design-mgmt">
+    <h2>Design + <span class="gradient-text">Management</span> Plans</h2>
+    <p class="section-subtitle">We host and manage your site. Cancel anytime. Includes a new website build.</p>
+
+    <div class="mgmt-grid" id="mgmt-grid">
+      <!-- Base $300 -->
+      <div class="mgmt-card glass">
+        <div class="mgmt-price">$299</div>
+        <p class="mgmt-period">per month</p>
+        <div class="mgmt-name">Service Site</div>
+        <p class="mgmt-desc">Perfect for service businesses, contractors, and agencies that need a clean, professional web presence with minimal overhead.</p>
+        <div class="mgmt-meta">
+          <span class="mgmt-badge">2 Updates/mo</span>
+          <span class="mgmt-badge">48hr Response</span>
+          <span class="mgmt-badge">No E-Commerce</span>
+        </div>
+        <ul class="mgmt-features">
+          <li>Hosting, domain & SSL included</li>
+          <li>2 content/design updates per month</li>
+          <li>Email form notifications</li>
+          <li>Lead nurture basics</li>
+          <li>48-hour response time</li>
+          <li class="not-included">SMS notifications (upsell)</li>
+          <li class="not-included">Google Review automation (upsell)</li>
+          <li class="not-included">E-commerce / products</li>
+        </ul>
+        <div class="mgmt-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <p class="commitment-note">6-month minimum commitment</p>
+        </div>
+      </div>
+
+      <!-- Growth $500 (Featured) -->
+      <div class="mgmt-card glass featured">
+        <div class="popular-badge">POPULAR</div>
+        <div class="mgmt-price">$499</div>
+        <p class="mgmt-period">per month</p>
+        <div class="mgmt-name">Growing Business</div>
+        <p class="mgmt-desc">For businesses ready to grow. Includes e-commerce capability up to 25 products and faster support response for a more active online presence.</p>
+        <div class="mgmt-meta">
+          <span class="mgmt-badge">4 Updates/mo</span>
+          <span class="mgmt-badge">36hr Response</span>
+          <span class="mgmt-badge">Up to 25 Products</span>
+        </div>
+        <ul class="mgmt-features">
+          <li>Everything in Service Site PLUS</li>
+          <li>4 content/design updates per month</li>
+          <li>E-commerce (up to 25 products)</li>
+          <li>36-hour response time</li>
+          <li>Quarterly strategy review</li>
+          <li class="not-included">SMS notifications (upsell)</li>
+          <li class="not-included">Google Review automation (upsell)</li>
+          <li class="not-included">Local ads management (upsell)</li>
+        </ul>
+        <div class="mgmt-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Get Started</a>
+          <p class="commitment-note">6-month minimum commitment</p>
+        </div>
+      </div>
+
+      <!-- Enterprise $1000 -->
+      <div class="mgmt-card glass">
+        <div class="mgmt-price">$999</div>
+        <p class="mgmt-period">per month</p>
+        <div class="mgmt-name">Full Growth</div>
+        <p class="mgmt-desc">Complete web presence management for e-commerce brands and growth-focused businesses. Unlimited updates, ad management, and monthly reporting included.</p>
+        <div class="mgmt-meta">
+          <span class="mgmt-badge">Unlimited Updates</span>
+          <span class="mgmt-badge">24hr Response</span>
+          <span class="mgmt-badge">Unlimited Products</span>
+        </div>
+        <ul class="mgmt-features">
+          <li>Everything in Growing Business PLUS</li>
+          <li>Unlimited content/design updates</li>
+          <li>Unlimited e-commerce products</li>
+          <li>24-hour response time</li>
+          <li>SMS automation included <span style="color:rgba(0,255,150,0.6);font-size:0.8rem;">($500 value)</span></li>
+          <li>Local ads management up to $1,500/mo spend <span style="color:rgba(0,255,150,0.6);font-size:0.8rem;">($500 value)</span></li>
+          <li>Monthly reporting</li>
+          <li>Strategy calls on request</li>
+        </ul>
+        <div class="mgmt-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <p class="commitment-note">6-month minimum commitment</p>
+        </div>
+      </div>
+    </div>
+    <div class="pkg-dots" id="mgmt-dots" style="display: none;">
+      <div class="pkg-dot active"></div>
+      <div class="pkg-dot"></div>
+      <div class="pkg-dot"></div>
     </div>
   </section>
 
-  <!-- What's Included Section -->
+  <!-- Management Only — shown for Management Only path -->
+  <section class="container path-section" id="section-mgmt-only">
+    <h2>Management <span class="gradient-text">Only</span> Plans</h2>
+    <p class="section-subtitle">We host and manage your site. Cancel anytime. Includes migration of your existing site.</p>
+
+    <div class="mgmt-grid">
+      <div class="mgmt-card glass">
+        <div class="mgmt-price">$239</div>
+        <p class="mgmt-period">per month</p>
+        <div class="mgmt-name">Service Site</div>
+        <p class="mgmt-desc">Perfect for service businesses, contractors, and agencies that need a clean, professional web presence with minimal overhead.</p>
+        <div class="mgmt-meta">
+          <span class="mgmt-badge">2 Updates/mo</span>
+          <span class="mgmt-badge">48hr Response</span>
+          <span class="mgmt-badge">No E-Commerce</span>
+        </div>
+        <ul class="mgmt-features">
+          <li>Hosting, domain & SSL included</li>
+          <li>2 content/design updates per month</li>
+          <li>Email form notifications</li>
+          <li>Lead nurture basics</li>
+          <li>48-hour response time</li>
+          <li class="not-included">SMS notifications (upsell)</li>
+          <li class="not-included">Google Review automation (upsell)</li>
+          <li class="not-included">E-commerce / products</li>
+        </ul>
+        <div class="mgmt-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <p class="commitment-note">6-month minimum commitment</p>
+        </div>
+      </div>
+      <div class="mgmt-card glass featured">
+        <div class="popular-badge">POPULAR</div>
+        <div class="mgmt-price">$399</div>
+        <p class="mgmt-period">per month</p>
+        <div class="mgmt-name">Growing Business</div>
+        <p class="mgmt-desc">For businesses ready to grow. Includes e-commerce capability up to 25 products and faster support response for a more active online presence.</p>
+        <div class="mgmt-meta">
+          <span class="mgmt-badge">4 Updates/mo</span>
+          <span class="mgmt-badge">36hr Response</span>
+          <span class="mgmt-badge">Up to 25 Products</span>
+        </div>
+        <ul class="mgmt-features">
+          <li>Everything in Service Site PLUS</li>
+          <li>4 content/design updates per month</li>
+          <li>E-commerce (up to 25 products)</li>
+          <li>36-hour response time</li>
+          <li>Quarterly strategy review</li>
+          <li class="not-included">SMS notifications (upsell)</li>
+          <li class="not-included">Google Review automation (upsell)</li>
+          <li class="not-included">Local ads management (upsell)</li>
+        </ul>
+        <div class="mgmt-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Get Started</a>
+          <p class="commitment-note">6-month minimum commitment</p>
+        </div>
+      </div>
+      <div class="mgmt-card glass">
+        <div class="mgmt-price">$799</div>
+        <p class="mgmt-period">per month</p>
+        <div class="mgmt-name">Full Growth</div>
+        <p class="mgmt-desc">Complete web presence management for e-commerce brands and growth-focused businesses. Unlimited updates, ad management, and monthly reporting included.</p>
+        <div class="mgmt-meta">
+          <span class="mgmt-badge">Unlimited Updates</span>
+          <span class="mgmt-badge">24hr Response</span>
+          <span class="mgmt-badge">Unlimited Products</span>
+        </div>
+        <ul class="mgmt-features">
+          <li>Everything in Growing Business PLUS</li>
+          <li>Unlimited content/design updates</li>
+          <li>Unlimited e-commerce products</li>
+          <li>24-hour response time</li>
+          <li>SMS automation included <span style="color:rgba(0,255,150,0.6);font-size:0.8rem;">($500 value)</span></li>
+          <li>Local ads management up to $1,500/mo spend <span style="color:rgba(0,255,150,0.6);font-size:0.8rem;">($500 value)</span></li>
+          <li>Monthly reporting</li>
+          <li>Strategy calls on request</li>
+        </ul>
+        <div class="mgmt-cta">
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <p class="commitment-note">6-month minimum commitment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- View Less anchor (shown when all sections open) -->
+  <div id="view-less-wrap" style="display:none; text-align:center; padding: 1rem 0 2rem;">
+    <button class="view-all-link" onclick="collapseAll()">↑ View less — collapse all</button>
+  </div>
+
+  <!-- One-Time Upsells -->
+  <section class="container">
+    <h2>Power-Up <span class="gradient-text">Add-Ons</span></h2>
+    <p class="section-subtitle">One-time services that unlock more reach, more leads, and more automation. Available to all management clients.</p>
+
+    <div class="upsell-grid">
+      <div class="upsell-card glass">
+        <div class="upsell-icon">📍</div>
+        <div class="upsell-name">Google Business Profile Optimization</div>
+        <div class="upsell-price">$500</div>
+        <p class="upsell-desc">Full audit and optimization of your Google Business Profile — hours, photos, categories, service areas, review link, and attributes. Includes a before/after report.</p>
+      </div>
+      <div class="upsell-card glass">
+        <div class="upsell-icon">🔍</div>
+        <div class="upsell-name">SEO Foundation</div>
+        <div class="upsell-price">$500</div>
+        <p class="upsell-desc">Keyword research, on-page optimization, schema markup, and a local citation audit. Delivered as a full SEO report with a 90-day action plan.</p>
+      </div>
+      <div class="upsell-card glass">
+        <div class="upsell-icon">⭐</div>
+        <div class="upsell-name">Google Review Automation Setup</div>
+        <div class="upsell-price">$500</div>
+        <p class="upsell-desc">We build an automated review funnel that steers happy customers to your Google listing and filters negative feedback before it goes public. More stars, less risk.</p>
+      </div>
+      <div class="upsell-card glass">
+        <div class="upsell-icon">💬</div>
+        <div class="upsell-name">SMS Notifications</div>
+        <div class="upsell-price">$500</div>
+        <p class="upsell-desc">Get a text the moment someone fills out your contact form. Never miss a lead again. Email form notifications are included free — SMS is the upgrade.</p>
+      </div>
+      <div class="upsell-card glass">
+        <div class="upsell-icon">📲</div>
+        <div class="upsell-name">SMS Campaign Templates</div>
+        <div class="upsell-price">$500</div>
+        <p class="upsell-desc">4-6 ready-to-send SMS campaigns: review requests, appointment reminders, win-back sequences, and promos. Copy-paste ready — you send them manually.</p>
+      </div>
+      <div class="upsell-card glass">
+        <div class="upsell-icon">⚡</div>
+        <div class="upsell-name">SMS Campaign Automation</div>
+        <div class="upsell-price">+$500</div>
+        <p class="upsell-desc">Add this to SMS Campaign Templates and we automate everything — triggers, timing, follow-ups. Set-and-forget. Requires SMS Campaign Templates ($500) first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ad Management Pricing -->
+  <section class="container">
+    <h2>Local Ads <span class="gradient-text">Management</span></h2>
+    <p class="section-subtitle">We manage your Google Local Service Ads so you get more calls and leads. Ad spend is billed directly by Google — this is just our management fee.</p>
+
+    <div class="ad-table-wrap">
+      <table class="ad-table glass" style="border-radius: 1.5rem; overflow: hidden;">
+        <thead>
+          <tr>
+            <th>Monthly Ad Spend (paid to Google)</th>
+            <th>Management Fee</th>
+            <th>Included In</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Up to $1,500/mo</td>
+            <td class="ad-highlight">Included</td>
+            <td>$1,000/mo plan</td>
+          </tr>
+          <tr>
+            <td>Up to $1,500/mo</td>
+            <td class="ad-highlight">$500/mo</td>
+            <td>Standalone add-on</td>
+          </tr>
+          <tr>
+            <td>$1,500 – $3,500/mo</td>
+            <td class="ad-highlight">$750/mo</td>
+            <td>Standalone add-on</td>
+          </tr>
+          <tr>
+            <td>$3,500+/mo</td>
+            <td class="ad-highlight">20% of ad spend</td>
+            <td>Standalone add-on</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align: center; color: rgba(255,255,255,0.35); font-size: 0.8rem; margin-top: 1rem;">Ad management includes campaign setup, keyword strategy, quality monitoring, and monthly performance reports.</p>
+  </section>
+
+  <!-- What's Always Included -->
   <section class="container always-included-section">
     <h2>What's <span class="gradient-text">Always</span> Included</h2>
 
@@ -1032,83 +1067,46 @@
     <div class="always-included-static" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
       <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🔒 Security & Performance</h4>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p>
       </div>
       <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📱 Mobile First</h4>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p>
       </div>
       <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">⚡ Speed First</h4>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p>
       </div>
       <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🎯 SEO Ready</h4>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p>
       </div>
       <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📊 Analytics Setup</h4>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p>
       </div>
       <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
         <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🤝 Your Support</h4>
-        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p>
       </div>
     </div>
 
     <!-- Mobile auto-scroll carousel -->
     <div class="always-included-track-wrap">
       <div class="always-included-track">
-        <!-- original set -->
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🔒 Security & Performance</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📱 Mobile First</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">⚡ Speed First</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🎯 SEO Ready</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📊 Analytics Setup</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🤝 Your Support</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p>
-        </div>
-        <!-- duplicate set for seamless loop -->
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🔒 Security & Performance</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📱 Mobile First</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">⚡ Speed First</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🎯 SEO Ready</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📊 Analytics Setup</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p>
-        </div>
-        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;">
-          <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🤝 Your Support</h4>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p>
-        </div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🔒 Security & Performance</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📱 Mobile First</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">⚡ Speed First</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🎯 SEO Ready</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📊 Analytics Setup</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🤝 Your Support</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p></div>
+        <!-- duplicate for seamless loop -->
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🔒 Security & Performance</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">SSL certificate, CDN setup, automatic backups, and performance monitoring on all packages.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📱 Mobile First</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Every website is optimized for tablets and phones. Responsive design is not optional.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">⚡ Speed First</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Optimized for fast load times. We focus on performance metrics that impact SEO and user experience.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🎯 SEO Ready</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Every site includes SEO best practices, structured data, sitemaps, and Google integration.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">📊 Analytics Setup</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Google Analytics 4, conversion tracking, and heat mapping built in from day one.</p></div>
+        <div class="glass always-card" style="padding: 2rem; border-radius: 1.5rem;"><h4 style="font-size: 1.1rem; margin-bottom: 1rem;">🤝 Your Support</h4><p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Free support included. Fast response times and dedicated assistance throughout the project.</p></div>
       </div>
     </div>
   </section>
@@ -1121,86 +1119,23 @@
 
       <div class="carousel-wrapper">
         <div class="carousel-track" id="carousel-track">
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Matrix Medical</h3><span class="year">2022</span></div></div>
-            <p class="work-card-desc">Full e-commerce buildout for a Minneapolis medical equipment supplier. Custom menus, advanced product filters, wishlist, low-stock alerts, and a seamless buying experience for healthcare facilities nationwide.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1113737425?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Matrix Medical"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Pure Mechanical LLC</h3><span class="year">2023</span></div></div>
-            <p class="work-card-desc">Professional website for a mechanical services company. Clean, responsive design built to generate leads and communicate reliability to residential and commercial clients.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1114407869?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pure Mechanical LLC"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Rich Nerdz</h3><span class="year">2025</span></div></div>
-            <p class="work-card-desc">Streetwear brand identity and e-commerce experience. Bold visuals, custom graphics, and a shopping experience that matches the energy of the brand.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115361252?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Rich Nerdz"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Car Club Rental</h3><span class="year">2023</span></div></div>
-            <p class="work-card-desc">Premium vehicle rental platform designed to showcase an exotic and luxury fleet. Built for seamless online bookings with a high-end look and feel that converts browsers into renters.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115624298?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Car Club Rental"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Ocean Wholesale</h3><span class="year">2022</span></div></div>
-            <p class="work-card-desc">Full-scale wholesale marketplace for a brand that creates waves. Complete branding, product catalog architecture, and a buyer-first shopping experience built to scale.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115631198?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Wholesale"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Mow Bros</h3><span class="year">2023</span></div></div>
-            <p class="work-card-desc">Lead-generating website for a Minnesota landscaping company. Responsive design with service pages, galleries, and a booking flow that turns local search traffic into booked jobs year-round.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115635752?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Mow Bros"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Jappy</h3><span class="year">2024</span></div></div>
-            <p class="work-card-desc">Sleek brand website with a distinct identity and a modern digital presence. Crafted to capture the brand's personality and connect with its audience online.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115639888?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Jappy"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Moneybag Exotics</h3><span class="year">2025</span></div></div>
-            <p class="work-card-desc">Full brand experience for a streetwear label built on ambition. Custom logos, moving images, animations, and fonts — from their sold-out first drop to an ongoing collection that lives at the intersection of risk and style.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115645900?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Moneybag Exotics"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Pet Beds For You</h3><span class="year">2019</span></div></div>
-            <p class="work-card-desc">E-commerce website for a pet products brand. Clean product presentation, intuitive navigation, and a design that communicates trust and warmth to pet owners shopping online.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115648562?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pet Beds For You"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Ocean Tobacco WI</h3><span class="year">2022</span></div></div>
-            <p class="work-card-desc">Wisconsin market website for Ocean Tobacco. Bold, wave-inspired visual identity built to drive foot traffic and online brand awareness across the state.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115656842?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco WI"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>Ocean Tobacco MN</h3><span class="year">2022</span></div></div>
-            <p class="work-card-desc">Minnesota market website for Ocean Tobacco. Region-specific content with a consistent brand language that connects with local customers and reinforces the Ocean identity.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115657266?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Tobacco MN"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>VoxVera.io</h3><span class="year">2024</span></div></div>
-            <p class="work-card-desc">End-to-end brand launch for a next-generation AI audio dubbing platform. Pitch deck, logo, full site design, and project coordination — concept to launch, executed flawlessly.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115659680?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="VoxVera"></iframe></div>
-          </div>
-
-          <div class="work-card glass">
-            <div class="work-card-header"><div class="work-card-meta"><h3>LumaSkin</h3><span class="year">2025</span></div></div>
-            <p class="work-card-desc">Full visual identity, branding, product imagery, and site design for a skincare and wellness device brand. A seamless online shopping experience highlighting promotions, product details, and customer engagement.</p>
-            <div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115663555?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="LumaSkin"></iframe></div>
-          </div>
-
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Matrix Medical</h3><span class="year">2022</span></div></div><p class="work-card-desc">Full e-commerce buildout for a Minneapolis medical equipment supplier. Custom menus, advanced product filters, wishlist, low-stock alerts, and a seamless buying experience for healthcare facilities nationwide.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1113737425?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Matrix Medical"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Pure Mechanical LLC</h3><span class="year">2023</span></div></div><p class="work-card-desc">Professional website for a mechanical services company. Clean, responsive design built to generate leads and communicate reliability to residential and commercial clients.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1114407869?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pure Mechanical LLC"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Rich Nerdz</h3><span class="year">2025</span></div></div><p class="work-card-desc">Streetwear brand identity and e-commerce experience. Bold visuals, custom graphics, and a shopping experience that matches the energy of the brand.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115361252?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Rich Nerdz"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Car Club Rental</h3><span class="year">2023</span></div></div><p class="work-card-desc">Premium vehicle rental platform designed to showcase an exotic and luxury fleet. Built for seamless online bookings with a high-end look and feel that converts browsers into renters.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115624298?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Car Club Rental"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Ocean Wholesale</h3><span class="year">2022</span></div></div><p class="work-card-desc">Full-scale wholesale marketplace for a brand that creates waves. Complete branding, product catalog architecture, and a buyer-first shopping experience built to scale.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115631198?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ocean Wholesale"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Mow Bros</h3><span class="year">2023</span></div></div><p class="work-card-desc">Lead-generating website for a Minnesota landscaping company. Responsive design with service pages, galleries, and a booking flow that turns local search traffic into booked jobs year-round.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115635752?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Mow Bros"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Jappy</h3><span class="year">2024</span></div></div><p class="work-card-desc">Sleek brand website with a distinct identity and a modern digital presence. Crafted to capture the brand's personality and connect with its audience online.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115639888?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Jappy"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Moneybag Exotics</h3><span class="year">2025</span></div></div><p class="work-card-desc">Full brand experience for a streetwear label built on ambition. Custom logos, moving images, animations, and fonts — from their sold-out first drop to an ongoing collection that lives at the intersection of risk and style.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115645900?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Moneybag Exotics"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>Pet Beds For You</h3><span class="year">2019</span></div></div><p class="work-card-desc">E-commerce website for a pet products brand. Clean product presentation, intuitive navigation, and a design that communicates trust and warmth to pet owners shopping online.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115648562?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Pet Beds For You"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>VoxVera.io</h3><span class="year">2024</span></div></div><p class="work-card-desc">End-to-end brand launch for a next-generation AI audio dubbing platform. Pitch deck, logo, full site design, and project coordination — concept to launch, executed flawlessly.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115659680?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="VoxVera"></iframe></div></div>
+          <div class="work-card glass"><div class="work-card-header"><div class="work-card-meta"><h3>LumaSkin</h3><span class="year">2025</span></div></div><p class="work-card-desc">Full visual identity, branding, product imagery, and site design for a skincare and wellness device brand. A seamless online shopping experience highlighting promotions, product details, and customer engagement.</p><div class="video-wrap"><iframe src="https://player.vimeo.com/video/1115663555?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="LumaSkin"></iframe></div></div>
         </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="carousel-btn" id="next-btn"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
 
       <div class="view-more-wrap">
@@ -1212,14 +1147,14 @@
     </div>
   </section>
 
-  <!-- CTA Section -->
+  <!-- CTA -->
   <section class="cta-section">
-    <h2><span class="gradient-text">Ready to Launch?</span></h2>
-    <p class="cta-text">Let's schedule a call to discuss your project timeline and the best package for your needs.</p>
-    <a href="https://calendly.com/vaura/website-discovery-onboarding" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Free Consultation</a>
+    <h2><span class="gradient-text">Ready to Get Started?</span></h2>
+    <p class="cta-text">Let's find the right plan for your business. Book a free 15-minute call and we'll map it out together.</p>
+    <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 1rem 2rem; font-size: 1rem;">Book Your Free Consultation</a>
   </section>
 
-  <!-- Google Reviews -->
+  <!-- Google Reviews (floating bubbles) -->
   <div class="reviews-section">
     <div class="reviews-section-inner">
       <div class="reviews-label"><span class="google-dot"></span>Google Reviews</div>
@@ -1229,37 +1164,12 @@
         <a href="https://g.page/r/CZaO4TNAzK-NEBM/review" target="_blank" style="color:#F4B400;font-size:0.85rem;text-decoration:none;font-weight:600;">Leave a review →</a>
       </div>
       <div class="reviews-bubble-wrap">
-
-        <div class="review-bubble glass rb-1">
-          <div class="bubble-header"><div class="bubble-avatar">TS</div><div><div class="bubble-name">Tim Siegel</div><div class="bubble-stars">★★★★★</div></div></div>
-          <p class="bubble-text">"Benji did a great job on our Shopify site. The performance, accessibility and SEO are solid a year after launch, way better than my other WordPress sites ever performed. I highly recommend!"</p>
-        </div>
-
-        <div class="review-bubble glass rb-2">
-          <div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#00ccff,#c850ff);">JC</div><div><div class="bubble-name">Jared Crawford-Akeredolu</div><div class="bubble-stars">★★★★★</div></div></div>
-          <p class="bubble-text">"I cannot recommend Vaura enough! From start to finish, their team delivered top-notch branding and marketing services that exceeded my expectations. Their ability to combine creativity with strategy is truly impressive."</p>
-        </div>
-
-        <div class="review-bubble glass rb-3">
-          <div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#F4B400,#00ff96);">KT</div><div><div class="bubble-name">Kelly Torp</div><div class="bubble-stars">★★★★★</div></div></div>
-          <p class="bubble-text">"Benji did our website and was great to work with! He brought professionalism and quality which in turn gave us a great product! I would recommend 100%!"</p>
-        </div>
-
-        <div class="review-bubble glass rb-4">
-          <div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#00ff96,#00ccff);">MR</div><div><div class="bubble-name">Marjae Rouser</div><div class="bubble-stars">★★★★★</div></div></div>
-          <p class="bubble-text">"Personally, I received more than exceptional service. Really transparent about the process and projections were accurate! I'm glad I reached out."</p>
-        </div>
-
-        <div class="review-bubble glass rb-5">
-          <div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#c850ff,#00ccff);">AE</div><div><div class="bubble-name">Aiden Evans</div><div class="bubble-stars">★★★★★</div></div></div>
-          <p class="bubble-text">"Great communication and made it easy to work with them!! I'm very pleased."</p>
-        </div>
-
-        <div class="review-bubble glass rb-6">
-          <div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#00ccff,#F4B400);">JS</div><div><div class="bubble-name">Japnoor Singh</div><div class="bubble-stars">★★★★★</div></div></div>
-          <p class="bubble-text">"Great communication. Good work. Couldn't ask for more."</p>
-        </div>
-
+        <div class="review-bubble rb-1"><div class="bubble-header"><div class="bubble-avatar">TS</div><div><div class="bubble-name">Tim Siegel</div><div class="bubble-stars">★★★★★</div></div></div><p class="bubble-text">"Benji did a great job on our Shopify site. The performance, accessibility and SEO are solid a year after launch, way better than my other WordPress sites ever performed. I highly recommend!"</p></div>
+        <div class="review-bubble rb-2"><div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#00ccff,#c850ff);">JC</div><div><div class="bubble-name">Jared Crawford-Akeredolu</div><div class="bubble-stars">★★★★★</div></div></div><p class="bubble-text">"I cannot recommend Vaura enough! From start to finish, their team delivered top-notch branding and marketing services that exceeded my expectations."</p></div>
+        <div class="review-bubble rb-3"><div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#F4B400,#00ff96);">KT</div><div><div class="bubble-name">Kelly Torp</div><div class="bubble-stars">★★★★★</div></div></div><p class="bubble-text">"Benji did our website and was great to work with! He brought professionalism and quality which in turn gave us a great product! I would recommend 100%!"</p></div>
+        <div class="review-bubble rb-4"><div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#00ff96,#00ccff);">MR</div><div><div class="bubble-name">Marjae Rouser</div><div class="bubble-stars">★★★★★</div></div></div><p class="bubble-text">"Personally, I received more than exceptional service. Really transparent about the process and projections were accurate! I'm glad I reached out."</p></div>
+        <div class="review-bubble rb-5"><div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#c850ff,#00ccff);">AE</div><div><div class="bubble-name">Aiden Evans</div><div class="bubble-stars">★★★★★</div></div></div><p class="bubble-text">"Great communication and made it easy to work with them!! I'm very pleased."</p></div>
+        <div class="review-bubble rb-6"><div class="bubble-header"><div class="bubble-avatar" style="background:linear-gradient(135deg,#00ccff,#F4B400);">JS</div><div><div class="bubble-name">Japnoor Singh</div><div class="bubble-stars">★★★★★</div></div></div><p class="bubble-text">"Great communication. Good work. Couldn't ask for more."</p></div>
       </div>
     </div>
   </div>
@@ -1289,79 +1199,155 @@
     </div>
   </footer>
 
-  <!-- Floating CTA Button -->
+  <!-- Floating CTA -->
   <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="floating-logo glass-button">
     <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
   <script>
+    // Path selector — each path shows ONLY its relevant section
+    let viewAllOpen = false;
+
+    function selectPath(path) {
+      viewAllOpen = false;
+      document.getElementById('view-less-wrap').style.display = 'none';
+      document.getElementById('view-all-btn').textContent = '↓ Click here to view all options';
+
+      // Clear all states
+      document.querySelectorAll('.path-card').forEach(c => {
+        c.classList.remove('selected', 'default-glow');
+      });
+      document.querySelectorAll('.path-section').forEach(s => s.classList.remove('active'));
+
+      if (path === 'design-mgmt') {
+        document.getElementById('path-design-mgmt').classList.add('selected');
+        document.getElementById('section-design-mgmt').classList.add('active');
+      } else if (path === 'design-only') {
+        document.getElementById('path-design-only').classList.add('selected');
+        document.getElementById('section-design').classList.add('active');
+      } else if (path === 'mgmt-only') {
+        document.getElementById('path-mgmt-only').classList.add('selected');
+        document.getElementById('section-mgmt-only').classList.add('active');
+      }
+
+      // Scroll to revealed section
+      setTimeout(() => {
+        const firstActive = document.querySelector('.path-section.active');
+        if (firstActive) firstActive.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+
+    // View All — expands all three sections in order
+    function toggleViewAll() {
+      viewAllOpen = !viewAllOpen;
+      document.querySelectorAll('.path-card').forEach(c => c.classList.remove('selected', 'default-glow'));
+      if (viewAllOpen) {
+        document.getElementById('section-design-mgmt').classList.add('active');
+        document.getElementById('section-design').classList.add('active');
+        document.getElementById('section-mgmt-only').classList.add('active');
+        document.getElementById('view-less-wrap').style.display = 'block';
+        document.getElementById('view-all-btn').textContent = '↑ Collapse all options';
+        setTimeout(() => {
+          document.getElementById('section-design-mgmt').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      } else {
+        collapseAll();
+      }
+    }
+
+    function collapseAll() {
+      viewAllOpen = false;
+      document.querySelectorAll('.path-section').forEach(s => s.classList.remove('active'));
+      document.getElementById('view-less-wrap').style.display = 'none';
+      document.getElementById('view-all-btn').textContent = '↓ Click here to view all options';
+      // Restore default glow
+      document.getElementById('path-design-mgmt').classList.add('default-glow');
+    }
+
+    // On load: default-glow Design+Mgmt and show its section
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('path-design-mgmt').classList.add('default-glow');
+      document.getElementById('section-design-mgmt').classList.add('active');
+    });
+
+    // Mobile menu
     const mobileMenuBtn = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('visible'));
-    mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('visible')));
+    document.addEventListener('click', (e) => {
+      if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('visible');
+      }
+    });
 
-    // Carousel
-    const workSection = document.getElementById('work-section');
-    const track       = document.getElementById('carousel-track');
-    const viewMoreBtn = document.getElementById('view-more-btn');
-    const btnLabel    = document.getElementById('btn-label');
-    const cards       = Array.from(track.children);
-    const total       = cards.length;
-    let currentIndex  = 0, touchStartX = 0, expanded = false, autoTimer = null;
+    // Mobile dots for design cards
+    function setupDots(gridId, dotsId) {
+      const grid = document.getElementById(gridId);
+      const dotsContainer = document.getElementById(dotsId);
+      if (!grid || !dotsContainer) return;
 
-    function visibleCount() { return window.innerWidth > 768 ? 2 : 1; }
-    function maxIndex()     { return Math.max(0, total - visibleCount()); }
-    function getCardWidth() { const gap = parseFloat(getComputedStyle(track).gap) || 32; return cards[0].offsetWidth + gap; }
-
-    function goTo(index) {
-      if (index > maxIndex()) index = 0;
-      if (index < 0) index = maxIndex();
-      currentIndex = index;
-      if (!expanded) track.style.transform = `translateX(-${currentIndex * getCardWidth()}px)`;
+      function checkMobile() {
+        if (window.innerWidth <= 768) {
+          dotsContainer.style.display = 'flex';
+          const cards = grid.querySelectorAll('.design-card, .mgmt-card');
+          const dots = dotsContainer.querySelectorAll('.pkg-dot');
+          grid.addEventListener('scroll', () => {
+            const idx = Math.round(grid.scrollLeft / grid.clientWidth * (cards.length / (cards.length > 3 ? 1.22 : 1)));
+            dots.forEach((d, i) => d.classList.toggle('active', i === Math.min(idx, dots.length - 1)));
+          });
+          dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+              const cards2 = grid.querySelectorAll('.design-card, .mgmt-card');
+              if (cards2[i]) cards2[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            });
+          });
+        } else {
+          dotsContainer.style.display = 'none';
+        }
+      }
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
     }
 
-    function startAutoplay() { stopAutoplay(); autoTimer = setInterval(() => { if (!expanded) goTo(currentIndex + 1); }, 3000); }
-    function stopAutoplay()  { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+    setupDots('design-grid', 'design-dots');
+    setupDots('mgmt-grid', 'mgmt-dots');
 
-    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-      if (expanded) return;
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) { diff > 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1); startAutoplay(); }
+    // Work carousel
+    const track = document.getElementById('carousel-track');
+    const workSection = document.getElementById('work-section');
+    const viewMoreBtn = document.getElementById('view-more-btn');
+    const btnLabel = document.getElementById('btn-label');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentIndex = 0;
+    const visibleCards = 2;
+
+    function getCardCount() { return track.querySelectorAll('.work-card').length; }
+    function updateCarousel() {
+      if (workSection.classList.contains('expanded')) return;
+      const cardWidth = track.querySelector('.work-card').offsetWidth + 32;
+      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) { currentIndex--; updateCarousel(); }
+    });
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < getCardCount() - visibleCards) { currentIndex++; updateCarousel(); }
     });
 
     viewMoreBtn.addEventListener('click', () => {
-      expanded = !expanded;
-      workSection.classList.toggle('expanded', expanded);
-      if (expanded) { stopAutoplay(); track.style.transform = 'none'; btnLabel.textContent = 'Show Less'; viewMoreBtn.classList.add('open'); }
-      else { btnLabel.textContent = 'View All Work'; viewMoreBtn.classList.remove('open'); requestAnimationFrame(() => { goTo(currentIndex); startAutoplay(); }); }
-    });
-
-    let resizeTimer;
-    window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { if (!expanded) { currentIndex = Math.min(currentIndex, maxIndex()); goTo(currentIndex); } }, 120); });
-
-    startAutoplay();
-
-    // Package carousel dots (mobile only)
-    (function() {
-      const grid = document.querySelector('.package-grid');
-      const dots = document.querySelectorAll('.pkg-dot');
-      if (!grid || !dots.length) return;
-      function updateDots() {
-        const card = grid.querySelector('.package-card');
-        const cardWidth = card.offsetWidth + 16;
-        const index = Math.round(grid.scrollLeft / cardWidth);
-        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      workSection.classList.toggle('expanded');
+      if (workSection.classList.contains('expanded')) {
+        btnLabel.textContent = 'Show Less';
+        track.style.transform = '';
+      } else {
+        btnLabel.textContent = 'View All Work';
+        currentIndex = 0;
+        updateCarousel();
       }
-      grid.addEventListener('scroll', updateDots, { passive: true });
-      dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-          const card = grid.querySelector('.package-card');
-          const cardWidth = card.offsetWidth + 16;
-          grid.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
-        });
-      });
-    })();
+    });
+    window.addEventListener('resize', updateCarousel);
   </script>
 </body>
 </html>
