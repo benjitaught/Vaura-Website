@@ -87,14 +87,25 @@
       margin: 0 auto;
       padding: 0 1.5rem;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       gap: 2rem;
+    }
+
+    .logo {
+      order: 1;
+      flex-shrink: 0;
     }
 
     .logo img {
       height: 40px;
       width: auto;
+      display: none;
+    }
+
+    .nav-spacer {
+      flex: 1;
+      order: 2;
     }
 
     .nav-links {
@@ -103,6 +114,7 @@
       align-items: center;
       list-style: none;
       justify-content: center;
+      order: 3;
     }
 
     .nav-links a {
@@ -130,7 +142,14 @@
       color: #ffffff;
       font-size: 1.5rem;
       cursor: pointer;
-      padding: 0;
+      padding: 0.5rem;
+      order: 4;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-btn:hover {
+      color: #00ff96;
     }
 
     #mobile-menu {
@@ -169,9 +188,22 @@
     }
 
     @media (max-width: 768px) {
+      nav .container {
+        justify-content: space-between;
+      }
+
+      .logo img {
+        display: block;
+      }
+
+      .nav-spacer {
+        display: none;
+      }
+
       .nav-links {
         display: none;
       }
+
       .mobile-menu-btn {
         display: block;
       }
@@ -952,16 +984,18 @@
   <!-- Navigation -->
   <nav class="glass">
     <div class="container">
-      <div style="flex: 1;"></div>
+      <div class="logo">
+        <img src="Logo no writing wht.png" alt="VAURA" style="height: 40px; width: auto;">
+      </div>
+      <div class="nav-spacer"></div>
       <ul class="nav-links">
         <li><a href="services.html">Services</a></li>
         <li><a href="packages.html">Website Packages</a></li>
         <li><a href="photovideo.html">Photo / Video</a></li>
         <li><a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
-      <div style="flex: 1;"></div>
-      <button class="mobile-menu-btn" id="menu-toggle">
-        <img src="Logo no writing wht.png" alt="VAURA Menu" style="height: 40px; width: auto;">
+      <button class="mobile-menu-btn" id="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
       </button>
     </div>
     <div id="mobile-menu">
