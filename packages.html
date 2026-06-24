@@ -101,6 +101,7 @@
     .nav-links a.active { color: #00ccff; text-shadow: 0 0 12px rgba(0, 204, 255, 0.7); }
     .mobile-menu-btn { display: none; background: none; border: none; color: #ffffff; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; order: 4; flex-shrink: 0; transition: all 0.3s ease; }
     .mobile-menu-btn:hover { color: #00ff96; }
+    .mobile-menu-btn.active { color: #00ff96; }
     #mobile-menu {
       display: none !important; position: absolute; top: 100%;
       left: 1.5rem; right: 1.5rem; margin-top: 0.5rem;
@@ -1292,10 +1293,14 @@
     // Mobile menu
     const mobileMenuBtn = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('visible'));
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('visible');
+      mobileMenuBtn.classList.toggle('active');
+    });
     document.addEventListener('click', (e) => {
       if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
         mobileMenu.classList.remove('visible');
+        mobileMenuBtn.classList.remove('active');
       }
     });
 

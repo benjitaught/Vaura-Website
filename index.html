@@ -152,6 +152,10 @@
       color: #00ff96;
     }
 
+    .mobile-menu-btn.active {
+      color: #00ff96;
+    }
+
     #mobile-menu {
       display: none !important;
       position: absolute;
@@ -1343,11 +1347,13 @@
 
     mobileMenuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('visible');
+      mobileMenuBtn.classList.toggle('active');
     });
 
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('visible');
+        mobileMenuBtn.classList.remove('active');
       });
     });
 
