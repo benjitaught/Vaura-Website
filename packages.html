@@ -506,7 +506,205 @@
       .always-included-static { display: grid; }
       .always-included-track-wrap { display: none; }
     }
+
+    /* Stripe Payment Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.active { display: flex !important; }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 2rem;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-modal:hover { color: #fff; }
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-group input {
+      padding: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #00ff96;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    #payment-element {
+      margin: 1.5rem 0;
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 0.9rem;
+      border-radius: 1rem;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-btn.primary {
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      color: #000;
+    }
+
+    .modal-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 255, 150, 0.3);
+    }
+
+    .modal-btn.primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .modal-btn.secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .notification-modal {
+      display: none;
+      position: fixed;
+      z-index: 101;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .notification-modal.success {
+      --accent-color: #00ff96;
+    }
+
+    .notification-modal.error {
+      --accent-color: #ff6b6b;
+    }
+
+    .notification-content {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 2rem;
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      border-top: 3px solid var(--accent-color);
+    }
+
+    .notification-content h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .notification-content p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1.5rem;
+    }
+
+    .close-notification {
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .close-notification:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
   </style>
+  <script async src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
   <!-- Navigation -->
@@ -597,7 +795,7 @@
           <li>30 days free support</li>
         </ul>
         <div class="design-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <button class="btn-secondary" onclick="openCheckout('price_1TmffkF7RlhwRhJ4OLTzmniz', 'Landing Page')">Get Started</button>
         </div>
       </div>
 
@@ -617,7 +815,7 @@
           <li>30 days free support</li>
         </ul>
         <div class="design-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <button class="btn-secondary" onclick="openCheckout('price_1TmfflF7RlhwRhJ43OxtdvrR', 'Starter Site')">Get Started</button>
         </div>
       </div>
 
@@ -639,7 +837,7 @@
           <li>Performance optimization</li>
         </ul>
         <div class="design-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Schedule Call</a>
+          <button class="btn-primary" onclick="openCheckout('price_1TmffmF7RlhwRhJ4B2Xxpxlb', 'Professional Site')">Schedule Call</button>
         </div>
       </div>
 
@@ -660,7 +858,7 @@
           <li>Ongoing content updates included</li>
         </ul>
         <div class="design-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Let's Talk</a>
+          <button class="btn-secondary" onclick="openCheckout('price_1TmffnF7RlhwRhJ4GRjTDSpR', 'Premium Site')">Let's Talk</button>
         </div>
       </div>
     </div>
@@ -839,7 +1037,7 @@
           <li class="not-included">E-commerce / products</li>
         </ul>
         <div class="mgmt-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <button class="btn-secondary" onclick="openCheckout('price_1TmffTF7RlhwRhJ4JIK3q3cF', 'Core Site (Design + Management)')">Get Started</button>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -867,7 +1065,7 @@
           <li class="not-included">Local ads management (upsell)</li>
         </ul>
         <div class="mgmt-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Get Started</a>
+          <button class="btn-primary" onclick="openCheckout('price_1TmffUF7RlhwRhJ4cgx5JOTE', 'Growing Business (Design + Management)')">Get Started</button>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -894,7 +1092,7 @@
           <li>Strategy calls on request</li>
         </ul>
         <div class="mgmt-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <button class="btn-secondary" onclick="openCheckout('price_1TmffVF7RlhwRhJ4f45dSpsd', 'Full Growth (Design + Management)')">Get Started</button>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -933,7 +1131,7 @@
           <li class="not-included">E-commerce / products</li>
         </ul>
         <div class="mgmt-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <button class="btn-secondary" onclick="openCheckout('price_1TmffWF7RlhwRhJ40zzExuLn', 'Core Site (Management Only)')">Get Started</button>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -959,7 +1157,7 @@
           <li class="not-included">Local ads management (upsell)</li>
         </ul>
         <div class="mgmt-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Get Started</a>
+          <button class="btn-primary" onclick="openCheckout('price_1TmffXF7RlhwRhJ4wKt7yTlV', 'Growing Business (Management Only)')">Get Started</button>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -984,7 +1182,7 @@
           <li>Strategy calls on request</li>
         </ul>
         <div class="mgmt-cta">
-          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
+          <button class="btn-secondary" onclick="openCheckout('price_1TmffYF7RlhwRhJ4g5Wgb0M4', 'Full Growth (Management Only)')">Get Started</button>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -1002,37 +1200,37 @@
     <p class="section-subtitle">One-time services that unlock more reach, more leads, and more automation. Available to all management clients.</p>
 
     <div class="upsell-grid">
-      <div class="upsell-card glass">
+      <div class="upsell-card glass" onclick="openCheckout('price_1TmffoF7RlhwRhJ43VGg8GvT', 'Google Business Profile Optimization')" style="cursor: pointer;">
         <div class="upsell-icon">📍</div>
         <div class="upsell-name">Google Business Profile Optimization</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">Full audit and optimization of your Google Business Profile — hours, photos, categories, service areas, review link, and attributes. Includes a before/after report.</p>
       </div>
-      <div class="upsell-card glass">
+      <div class="upsell-card glass" onclick="openCheckout('price_1TmffpF7RlhwRhJ4Ac1CKpBJ', 'SEO Foundation')" style="cursor: pointer;">
         <div class="upsell-icon">🔍</div>
         <div class="upsell-name">SEO Foundation</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">Keyword research, on-page optimization, schema markup, and a local citation audit. Delivered as a full SEO report with a 90-day action plan.</p>
       </div>
-      <div class="upsell-card glass">
+      <div class="upsell-card glass" onclick="openCheckout('price_1TmffqF7RlhwRhJ4SQ4YTzSK', 'Google Review Automation Setup')" style="cursor: pointer;">
         <div class="upsell-icon">⭐</div>
         <div class="upsell-name">Google Review Automation Setup</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">We build an automated review funnel that steers happy customers to your Google listing and filters negative feedback before it goes public. More stars, less risk.</p>
       </div>
-      <div class="upsell-card glass">
+      <div class="upsell-card glass" onclick="openCheckout('price_1TmffqF7RlhwRhJ4VZSc1STX', 'SMS Notifications')" style="cursor: pointer;">
         <div class="upsell-icon">💬</div>
         <div class="upsell-name">SMS Notifications</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">Get a text the moment someone fills out your contact form. Never miss a lead again. Email form notifications are included free — SMS is the upgrade.</p>
       </div>
-      <div class="upsell-card glass">
+      <div class="upsell-card glass" onclick="openCheckout('price_1TmffrF7RlhwRhJ4jT1bFJPf', 'SMS Campaign Templates')" style="cursor: pointer;">
         <div class="upsell-icon">📲</div>
         <div class="upsell-name">SMS Campaign Templates</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">4-6 ready-to-send SMS campaigns: review requests, appointment reminders, win-back sequences, and promos. Copy-paste ready — you send them manually.</p>
       </div>
-      <div class="upsell-card glass">
+      <div class="upsell-card glass" onclick="openCheckout('price_1TmffsF7RlhwRhJ4OzscYNoD', 'SMS Campaign Automation')" style="cursor: pointer;">
         <div class="upsell-icon">⚡</div>
         <div class="upsell-name">SMS Campaign Automation</div>
         <div class="upsell-price">+$500</div>
@@ -1223,10 +1421,52 @@
   </footer>
 
   <!-- Floating CTA -->
-  <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="floating-logo glass-button">
+  <a href="packages.html" class="floating-logo glass-button">
     <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
+  <!-- Payment Modal -->
+  <div id="payment-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h2 id="package-name">Package Name</h2>
+          <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.25rem;" id="payment-type">One-Time Payment</p>
+        </div>
+        <button class="close-modal" onclick="closeCheckout()">×</button>
+      </div>
+
+      <form id="payment-form" class="modal-form">
+        <div class="form-group">
+          <label for="customer-name">Full Name</label>
+          <input type="text" id="customer-name" name="name" placeholder="Your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="customer-email">Email Address</label>
+          <input type="email" id="customer-email" name="email" placeholder="your@email.com" required>
+        </div>
+
+        <div id="payment-element"></div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-btn secondary" onclick="closeCheckout()">Cancel</button>
+          <button type="submit" id="payment-submit-btn" class="modal-btn primary">Complete Payment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Modal -->
+  <div id="notification-modal" class="notification-modal">
+    <div class="notification-content">
+      <h3 id="modal-title">Success</h3>
+      <p id="modal-message">Your payment was processed successfully.</p>
+      <button class="close-notification" id="close-notification">Close</button>
+    </div>
+  </div>
+
+  <script src="stripe-checkout.js"></script>
   <script>
     // Path selector — each path shows ONLY its relevant section
     let viewAllOpen = false;
