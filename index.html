@@ -4,8 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VAURA — Digital Craftsmanship</title>
+  <meta name="description" content="VAURA is a digital branding, web design, marketing, and photography agency. Premium websites, brand identity, and content that elevate your digital presence.">
+  <link rel="canonical" href="https://vaura.site/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VAURA — Digital Craftsmanship">
+  <meta property="og:description" content="Premium websites, branding, photography, and marketing that elevate your digital presence.">
+  <meta property="og:url" content="https://vaura.site/">
+  <meta property="og:image" content="https://vaura.site/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VAURA — Digital Craftsmanship">
+  <meta name="twitter:description" content="Premium websites, branding, photography, and marketing that elevate your digital presence.">
+  <meta name="twitter:image" content="https://vaura.site/og-image.png">
   <link rel="icon" type="image/png" href="vaura favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "VAURA",
+    "url": "https://vaura.site/",
+    "description": "Digital branding, web design, marketing, and photography agency.",
+    "image": "https://vaura.site/og-image.png",
+    "sameAs": [
+      "https://www.instagram.com/vaura.agency",
+      "https://www.facebook.com/vaura.agency",
+      "https://www.tiktok.com/@vaura.agency"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "6"
+    }
+  }
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -27,6 +58,90 @@
       padding: 0;
       box-sizing: border-box;
     }
+
+
+    /* ==================== Design Tokens (VAURA) ==================== */
+    :root {
+      /* color */
+      --bg-base: #000000;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-tertiary: rgba(255, 255, 255, 0.6);
+      --text-muted: rgba(255, 255, 255, 0.55); /* WCAG AA-safe minimum for meta/footer text */
+      --brand-green: #00ff96;
+      --brand-cyan: #00ccff;
+      --border-hairline: rgba(255, 255, 255, 0.05);
+      --border-glass: rgba(255, 255, 255, 0.18);
+      --border-glass-strong: rgba(255, 255, 255, 0.25);
+
+      /* spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 0.75rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 5rem;
+
+      /* radius */
+      --radius-sm: 0.75rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.5rem;
+      --radius-full: 9999px;
+      --radius-circle: 50%;
+
+      /* shadow */
+      --shadow-elevation-sm: 0 8px 24px rgba(0, 255, 150, 0.2);
+      --shadow-elevation-md: 0 10px 30px rgba(0, 255, 150, 0.3);
+      --shadow-elevation-lg: 0 20px 64px rgba(0, 255, 150, 0.15);
+      --shadow-elevation-neutral: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --shadow-glow-ring: 0 0 32px rgba(0, 255, 150, 0.22);
+      /* Secondary hover: subtle, no colored glow (reserved for primary CTAs only) */
+      --shadow-hover-subtle: 0 6px 18px rgba(0, 0, 0, 0.5);
+
+      /* motion */
+      --transition-default: all 0.3s ease;
+    }
+
+    /* ==================== Accessibility: focus visibility ==================== */
+    a, button, input, textarea, select, [tabindex] {
+      outline: none;
+    }
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    [tabindex]:focus-visible,
+    .glass-button:focus-visible,
+    .mobile-menu-btn:focus-visible {
+      outline: 2px solid var(--brand-cyan);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 0 0 4px rgba(0, 204, 255, 0.25);
+    }
+
+    /* Minimum touch target size for controls (WCAG 2.5.5 / 44x44px) */
+    .mobile-menu-btn {
+      min-width: 44px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Respect reduced-motion preference: pause carousels & non-essential animation */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* ==================== End Design Tokens / Accessibility ==================== */
+
 
     body {
       font-family: 'HeliosExt', 'Inter', system-ui, sans-serif;
@@ -459,20 +574,8 @@
       margin-bottom: 3rem;
     }
 
-    @media (max-width: 1200px) {
-      .packages-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
-      }
-      .packages-grid .package-card:nth-child(3) {
-        grid-column: 1 / -1;
-        max-width: 440px;
-        width: 100%;
-        margin: 0 auto;
-      }
-    }
-
-    @media (max-width: 600px) {
+    /* Anything below desktop (tablet + mobile) gets the carousel treatment */
+    @media (max-width: 1199px) {
       .packages-grid {
         display: flex;
         flex-direction: row;
@@ -491,17 +594,6 @@
         flex: 0 0 82%;
         scroll-snap-align: center;
         padding: 1.5rem 1.25rem;
-      }
-      .packages-grid .package-card:nth-child(3) {
-        grid-column: auto;
-        max-width: 100%;
-        margin: 0;
-      }
-      .package-name {
-        font-size: 1.1rem;
-      }
-      .package-price {
-        font-size: 2rem;
       }
       /* Dot indicators */
       .pkg-dots {
@@ -523,7 +615,29 @@
         background: #00ff96;
       }
     }
-    @media (min-width: 601px) {
+
+    /* Wider tablets: show more of the neighboring card so it still reads as a carousel */
+    @media (min-width: 900px) and (max-width: 1199px) {
+      .packages-grid .package-card {
+        flex: 0 0 46%;
+      }
+    }
+    @media (min-width: 601px) and (max-width: 899px) {
+      .packages-grid .package-card {
+        flex: 0 0 60%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .package-name {
+        font-size: 1.1rem;
+      }
+      .package-price {
+        font-size: 2rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
       .pkg-dots { display: none; }
     }
 
@@ -542,7 +656,8 @@
 
     .package-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 64px rgba(0, 255, 150, 0.15);
+      box-shadow: var(--shadow-hover-subtle);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .popular-badge {
@@ -750,7 +865,7 @@
       background: rgba(255, 255, 255, 0.07);
       backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 18px;
+      border-radius: var(--radius-lg);
       padding: 1.25rem 1.5rem;
       text-align: left;
       max-width: 320px;
@@ -867,7 +982,7 @@
     }
 
     .footer-bottom {
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.55);
       font-size: 0.85rem;
       padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -887,7 +1002,7 @@
       justify-content: center;
       width: 44px;
       height: 44px;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: rgba(255, 255, 255, 0.7);
@@ -927,7 +1042,7 @@
       z-index: 50;
       width: 60px;
       height: 60px;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -946,18 +1061,6 @@
     }
 
     /* Responsive */
-    /* Tablet: center the lone card when 2-col grid leaves it orphaned */
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .packages-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .packages-grid .package-card:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        max-width: 360px;
-        margin: 0 auto;
-        width: 100%;
-      }
-    }
 
     @media (max-width: 768px) {
       .hero {
@@ -1035,7 +1138,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <!-- Large stamped logo, 30% hanging off left -->
-    <img src="White Logo w Words Center.png" alt="" class="hero-logo-stamp">
+    <img src="vaura-logo-white.png" alt="" class="hero-logo-stamp">
     <div class="hero-content">
       <h1>Elevate your<br>digital <span class="gradient-text">presence</span>.</h1>
       <p class="hero-subtitle">Premium websites • Branding • Photography • Marketing</p>
@@ -1352,7 +1455,7 @@
         <a href="https://g.page/r/CZaO4TNAzK-NEBM/review" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
       </div>
       <div class="footer-bottom">
-        <img src="White Logo w Words Center.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
+        <img src="vaura-logo-white.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
         <p>Elevate your online presence.</p>
         <p>&copy; 2026 VAURA Digital Branding & Marketing.</p>
       </div>

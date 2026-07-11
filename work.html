@@ -23,6 +23,90 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+
+    /* ==================== Design Tokens (VAURA) ==================== */
+    :root {
+      /* color */
+      --bg-base: #000000;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-tertiary: rgba(255, 255, 255, 0.6);
+      --text-muted: rgba(255, 255, 255, 0.55); /* WCAG AA-safe minimum for meta/footer text */
+      --brand-green: #00ff96;
+      --brand-cyan: #00ccff;
+      --border-hairline: rgba(255, 255, 255, 0.05);
+      --border-glass: rgba(255, 255, 255, 0.18);
+      --border-glass-strong: rgba(255, 255, 255, 0.25);
+
+      /* spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 0.75rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 5rem;
+
+      /* radius */
+      --radius-sm: 0.75rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.5rem;
+      --radius-full: 9999px;
+      --radius-circle: 50%;
+
+      /* shadow */
+      --shadow-elevation-sm: 0 8px 24px rgba(0, 255, 150, 0.2);
+      --shadow-elevation-md: 0 10px 30px rgba(0, 255, 150, 0.3);
+      --shadow-elevation-lg: 0 20px 64px rgba(0, 255, 150, 0.15);
+      --shadow-elevation-neutral: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --shadow-glow-ring: 0 0 32px rgba(0, 255, 150, 0.22);
+      /* Secondary hover: subtle, no colored glow (reserved for primary CTAs only) */
+      --shadow-hover-subtle: 0 6px 18px rgba(0, 0, 0, 0.5);
+
+      /* motion */
+      --transition-default: all 0.3s ease;
+    }
+
+    /* ==================== Accessibility: focus visibility ==================== */
+    a, button, input, textarea, select, [tabindex] {
+      outline: none;
+    }
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    [tabindex]:focus-visible,
+    .glass-button:focus-visible,
+    .mobile-menu-btn:focus-visible {
+      outline: 2px solid var(--brand-cyan);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 0 0 4px rgba(0, 204, 255, 0.25);
+    }
+
+    /* Minimum touch target size for controls (WCAG 2.5.5 / 44x44px) */
+    .mobile-menu-btn {
+      min-width: 44px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Respect reduced-motion preference: pause carousels & non-essential animation */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* ==================== End Design Tokens / Accessibility ==================== */
+
+
     body {
       font-family: 'HeliosExt', 'Inter', system-ui, sans-serif;
       background: #000000;
@@ -263,7 +347,7 @@
       -webkit-text-fill-color: transparent; margin-bottom: 0.25rem;
     }
     .work-card-meta .year {
-      font-size: 0.8rem; color: rgba(255, 255, 255, 0.4);
+      font-size: 0.8rem; color: rgba(255, 255, 255, 0.55);
       font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
     }
     .work-card-desc {
@@ -350,7 +434,7 @@
       background: rgba(255, 255, 255, 0.07);
       backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 18px;
+      border-radius: var(--radius-lg);
       padding: 1.25rem 1.5rem;
       text-align: left;
       max-width: 320px;
@@ -434,7 +518,7 @@
 
     .footer-socials a {
       display: flex; align-items: center; justify-content: center;
-      width: 44px; height: 44px; border-radius: 12px;
+      width: 44px; height: 44px; border-radius: var(--radius-sm);
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;
@@ -457,14 +541,14 @@
     }
 
     .footer-bottom {
-      color: rgba(255, 255, 255, 0.4); font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55); font-size: 0.85rem;
       padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     /* Floating CTA */
     .floating-logo {
       position: fixed; bottom: 25px; right: 25px; z-index: 50;
-      width: 60px; height: 60px; border-radius: 12px;
+      width: 60px; height: 60px; border-radius: var(--radius-sm);
       display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
     }
 
@@ -518,7 +602,7 @@
 
   <!-- Hero -->
   <section class="hero">
-    <img src="White Logo w Words Center.png" alt="" class="hero-logo-stamp">
+    <img src="vaura-logo-white.png" alt="" class="hero-logo-stamp">
     <div class="hero-content">
       <h1>Our <span class="gradient-text">Work</span></h1>
       <p class="hero-subtitle">Real businesses. Real results. Watch the demos and see what we build.</p>
@@ -749,7 +833,7 @@
         <a href="https://g.page/r/CZaO4TNAzK-NEBM/review" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
       </div>
       <div class="footer-bottom">
-        <img src="White Logo w Words Center.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
+        <img src="vaura-logo-white.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
         <p>Elevate your online presence.</p>
         <p>&copy; 2026 VAURA Digital Branding & Marketing.</p>
       </div>
