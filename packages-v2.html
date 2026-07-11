@@ -44,24 +44,22 @@
     }
 
     .glass-button {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(32px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(135deg, #00ff96, #00ccff);
+      border: none;
+      box-shadow: 0 8px 32px rgba(0, 255, 150, 0.25);
       transition: all 0.3s ease;
-      color: #ffffff;
+      color: #000000;
       text-decoration: none;
       display: inline-block;
       cursor: pointer;
-      font-weight: 500;
+      font-weight: 600;
       padding: 0.75rem 1.5rem;
       border-radius: 1rem;
       text-align: center;
     }
     .glass-button:hover {
-      background: rgba(255, 255, 255, 0.22);
       transform: translateY(-2px);
-      box-shadow: 0 12px 48px rgba(0, 255, 150, 0.2);
+      box-shadow: 0 12px 48px rgba(0, 255, 150, 0.4);
     }
     /* Nav Book a Call stays glass */
     nav .glass-button {
@@ -86,14 +84,11 @@
     }
     nav .container {
       max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+      display: flex; justify-content: center; align-items: center; gap: 2rem;
     }
-    .logo { order: 1; flex-shrink: 0; }
-    .logo img { height: 40px; width: auto; display: block; }
-    .nav-spacer { flex: 1; order: 2; }
     .nav-links {
       display: flex; gap: 2rem; align-items: center;
-      list-style: none; justify-content: center; order: 3;
+      list-style: none; justify-content: center;
     }
     .nav-links a {
       color: #ffffff; text-decoration: none;
@@ -101,9 +96,7 @@
     }
     .nav-links a:hover { color: #00ff96; transform: translateY(-3px); }
     .nav-links a.active { color: #00ccff; text-shadow: 0 0 12px rgba(0, 204, 255, 0.7); }
-    .mobile-menu-btn { display: none; background: none; border: none; color: #ffffff; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; order: 4; flex-shrink: 0; transition: all 0.3s ease; }
-    .mobile-menu-btn:hover { color: #00ff96; }
-    .mobile-menu-btn.active { color: #00ff96; }
+    .mobile-menu-btn { display: none; background: none; border: none; color: #ffffff; font-size: 1.5rem; cursor: pointer; padding: 0; }
     #mobile-menu {
       display: none !important; position: absolute; top: 100%;
       left: 1.5rem; right: 1.5rem; margin-top: 0.5rem;
@@ -116,9 +109,6 @@
     #mobile-menu a { color: #ffffff; text-decoration: none; font-size: 1rem; font-weight: 500; display: block; transition: all 0.3s ease; }
     #mobile-menu a:hover { color: #00ff96; transform: translateY(-3px); }
     @media (max-width: 768px) {
-      nav .container { justify-content: space-between; }
-      .logo img { display: block; }
-      .nav-spacer { display: none; }
       .nav-links { display: none; }
       .mobile-menu-btn { display: block; }
     }
@@ -145,8 +135,8 @@
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-    section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    section:first-of-type { padding-top: 4rem; }
+    section { padding: 4rem 0 3rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    section:first-of-type { padding-top: 3rem; }
     section:last-of-type { border-bottom: none; }
 
     h2 {
@@ -432,12 +422,11 @@
 
     /* ── Floating Logo ── */
     .floating-logo {
-      position: fixed; bottom: 25px; right: 25px; z-index: 50;
-      width: 60px; height: 60px; border-radius: 12px; padding: 0;
-      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: all 0.3s ease;
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100;
+      width: 56px; height: 56px; border-radius: 50%; padding: 0;
+      display: flex; align-items: center; justify-content: center;
     }
-    .floating-logo:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
-    .floating-logo img { height: 22px; width: auto; }
+    .floating-logo img { width: 28px; height: auto; }
 
     /* ── Responsive ── */
     @media (max-width: 1024px) {
@@ -508,216 +497,13 @@
       .always-included-static { display: grid; }
       .always-included-track-wrap { display: none; }
     }
-
-    /* Stripe Payment Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(4px);
-    }
-
-    .modal.active { display: flex !important; }
-
-    .modal-content {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(28px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 2rem;
-      padding: 2rem;
-      max-width: 500px;
-      width: 90%;
-      position: relative;
-      animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-header h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .close-modal {
-      background: none;
-      border: none;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .close-modal:hover { color: #fff; }
-
-    .modal-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .form-group label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .form-group input {
-      padding: 0.75rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 0.75rem;
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
-      font-size: 0.95rem;
-    }
-
-    .form-group input::placeholder {
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: #00ff96;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    #payment-element {
-      margin: 1.5rem 0;
-    }
-
-    .modal-footer {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .modal-btn {
-      flex: 1;
-      padding: 0.9rem;
-      border-radius: 1rem;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .modal-btn.primary {
-      background: linear-gradient(135deg, #00ff96, #00ccff);
-      color: #000;
-    }
-
-    .modal-btn.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 255, 150, 0.3);
-    }
-
-    .modal-btn.primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .modal-btn.secondary {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .modal-btn.secondary:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .notification-modal {
-      display: none;
-      position: fixed;
-      z-index: 101;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .notification-modal.success {
-      --accent-color: #00ff96;
-    }
-
-    .notification-modal.error {
-      --accent-color: #ff6b6b;
-    }
-
-    .notification-content {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(28px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 2rem;
-      padding: 2rem;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      border-top: 3px solid var(--accent-color);
-    }
-
-    .notification-content h3 {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-      color: var(--accent-color);
-    }
-
-    .notification-content p {
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 1.5rem;
-    }
-
-    .close-notification {
-      padding: 0.75rem 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      border-radius: 0.75rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .close-notification:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
   </style>
-  <script async src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
   <!-- Navigation -->
   <nav class="glass">
     <div class="container">
-      <div class="logo">
-        <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-          <img src="Logo no writing wht.png" alt="VAURA" style="height: 40px; width: auto;">
-        </a>
-      </div>
-      <div class="nav-spacer"></div>
+      <div style="flex: 1;"></div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -725,8 +511,9 @@
         <li><a href="photovideo.html">Photo / Video</a></li>
         <li><a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="glass-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Book a Call</a></li>
       </ul>
-      <button class="mobile-menu-btn" id="menu-toggle" aria-label="Toggle menu">
-        <i class="fas fa-bars"></i>
+      <div style="flex: 1;"></div>
+      <button class="mobile-menu-btn" id="menu-toggle">
+        <img src="Logo no writing wht.png" alt="VAURA Menu" style="height: 40px; width: auto;">
       </button>
     </div>
     <div id="mobile-menu">
@@ -797,7 +584,7 @@
           <li>30 days free support</li>
         </ul>
         <div class="design-cta">
-          <button class="btn-secondary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Get Started</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
         </div>
       </div>
 
@@ -817,7 +604,7 @@
           <li>30 days free support</li>
         </ul>
         <div class="design-cta">
-          <button class="btn-secondary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Get Started</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
         </div>
       </div>
 
@@ -839,7 +626,7 @@
           <li>Performance optimization</li>
         </ul>
         <div class="design-cta">
-          <button class="btn-primary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Schedule Call</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Schedule Call</a>
         </div>
       </div>
 
@@ -860,7 +647,7 @@
           <li>Ongoing content updates included</li>
         </ul>
         <div class="design-cta">
-          <button class="btn-secondary" onclick=\"window.open('https://calendly.com/vaura/general-discovery', '_blank')\">Let's Talk</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Let's Talk</a>
         </div>
       </div>
     </div>
@@ -1039,7 +826,7 @@
           <li class="not-included">E-commerce / products</li>
         </ul>
         <div class="mgmt-cta">
-          <button class="btn-secondary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Get Started</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -1067,7 +854,7 @@
           <li class="not-included">Local ads management (upsell)</li>
         </ul>
         <div class="mgmt-cta">
-          <button class="btn-primary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Get Started</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Get Started</a>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -1094,7 +881,7 @@
           <li>Strategy calls on request</li>
         </ul>
         <div class="mgmt-cta">
-          <button class="btn-secondary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Get Started</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -1133,7 +920,7 @@
           <li class="not-included">E-commerce / products</li>
         </ul>
         <div class="mgmt-cta">
-          <button class="btn-secondary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Get Started</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -1159,7 +946,7 @@
           <li class="not-included">Local ads management (upsell)</li>
         </ul>
         <div class="mgmt-cta">
-          <button class="btn-primary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Get Started</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-primary">Get Started</a>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -1184,7 +971,7 @@
           <li>Strategy calls on request</li>
         </ul>
         <div class="mgmt-cta">
-          <button class="btn-secondary" onclick="window.open('https://calendly.com/vaura/general-discovery', '_blank')">Get Started</button>
+          <a href="https://popl.co/card/7kmqlK11/4/preview?showappcta=false" target="_blank" class="btn-secondary">Get Started</a>
           <p class="commitment-note">6-month minimum commitment</p>
         </div>
       </div>
@@ -1202,37 +989,37 @@
     <p class="section-subtitle">One-time services that unlock more reach, more leads, and more automation. Available to all management clients.</p>
 
     <div class="upsell-grid">
-      <div class="upsell-card glass" onclick=\"window.open('https://calendly.com/vaura/general-discovery', '_blank')\" style="cursor: pointer;">
+      <div class="upsell-card glass">
         <div class="upsell-icon">📍</div>
         <div class="upsell-name">Google Business Profile Optimization</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">Full audit and optimization of your Google Business Profile — hours, photos, categories, service areas, review link, and attributes. Includes a before/after report.</p>
       </div>
-      <div class="upsell-card glass" onclick=\"window.open('https://calendly.com/vaura/general-discovery', '_blank')\" style="cursor: pointer;">
+      <div class="upsell-card glass">
         <div class="upsell-icon">🔍</div>
         <div class="upsell-name">SEO Foundation</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">Keyword research, on-page optimization, schema markup, and a local citation audit. Delivered as a full SEO report with a 90-day action plan.</p>
       </div>
-      <div class="upsell-card glass" onclick=\"window.open('https://calendly.com/vaura/general-discovery', '_blank')\" style="cursor: pointer;">
+      <div class="upsell-card glass">
         <div class="upsell-icon">⭐</div>
         <div class="upsell-name">Google Review Automation Setup</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">We build an automated review funnel that steers happy customers to your Google listing and filters negative feedback before it goes public. More stars, less risk.</p>
       </div>
-      <div class="upsell-card glass" onclick=\"window.open('https://calendly.com/vaura/general-discovery', '_blank')\" style="cursor: pointer;">
+      <div class="upsell-card glass">
         <div class="upsell-icon">💬</div>
         <div class="upsell-name">SMS Notifications</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">Get a text the moment someone fills out your contact form. Never miss a lead again. Email form notifications are included free — SMS is the upgrade.</p>
       </div>
-      <div class="upsell-card glass" onclick=\"window.open('https://calendly.com/vaura/general-discovery', '_blank')\" style="cursor: pointer;">
+      <div class="upsell-card glass">
         <div class="upsell-icon">📲</div>
         <div class="upsell-name">SMS Campaign Templates</div>
         <div class="upsell-price">$500</div>
         <p class="upsell-desc">4-6 ready-to-send SMS campaigns: review requests, appointment reminders, win-back sequences, and promos. Copy-paste ready — you send them manually.</p>
       </div>
-      <div class="upsell-card glass" onclick=\"window.open('https://calendly.com/vaura/general-discovery', '_blank')\" style="cursor: pointer;">
+      <div class="upsell-card glass">
         <div class="upsell-icon">⚡</div>
         <div class="upsell-name">SMS Campaign Automation</div>
         <div class="upsell-price">+$500</div>
@@ -1427,48 +1214,6 @@
     <img src="Logo no writing wht.png" alt="VAURA">
   </a>
 
-  <!-- Payment Modal -->
-  <div id="payment-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div>
-          <h2 id="package-name">Package Name</h2>
-          <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 0.25rem;" id="payment-type">One-Time Payment</p>
-        </div>
-        <button class="close-modal" onclick="closeCheckout()">×</button>
-      </div>
-
-      <form id="payment-form" class="modal-form">
-        <div class="form-group">
-          <label for="customer-name">Full Name</label>
-          <input type="text" id="customer-name" name="name" placeholder="Your name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="customer-email">Email Address</label>
-          <input type="email" id="customer-email" name="email" placeholder="your@email.com" required>
-        </div>
-
-        <div id="payment-element"></div>
-
-        <div class="modal-footer">
-          <button type="button" class="modal-btn secondary" onclick="closeCheckout()">Cancel</button>
-          <button type="submit" id="payment-submit-btn" class="modal-btn primary">Complete Payment</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Notification Modal -->
-  <div id="notification-modal" class="notification-modal">
-    <div class="notification-content">
-      <h3 id="modal-title">Success</h3>
-      <p id="modal-message">Your payment was processed successfully.</p>
-      <button class="close-notification" id="close-notification">Close</button>
-    </div>
-  </div>
-
-  <script src="stripe-checkout.js"></script>
   <script>
     // Path selector — each path shows ONLY its relevant section
     let viewAllOpen = false;
@@ -1538,14 +1283,10 @@
     // Mobile menu
     const mobileMenuBtn = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('visible');
-      mobileMenuBtn.classList.toggle('active');
-    });
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('visible'));
     document.addEventListener('click', (e) => {
       if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
         mobileMenu.classList.remove('visible');
-        mobileMenuBtn.classList.remove('active');
       }
     });
 

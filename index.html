@@ -76,10 +76,27 @@
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 50;
+      z-index: 100;
       backdrop-filter: blur(28px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 1rem 0;
+    }
+
+    /* Ensure all content is above wave background */
+    section {
+      position: relative;
+      z-index: 5;
+    }
+
+    footer {
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Main content area above background */
+    body > *:not(.floating-logo) {
+      position: relative;
+      z-index: 5;
     }
 
     nav .container {
@@ -100,7 +117,7 @@
     .logo img {
       height: 40px;
       width: auto;
-      display: none;
+      display: block;
     }
 
     .nav-spacer {
@@ -382,6 +399,8 @@
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
+      position: relative;
+      z-index: 5;
     }
 
     .partners-carousel-wrap {
@@ -903,7 +922,8 @@
     .floating-logo {
       position: fixed;
       bottom: 25px;
-      right: 25px;
+      right: 25px !important;
+      left: auto !important;
       z-index: 50;
       width: 60px;
       height: 60px;
@@ -1164,6 +1184,7 @@
         <ul class="package-features">
           <li>Up to 10 pages</li>
           <li>Fully custom design</li>
+          <li>E-commerce up to 100 products</li>
           <li>Advanced SEO + copywriting</li>
           <li>60 days support</li>
         </ul>
@@ -1384,5 +1405,8 @@
     })();
 
   </script>
+
+  <!-- Wave Background Animation -->
+  <script src="wave-background.js?v=2"></script>
 </body>
 </html>
