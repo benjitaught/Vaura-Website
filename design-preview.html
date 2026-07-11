@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAURA Design Tokens Preview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background:#000000;
+    color:#ffffff;
+    line-height:1.6;
+    padding: 3rem 1.5rem 6rem;
+  }
+  .wrap { max-width:1100px; margin:0 auto; }
+  h1 { font-size:2.5rem; font-weight:700; margin-bottom:0.5rem; letter-spacing:-0.02em; }
+  .lede { color:rgba(255,255,255,0.6); margin-bottom:3rem; max-width:640px; }
+  h2 { font-size:1.5rem; font-weight:700; margin: 3rem 0 1.25rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.08); }
+  h2:first-of-type { border-top:none; padding-top:0; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; }
+  .swatch { border-radius:1rem; overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03); }
+  .swatch-color { height:80px; }
+  .swatch-meta { padding:0.75rem 1rem; }
+  .swatch-name { font-weight:600; font-size:0.9rem; }
+  .swatch-value { font-family:monospace; font-size:0.78rem; color:rgba(255,255,255,0.5); margin-top:2px; }
+  .swatch-role { font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:6px; }
+
+  .type-row { display:flex; align-items:baseline; gap:1.5rem; padding:1rem 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .type-label { width:110px; flex-shrink:0; font-size:0.75rem; color:rgba(255,255,255,0.45); font-family:monospace; }
+  .type-sample { font-family:'HeliosExt','Inter',sans-serif; }
+
+  .ruler-row { display:flex; align-items:center; gap:1rem; padding:0.5rem 0; }
+  .ruler-label { width:90px; flex-shrink:0; font-family:monospace; font-size:0.8rem; color:rgba(255,255,255,0.6); }
+  .ruler-bar { height:20px; background:linear-gradient(135deg,#00ff96,#00ccff); border-radius:4px; }
+  .ruler-px { font-family:monospace; font-size:0.75rem; color:rgba(255,255,255,0.4); }
+
+  .radius-grid, .shadow-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:1.5rem; }
+  .radius-box, .shadow-box {
+    height:100px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center; font-family:monospace; font-size:0.8rem; color:rgba(255,255,255,0.7);
+  }
+  .shadow-box { background:#0a0a0a; border-radius:1rem; }
+
+  .btn-demo { display:flex; gap:1rem; flex-wrap:wrap; }
+  .glass-button {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(32px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+  }
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(0, 255, 150, 0.2);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #00ff96, #00ccff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight:700;
+  }
+  code.inline { background:rgba(255,255,255,0.08); padding:2px 6px; border-radius:4px; font-size:0.85em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>VAURA <span class="gradient-text">Design Tokens</span></h1>
+  <p class="lede">Live preview of the token set proposed in DESIGN.md — every value below is either an existing pattern pulled directly from the current site's CSS, or a small regularization of it. Open this file directly in a browser; no build step or external assets required beyond the Google Font import (Inter, used only as a fallback here).</p>
+
+  <h2>Color — Background &amp; Surface</h2>
+  <div class="grid" id="bg-grid"></div>
+
+  <h2>Color — Text</h2>
+  <div class="grid" id="text-grid"></div>
+
+  <h2>Color — Brand Accents</h2>
+  <div class="grid" id="brand-grid"></div>
+
+  <h2>Typography Scale</h2>
+  <div id="type-scale"></div>
+
+  <h2>Spacing Scale</h2>
+  <div id="spacing-scale"></div>
+
+  <h2>Radius Scale</h2>
+  <div class="radius-grid" id="radius-grid"></div>
+
+  <h2>Shadow Scale</h2>
+  <div class="shadow-grid" id="shadow-grid"></div>
+
+  <h2>Buttons</h2>
+  <div class="btn-demo">
+    <a class="glass-button" href="#">Book a Call</a>
+    <a class="glass-button" href="#" style="background:rgba(0,255,150,0.15); border-color:rgba(0,255,150,0.35);">Primary Action</a>
+  </div>
+</div>
+
+<script>
+const bgTokens = [
+  ["Base", "#000000", "primary page background"],
+  ["Surface Subtle", "rgba(255,255,255,0.03)", "faint section band"],
+  ["Surface Glass", "rgba(255,255,255,0.08)", "glass card fill"],
+  ["Surface Glass Button", "rgba(255,255,255,0.12)", "glass button fill"],
+  ["Overlay Modal", "rgba(0,0,0,0.97)", "mobile menu / modal backdrop"],
+];
+const textTokens = [
+  ["Primary", "#ffffff", "headings, body"],
+  ["Secondary", "rgba(255,255,255,0.7)", "subtitles, card copy"],
+  ["Tertiary", "rgba(255,255,255,0.6)", "section subtitles"],
+  ["Muted (fails AA)", "rgba(255,255,255,0.4)", "meta/footer — contrast ~3.66:1"],
+];
+const brandTokens = [
+  ["Primary Green", "#00ff96", "CTAs, active nav, glow"],
+  ["Secondary Cyan", "#00ccff", "gradient end, active link"],
+  ["Tertiary Magenta", "#c850ff", "ambient bg glow only"],
+  ["Accent Gold", "#F4B400", "packages tier highlight"],
+  ["Error Red", "#ff6b6b", "single-use error state"],
+];
+
+function renderSwatches(id, tokens, bgFor) {
+  const el = document.getElementById(id);
+  el.innerHTML = tokens.map(([name, val, role]) => `
+    <div class="swatch">
+      <div class="swatch-color" style="background:${bgFor ? bgFor(val) : val};"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">${name}</div>
+        <div class="swatch-value">${val}</div>
+        <div class="swatch-role">${role}</div>
+      </div>
+    </div>`).join('');
+}
+renderSwatches('bg-grid', bgTokens);
+renderSwatches('text-grid', textTokens, v => `#000000`);
+document.querySelectorAll('#text-grid .swatch-color').forEach((box, i) => {
+  box.style.display = 'flex'; box.style.alignItems = 'center'; box.style.justifyContent = 'center';
+  box.style.color = textTokens[i][1]; box.style.fontWeight = '700'; box.style.fontSize = '1.1rem';
+  box.textContent = 'Aa Text';
+});
+renderSwatches('brand-grid', brandTokens);
+
+const typeScale = [
+  ["h1", "clamp(2.5rem,6vw,4rem)", 700, "Elevate your digital presence."],
+  ["h2", "clamp(2rem,4vw,3rem)", 700, "Section Heading"],
+  ["h3", "1.4rem", 700, "Card Title"],
+  ["body-lg", "1.1rem", 400, "Hero subtitle copy sits here."],
+  ["body", "0.95rem", 400, "Standard paragraph copy."],
+  ["body-sm", "0.9rem", 400, "Smaller supporting text."],
+  ["caption", "0.85rem", 400, "Caption / meta text"],
+  ["micro", "0.75rem", 700, "UPPERCASE EYEBROW LABEL"],
+];
+document.getElementById('type-scale').innerHTML = typeScale.map(([label, size, weight, sample]) => `
+  <div class="type-row">
+    <div class="type-label">${label}<br>${size}</div>
+    <div class="type-sample" style="font-size:${size}; font-weight:${weight};">${sample}</div>
+  </div>`).join('');
+
+const spacing = [
+  ["xs", 8], ["sm", 12], ["md", 16], ["lg", 24], ["xl", 32], ["2xl", 48], ["3xl", 64], ["4xl", 80]
+];
+document.getElementById('spacing-scale').innerHTML = spacing.map(([name, px]) => `
+  <div class="ruler-row">
+    <div class="ruler-label">${name} / ${px}px</div>
+    <div class="ruler-bar" style="width:${px}px;"></div>
+  </div>`).join('');
+
+const radii = [["sm","0.75rem"],["md","1rem"],["lg","1.5rem"],["full","9999px"]];
+document.getElementById('radius-grid').innerHTML = radii.map(([name,val]) => `
+  <div class="radius-box" style="border-radius:${val};">${name}: ${val}</div>`).join('');
+
+const shadows = [
+  ["elevation-sm","0 8px 24px rgba(0,255,150,0.2)"],
+  ["elevation-md","0 10px 30px rgba(0,255,150,0.3)"],
+  ["elevation-lg","0 20px 64px rgba(0,255,150,0.15)"],
+  ["elevation-neutral","0 8px 32px rgba(0,0,0,0.4)"],
+];
+document.getElementById('shadow-grid').innerHTML = shadows.map(([name,val]) => `
+  <div class="shadow-box" style="box-shadow:${val};">${name}</div>`).join('');
+</script>
+</body>
+</html>

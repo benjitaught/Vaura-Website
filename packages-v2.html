@@ -24,6 +24,90 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+
+    /* ==================== Design Tokens (VAURA) ==================== */
+    :root {
+      /* color */
+      --bg-base: #000000;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-tertiary: rgba(255, 255, 255, 0.6);
+      --text-muted: rgba(255, 255, 255, 0.55); /* WCAG AA-safe minimum for meta/footer text */
+      --brand-green: #00ff96;
+      --brand-cyan: #00ccff;
+      --border-hairline: rgba(255, 255, 255, 0.05);
+      --border-glass: rgba(255, 255, 255, 0.18);
+      --border-glass-strong: rgba(255, 255, 255, 0.25);
+
+      /* spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 0.75rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 5rem;
+
+      /* radius */
+      --radius-sm: 0.75rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.5rem;
+      --radius-full: 9999px;
+      --radius-circle: 50%;
+
+      /* shadow */
+      --shadow-elevation-sm: 0 8px 24px rgba(0, 255, 150, 0.2);
+      --shadow-elevation-md: 0 10px 30px rgba(0, 255, 150, 0.3);
+      --shadow-elevation-lg: 0 20px 64px rgba(0, 255, 150, 0.15);
+      --shadow-elevation-neutral: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --shadow-glow-ring: 0 0 32px rgba(0, 255, 150, 0.22);
+      /* Secondary hover: subtle, no colored glow (reserved for primary CTAs only) */
+      --shadow-hover-subtle: 0 6px 18px rgba(0, 0, 0, 0.5);
+
+      /* motion */
+      --transition-default: all 0.3s ease;
+    }
+
+    /* ==================== Accessibility: focus visibility ==================== */
+    a, button, input, textarea, select, [tabindex] {
+      outline: none;
+    }
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    [tabindex]:focus-visible,
+    .glass-button:focus-visible,
+    .mobile-menu-btn:focus-visible {
+      outline: 2px solid var(--brand-cyan);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 0 0 4px rgba(0, 204, 255, 0.25);
+    }
+
+    /* Minimum touch target size for controls (WCAG 2.5.5 / 44x44px) */
+    .mobile-menu-btn {
+      min-width: 44px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Respect reduced-motion preference: pause carousels & non-essential animation */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* ==================== End Design Tokens / Accessibility ==================== */
+
+
     body {
       font-family: 'HeliosExt', 'Inter', system-ui, sans-serif;
       background: #000000;
@@ -160,7 +244,7 @@
       display: flex; flex-direction: column; align-items: center; gap: 1rem;
       flex: 1 1 0; min-width: 0;
     }
-    .path-card:hover { transform: translateY(-6px); box-shadow: 0 16px 60px rgba(0,255,150,0.15); border-color: rgba(0,255,150,0.3); }
+    .path-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover-subtle); border-color: rgba(255,255,255,0.3); }
     .path-icon { font-size: 2.5rem; }
     .path-card h3 { font-size: 1.25rem; font-weight: 700; }
     .path-card p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.5; }
@@ -178,7 +262,7 @@
       padding: 2rem 1.5rem; border-radius: 1.5rem;
       display: flex; flex-direction: column; transition: all 0.3s ease; position: relative;
     }
-    .design-card:hover { transform: translateY(-6px); box-shadow: 0 20px 70px rgba(0,255,150,0.15); }
+    .design-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover-subtle); border-color: rgba(255,255,255,0.3); }
     .design-card.featured { border: 2px solid rgba(0,255,150,0.5); }
     .popular-badge {
       display: none; position: absolute; top: 1rem; right: 1rem;
@@ -187,7 +271,7 @@
       font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #00ff96;
     }
     .design-card.featured .popular-badge { display: block; }
-    .design-tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; }
+    .design-tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.55); margin-bottom: 0.5rem; }
     .design-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
     .design-price {
       font-size: 2.5rem; font-weight: 700; margin-bottom: 0.3rem;
@@ -224,7 +308,7 @@
       padding: 2.5rem; border-radius: 1.5rem;
       display: flex; flex-direction: column; transition: all 0.3s ease; position: relative;
     }
-    .mgmt-card:hover { transform: translateY(-8px); box-shadow: 0 20px 80px rgba(0,255,150,0.2); }
+    .mgmt-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover-subtle); border-color: rgba(255,255,255,0.3); }
     .mgmt-card.featured { border: 2px solid rgba(0,255,150,0.5); }
     .mgmt-price {
       font-size: 3.5rem; font-weight: 700; margin-bottom: 0.25rem;
@@ -263,7 +347,7 @@
     .upsell-card {
       padding: 1.75rem; border-radius: 1.5rem; transition: all 0.3s ease;
     }
-    .upsell-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,255,150,0.12); }
+    .upsell-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover-subtle); border-color: rgba(255,255,255,0.3); }
     .upsell-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
     .upsell-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .upsell-price {
@@ -336,7 +420,7 @@
       border-radius: 1.5rem; overflow: hidden; transition: box-shadow 0.3s ease, transform 0.3s ease;
       display: flex; flex-direction: column; flex: 0 0 calc(50% - 1rem); min-width: 0;
     }
-    .work-card:hover { transform: translateY(-4px); box-shadow: 0 24px 72px rgba(0,255,150,0.12); }
+    .work-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover-subtle); border-color: rgba(255,255,255,0.3); }
     .work-section.expanded .carousel-wrapper { overflow: visible; }
     .work-section.expanded .carousel-track { display: grid; grid-template-columns: repeat(2,1fr); transform: none !important; transition: none; gap: 2.5rem; }
     .work-section.expanded .carousel-track .work-card { flex: unset; }
@@ -352,7 +436,7 @@
     .work-card-header { padding: 1.5rem 1.5rem 0.75rem; }
     .work-card-meta { display: flex; justify-content: space-between; align-items: center; }
     .work-card-meta h3 { font-size: 1.1rem; font-weight: 700; }
-    .work-card-meta .year { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+    .work-card-meta .year { font-size: 0.85rem; color: rgba(255, 255, 255, 0.55); }
     .work-card-desc { padding: 0 1.5rem 1rem; color: rgba(255,255,255,0.65); font-size: 0.88rem; line-height: 1.55; }
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -382,7 +466,7 @@
     .reviews-stars-row { display: flex; justify-content: center; align-items: center; gap: 0.75rem; margin-bottom: 3rem; color: rgba(255,255,255,0.6); font-size: 0.9rem; }
     .reviews-stars-row .stars { color: #F4B400; font-size: 1.1rem; letter-spacing: 2px; }
     .reviews-bubble-wrap { position: relative; height: 520px; -webkit-mask-image: linear-gradient(to bottom,transparent 0%,black 28%); mask-image: linear-gradient(to bottom,transparent 0%,black 28%); }
-    .review-bubble { position: absolute; background: rgba(255,255,255,0.07); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; padding: 1.25rem 1.5rem; text-align: left; max-width: 320px; animation: floatBubble var(--dur,6s) ease-in-out infinite; animation-delay: var(--delay,0s); }
+    .review-bubble { position: absolute; background: rgba(255,255,255,0.07); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.14); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; text-align: left; max-width: 320px; animation: floatBubble var(--dur,6s) ease-in-out infinite; animation-delay: var(--delay,0s); }
     .review-bubble::before { content: ''; position: absolute; bottom: -8px; left: 22px; width: 16px; height: 16px; background: rgba(255,255,255,0.07); border-right: 1px solid rgba(255,255,255,0.14); border-bottom: 1px solid rgba(255,255,255,0.14); transform: rotate(45deg); backdrop-filter: blur(24px); }
     .bubble-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
     .bubble-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#00ff96,#00ccff); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #000; flex-shrink: 0; }
@@ -413,12 +497,12 @@
     .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
     .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
     .footer-links a:hover { color: #00ff96; }
-    .footer-bottom { color: rgba(255,255,255,0.4); font-size: 0.85rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-bottom { color: rgba(255, 255, 255, 0.55); font-size: 0.85rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
     .footer-socials { display: flex; justify-content: center; gap: 1.25rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .footer-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; }
-    .footer-socials a:hover { background: rgba(0,255,150,0.15); border-color: rgba(0,255,150,0.4); color: #00ff96; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,255,150,0.2); }
-    .footer-socials a.popl:hover { background: rgba(0,204,255,0.15); border-color: rgba(0,204,255,0.4); color: #00ccff; box-shadow: 0 8px 24px rgba(0,204,255,0.2); }
-    .footer-socials a.google:hover { background: rgba(244,180,0,0.15); border-color: rgba(244,180,0,0.4); color: #F4B400; box-shadow: 0 8px 24px rgba(244,180,0,0.2); }
+    .footer-socials a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; }
+    .footer-socials a:hover { background: rgba(255,255,255,0.12); border-color: rgba(0,255,150,0.4); color: #00ff96; transform: translateY(-3px); box-shadow: var(--shadow-hover-subtle); }
+    .footer-socials a.popl:hover { background: rgba(255,255,255,0.12); border-color: rgba(0,204,255,0.4); color: #00ccff; box-shadow: var(--shadow-hover-subtle); }
+    .footer-socials a.google:hover { background: rgba(255,255,255,0.12); border-color: rgba(244,180,0,0.4); color: #F4B400; box-shadow: var(--shadow-hover-subtle); }
 
     /* ── Floating Logo ── */
     .floating-logo {
@@ -527,7 +611,7 @@
 
   <!-- Hero -->
   <section class="hero">
-    <img src="White Logo w Words Center.png" alt="" class="hero-logo-stamp">
+    <img src="vaura-logo-white.png" alt="" class="hero-logo-stamp">
     <div class="hero-content">
       <h1>Website <span class="gradient-text">Packages</span></h1>
       <p class="hero-subtitle">Professional, fully custom websites designed to convert and built to scale.</p>
@@ -1202,7 +1286,7 @@
         <a href="https://share.google/mV0X8NOunWxULwUeG" target="_blank" aria-label="Google Reviews" class="google"><i class="fa-brands fa-google"></i></a>
       </div>
       <div class="footer-bottom">
-        <img src="White Logo w Words Center.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
+        <img src="vaura-logo-white.png" alt="VAURA" style="height: 90px; width: auto; opacity: 0.6; margin-bottom: 0.5rem;">
         <p>Elevate your online presence.</p>
         <p>&copy; 2026 VAURA Digital Branding & Marketing.</p>
       </div>

@@ -1,0 +1,100 @@
+{
+  "$schema": "VAURA Design Tokens v1.0",
+  "meta": {
+    "generatedFrom": "Audit of index.html, packages.html, packages-v2.html, photovideo.html, services.html, work.html, success.html",
+    "date": "2026-07-11"
+  },
+  "color": {
+    "background": {
+      "base": { "value": "#000000", "role": "primary page background", "source": "index.html:33 body { background: #000000 }" },
+      "surfaceSubtle": { "value": "rgba(255,255,255,0.03)", "role": "faint section band (partners strip)", "source": "index.html:397 .partners-section" },
+      "surfaceGlass": { "value": "rgba(255,255,255,0.08)", "role": "glass card fill", "source": "index.html:47 .glass" },
+      "surfaceGlassButton": { "value": "rgba(255,255,255,0.12)", "role": "glass button fill", "source": "index.html:53 .glass-button" },
+      "overlayModal": { "value": "rgba(0,0,0,0.97)", "role": "mobile menu / modal backdrop", "source": "index.html:188 #mobile-menu" }
+    },
+    "text": {
+      "primary": { "value": "#ffffff", "role": "headings, primary body text", "source": "index.html:34 body { color: #ffffff }" },
+      "secondary": { "value": "rgba(255,255,255,0.7)", "role": "hero subtitle, card body copy", "usageCount": 58, "source": "index.html:285 .hero-subtitle" },
+      "tertiary": { "value": "rgba(255,255,255,0.6)", "role": "section subtitles", "usageCount": 14, "source": "index.html:322 .section-subtitle" },
+      "muted": { "value": "rgba(255,255,255,0.4)", "role": "meta labels, timestamps, footer bottom text", "usageCount": 10, "source": "packages.html:200, work.html:266, packages.html:426", "warning": "FAILS WCAG AA contrast (~3.66:1) on black background — see Audit §8" }
+    },
+    "brand": {
+      "primaryGreen": { "value": "#00ff96", "role": "primary accent — CTAs, active nav, glow, gradient start", "usageCount": 117, "source": "index.html:277 .gradient-text, index.html:146 .nav-links a:hover" },
+      "secondaryCyan": { "value": "#00ccff", "role": "secondary accent — gradient end, active link state", "usageCount": 77, "source": "index.html:277 .gradient-text, index.html:151 .nav-links a.active" },
+      "tertiaryMagenta": { "value": "#c850ff", "role": "rare third accent in ambient background glow only", "usageCount": 10, "source": "index.html gradient background stop rgba(200,50,255,...)" },
+      "accentGold": { "value": "#F4B400", "role": "used only on packages pages for a specific tier/highlight", "usageCount": 36, "source": "packages.html — tier accent" },
+      "errorRed": { "value": "#ff6b6b", "role": "single-use error/destructive state", "usageCount": 1, "source": "grep result across *.html" }
+    },
+    "border": {
+      "hairline": { "value": "rgba(255,255,255,0.05)", "role": "section dividers", "source": "index.html:300 section { border-bottom }" },
+      "glass": { "value": "rgba(255,255,255,0.18)", "role": "glass panel border", "source": "index.html:49 .glass" },
+      "glassStrong": { "value": "rgba(255,255,255,0.25)", "role": "glass button border", "source": "index.html:55 .glass-button" }
+    }
+  },
+  "typography": {
+    "fontFamilies": {
+      "display": { "value": "'HeliosExt', 'Inter', sans-serif", "role": "all headings h1-h3", "source": "index.html:32, :273, :313, :317" },
+      "body": { "value": "'HeliosExt', 'Inter', system-ui, sans-serif", "role": "body text (falls back through Inter/system-ui)", "source": "index.html:32" },
+      "note": "HeliosExt is a self-hosted custom brand font (HeliosExt.woff/otf + HeliosExt-Bold). Inter (Google Fonts) is the web-safe fallback. This custom/serif-adjacent geometric sans is the single strongest, most defensible piece of brand identity already in the codebase — keep and formalize it."
+    },
+    "scale": {
+      "h1": { "value": "clamp(2.5rem, 6vw, 4rem)", "weight": 700, "lineHeight": 1.2, "letterSpacing": "-0.02em", "source": "index.html:268-272" },
+      "h2": { "value": "clamp(2rem, 4vw, 3rem)", "weight": 700, "letterSpacing": "-0.01em", "source": "index.html:308-312" },
+      "h3": { "value": "1.4rem", "weight": 700, "source": "index.html:383-385 .service-card h3" },
+      "bodyLarge": { "value": "1.1rem", "usageCount": 61, "source": "index.html:284 .hero-subtitle" },
+      "body": { "value": "0.95rem", "usageCount": 55, "source": "index.html:391 .service-card p" },
+      "bodySmall": { "value": "0.9rem", "usageCount": 41 },
+      "caption": { "value": "0.85rem", "usageCount": 28 },
+      "micro": { "value": "0.75rem", "usageCount": 9, "role": "uppercase eyebrow labels e.g. .design-tier", "source": "packages.html:200" }
+    },
+    "weights": { "regular": 400, "medium": 500, "bold": 700 }
+  },
+  "spacing": {
+    "baseUnit": "0.25rem (4px)",
+    "note": "Site does not use a strict 4px/8px grid consistently — padding values are ad hoc (0.35rem, 0.4rem, 0.5rem, 0.6rem, 0.75rem, 0.9rem, 1rem, 1.25rem, 1.5rem, 1.75rem, 2rem, 2.5rem, 3rem, 4rem, 5rem all appear). Proposed scale below regularizes this into an 8-step system while keeping the values actually observed most often.",
+    "scale": {
+      "xs": { "value": "0.5rem", "px": 8 },
+      "sm": { "value": "0.75rem", "px": 12, "source": "index.html:63 .glass-button padding" },
+      "md": { "value": "1rem", "px": 16 },
+      "lg": { "value": "1.5rem", "px": 24, "usageCount": "most common section horizontal padding, index.html:105" },
+      "xl": { "value": "2rem", "px": 32, "usageCount": 42, "source": "most common card padding, index.html:378 .service-card" },
+      "2xl": { "value": "3rem", "px": 48 },
+      "3xl": { "value": "4rem", "px": 64, "source": "index.html:299 section padding" },
+      "4xl": { "value": "5rem", "px": 80 }
+    },
+    "containerMaxWidth": { "value": "1200px", "source": "index.html:103, :292 .container" }
+  },
+  "radius": {
+    "note": "6 different radius values found in use with no clear system (1.1rem, 0.75rem, 12px, 18px, 1rem, 1.5rem, 2rem, 50%, 9999px). Proposing a 4-step scale to replace ad hoc values.",
+    "scale": {
+      "sm": { "value": "0.75rem", "px": 12, "role": "small chips/inputs", "source": "index.html border-radius:12px count 11" },
+      "md": { "value": "1rem", "px": 16, "role": "buttons", "usageCount": 23, "source": "index.html:64 .glass-button" },
+      "lg": { "value": "1.5rem", "px": 24, "role": "cards, modals", "usageCount": 66, "source": "index.html:379 .service-card, :183 #mobile-menu" },
+      "full": { "value": "9999px", "role": "pills / tags", "usageCount": 14 },
+      "circle": { "value": "50%", "role": "avatars/icons", "usageCount": 19 }
+    }
+  },
+  "shadow": {
+    "note": "All shadows are colored glows tied to the two brand accents (green/cyan) or plain black elevation shadows — this is consistent and worth keeping.",
+    "scale": {
+      "elevationSm": { "value": "0 8px 24px rgba(0,255,150,0.2)", "source": "index.html hover states, usageCount 8+" },
+      "elevationMd": { "value": "0 10px 30px rgba(0,255,150,0.3)", "source": "packages.html:221 .btn-primary:hover" },
+      "elevationLg": { "value": "0 20px 64px rgba(0,255,150,0.15)", "source": "services.html:310 .service-card:hover" },
+      "elevationNeutral": { "value": "0 8px 32px rgba(0,0,0,0.4)", "role": "base glass elevation (no color)", "source": "index.html:56 .glass-button", "usageCount": 10 },
+      "glowRing": { "value": "0 0 32px rgba(0,255,150,0.22)", "role": "focus/active emphasis ring" }
+    }
+  },
+  "motion": {
+    "transitionDefault": { "value": "all 0.3s ease", "usageCount": 63, "source": "index.html:57, :142, :165 — used almost everywhere" },
+    "transitionColor": { "value": "color 0.3s ease", "usageCount": 7 },
+    "easingFeature": { "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)", "usageCount": 3, "role": "used for a couple of transform-heavy hovers" },
+    "carouselSpeed": { "value": "28s linear infinite", "source": "index.html:367 @keyframes scrollServices" }
+  },
+  "breakpoints": {
+    "note": "Inconsistent — 768px is dominant (16 occurrences) but 600px, 1024px, and 1200px also appear once or twice each, sometimes with inconsistent spacing around the colon (max-width:768px vs max-width: 768px).",
+    "mobile": { "value": "768px", "usageCount": 16, "source": "index.html:211 @media (max-width: 768px)" },
+    "small": { "value": "600px", "usageCount": 2 },
+    "tablet": { "value": "1024px", "usageCount": 2 },
+    "wide": { "value": "1200px", "usageCount": 1 }
+  }
+}
