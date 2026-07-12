@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vaura.site/sitemap.xml
+Sitemap: https://vauraagency.com/sitemap.xml
